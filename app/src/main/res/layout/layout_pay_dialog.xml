@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white">
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/iv_exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/icon_clear" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="输入密码"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="请输入支付密码，以验证身份"
+                android:textSize="10sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/xiaxue1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/rl_title"
+        android:background="#000000" />
+
+    <RelativeLayout
+        android:id="@+id/ll_rjp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/xiaxue1"
+        android:layout_centerHorizontal="true">
+
+        <com.yaer.remittance.view.PwdEditText
+            android:id="@+id/et_input"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/hw_40_dp"
+            android:layout_marginRight="@dimen/hw_40_dp"
+            android:layout_marginTop="40dp"
+            app:pwdCount="6"
+            app:style="roundRectangle" />
+
+        <TextView
+            android:id="@+id/tv_forget_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/et_input"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="10dp"
+            android:text="忘记密码"
+            android:textColor="@color/colorPrimaryDark"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_rjp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#919191"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="拍品汇专属安全键盘"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:keyTextColor="@android:color/black" />
+
+        <com.yaer.remittance.view.PwdKeyboardView
+            android:id="@+id/key_board"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#919191"
+            android:keepScreenOn="true"
+            android:keyBackground="@drawable/selector_key_board"
+            android:keyTextColor="@android:color/black"
+            android:keyTextSize="26sp"
+            android:shadowRadius="0" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_logistics"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        app:left_button_image="@drawable/return_left"
+        app:title_backgrounds="@color/main_tone"
+        app:title_text="物流信息"
+        app:title_textColor="@color/text_1_color"
+        app:title_textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/hw_10_dp">
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:src="@drawable/express" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/hw_10_dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_Otrackingname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="快递公司："
+                android:textColor="@color/text_2_color"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_Otrackingnumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/hw_5_dp"
+                android:text="快递单号："
+                android:textColor="@color/text_2_color"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+    <!-- <android.support.v7.widget.RecyclerView
+         android:id="@+id/rv_logistics"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent" />-->
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:id="@+id/rl_no_time_express"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/reason" />
+
+            <TextView
+                android:id="@+id/tv_reason"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="暂无快递信息" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout><!--  <com.yaer.remittance.view.X5WebView
+          android:id="@+id/x5_webview"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent" />-->

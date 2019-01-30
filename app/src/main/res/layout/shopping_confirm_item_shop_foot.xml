@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="1dp"
+    android:background="@android:color/white"
+    android:foreground="?android:selectableItemBackground"
+    android:longClickable="true"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.yaer.remittance.view.MyEditText
+            android:id="@+id/ev_confirm_item_foot_leaving"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/hw_100_dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:gravity="top"
+            android:hint="给商家留言"
+            android:imeOptions="actionSearch"
+            android:padding="@dimen/hw_10_dp"
+            android:textColorHint="#666666"
+            android:textSize="14dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|right"
+        android:orientation="horizontal"
+        android:padding="@dimen/hw_5_dp">
+
+        <TextView
+            android:id="@+id/tv_confirm_item_foot_total_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/hw_10_dp"
+            android:text="共2件作品"
+            android:textColor="#222222"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/tv_confirm_item_postage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="邮费：30"
+            android:textColor="#222222"
+            android:textSize="15dp"
+            android:visibility="gone" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="@string/total_"
+                android:textColor="#222222"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/tv_confirm_item_foot_total_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rmb_X"
+                android:textColor="@color/colorAccent"
+                android:textSize="15dp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

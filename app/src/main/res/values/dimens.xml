@@ -1,0 +1,81 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+
+    <dimen name="hw_01_dp">0.1dp</dimen>
+    <!--hint text sp-->
+    <dimen name="text_12_dp">12sp</dimen>
+    <dimen name="text_14_dp">14sp</dimen>
+    <dimen name="text_15_dp">15sp</dimen>
+    <dimen name="text_17_dp">17sp</dimen>
+
+    <!--高-->
+    <dimen name="hw_0.5_dp">0.5dip</dimen>
+    <dimen name="hw_1_dp">1dip</dimen>
+    <dimen name="hw_19_dp">19dip</dimen>
+    <dimen name="hw_15_dp">15dip</dimen>
+    <dimen name="hw_26_dp">26dip</dimen>
+    <dimen name="hw_20_dp">20dip</dimen>
+    <dimen name="hw_22_dp">22dip</dimen>
+    <dimen name="hw_25_dp">25dip</dimen>
+    <dimen name="hw_11_dp">11dip</dimen>
+    <dimen name="hw_60_dp">60dip</dimen>
+    <dimen name="hw_80_dp">80dip</dimen>
+    <dimen name="hw_90_dp">90dip</dimen>
+    <dimen name="hw_70_dp">70dip</dimen>
+    <dimen name="hw_72_dp">72dip</dimen>
+    <dimen name="hw_100_dp">100dip</dimen>
+    <dimen name="hw_120_dp">120dip</dimen>
+    <dimen name="hw_40_dp">40dip</dimen>
+    <dimen name="hw_30_dp">30dip</dimen>
+    <dimen name="hw_38_dp">38dip</dimen>
+    <dimen name="hw_5_dp">5dip</dimen>
+    <dimen name="hw_4_dp">4dip</dimen>
+    <dimen name="hw_3_dp">3dip</dimen>
+    <dimen name="hw_2_dp">2dip</dimen>
+    <dimen name="hw_8_dp">8dip</dimen>
+    <dimen name="hw_6_dp">6dip</dimen>
+    <dimen name="hw_5_5_dp">5.5dip</dimen>
+
+    <dimen name="hw_29_dp">29dip</dimen>
+    <dimen name="hw_10_dp">10dip</dimen>
+    <dimen name="hw_42_dp">42dip</dimen>
+    <dimen name="hw_58_dp">58dip</dimen>
+    <dimen name="hw_65_dp">65dip</dimen>
+    <dimen name="hw_35_dp">35dip</dimen>
+    <dimen name="hw_36_dp">36dip</dimen>
+    <dimen name="hw_146_dp">146dip</dimen>
+    <dimen name="hw_420_dp">420dp</dimen>
+    <dimen name="hw_180_dp">180dp</dimen>
+    <dimen name="hw_300_dp">300dp</dimen>
+    <dimen name="hw_145_dp">145dp</dimen>
+    <dimen name="hw_150_dp">150dp</dimen>
+    <dimen name="hw_160_dp">160dp</dimen>
+    <dimen name="hw_195_dp">195dp</dimen>
+    <dimen name="hw_250_dp">250dp</dimen>
+    <dimen name="hw_200_dp">200dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+
+    <dimen name="font_larger">22sp</dimen>
+    <dimen name="font_large">18sp</dimen>
+    <dimen name="font_normal">15sp</dimen>
+    <dimen name="font_smaller">14sp</dimen>
+    <dimen name="font_small">12sp</dimen>
+
+    <!-- typical spacing between two views -->
+    <dimen name="spacing_huge">40dp</dimen>
+    <dimen name="spacing_larger">34dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+    <dimen name="spacing_biger">20dp</dimen>
+    <dimen name="spacing_big">18dp</dimen>
+    <dimen name="spacing_normal">14dp</dimen>
+    <dimen name="spacing_small">12dp</dimen>
+    <dimen name="spacing_smaller">10dp</dimen>
+    <dimen name="spacing_smallest">8dp</dimen>
+    <dimen name="spacing_tiny">6dp</dimen>
+    <dimen name="spacing_tinyer">4dp</dimen>
+    <dimen name="spacing_tinyest">2dp</dimen>
+</resources>

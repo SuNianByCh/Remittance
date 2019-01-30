@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_experts_detail_say"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        app:left_button_image="@drawable/return_left"
+        app:title_backgrounds="@color/main_tone"
+        app:title_text="专家详情"
+        app:title_textColor="@color/text_1_color"
+        app:title_textSize="18sp" />
+
+    <com.yaer.remittance.view.ScrollInterceptScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_esimg"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/hw_5_dp"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/tv_esname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/hw_10_dp"
+                android:padding="@dimen/hw_10_dp"
+                android:text="123123" />
+
+            <TextView
+                android:id="@+id/tv_esdesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/hw_10_dp"
+                android:text="123123"
+                android:textColor="@color/text_1_color"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </com.yaer.remittance.view.ScrollInterceptScrollView>
+</LinearLayout>

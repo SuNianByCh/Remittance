@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!-- <com.yaer.auction.view.X5WebView
+         android:id="@+id/x5_webview"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"/>-->
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_persona_linformation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        app:left_button_image="@drawable/return_left"
+        app:title_backgrounds="@color/main_tone"
+        app:title_text="编辑资料"
+        app:title_textColor="@color/text_1_color"
+        app:title_textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_bottom_border"
+            android:padding="@dimen/hw_5_dp"
+            android:textColorHint="@android:color/darker_gray">
+
+            <TextView
+                android:id="@+id/tv_head_portrait"
+                style="@style/TextBottomTheme"
+                android:text="@string/head_portrait"
+                android:textColor="@color/my_order" />
+            <com.liji.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/civ_personal"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/hw_30_dp"
+                android:background="@drawable/user_settings"
+                app:circle_border_color="@color/white"
+                app:circle_border_width="1dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_bottom_border"
+            android:textColorHint="@android:color/darker_gray">
+
+            <TextView
+                android:id="@+id/person_nicename"
+                style="@style/TextBottomTheme"
+                android:layout_marginLeft="@dimen/hw_5_dp"
+                android:text="@string/nickname"
+                android:textColor="@color/my_order" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/hw_20_dp"
+                android:drawablePadding="@dimen/hw_5_dp"
+                android:gravity="center"
+                android:padding="@dimen/hw_15_dp"
+                android:text="拍品汇"
+                android:textColor="@color/text_2_color"
+                android:textSize="@dimen/text_12_dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_bottom_border"
+            android:textColorHint="@android:color/darker_gray">
+
+            <TextView
+                android:id="@+id/tv_brief_introduction"
+                style="@style/TextBottomTheme"
+                android:layout_marginLeft="@dimen/hw_5_dp"
+                android:text="@string/brief_introduction"
+                android:textColor="@color/my_order" />
+
+            <TextView
+                android:id="@+id/tv_usignature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/hw_20_dp"
+                android:drawablePadding="@dimen/hw_5_dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:text="暂无简介"
+                android:maxEms="18"
+                android:padding="@dimen/hw_15_dp"
+                android:singleLine="true"
+                android:textColor="@color/text_2_color"
+                android:textSize="@dimen/text_12_dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_bottom_border"
+            android:textColorHint="@android:color/darker_gray">
+
+            <TextView
+                android:id="@+id/tv_personal_sex"
+                style="@style/TextBottomTheme"
+                android:layout_marginLeft="@dimen/hw_5_dp"
+                android:text="@string/personal_sex"
+                android:textColor="@color/my_order" />
+
+            <TextView
+                android:id="@+id/tv_usex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/hw_20_dp"
+                android:drawablePadding="@dimen/hw_5_dp"
+                android:gravity="center"
+                android:padding="@dimen/hw_15_dp"
+                android:text="男"
+                android:textColor="@color/text_2_color"
+                android:textSize="@dimen/text_12_dp" />
+        </RelativeLayout>
+
+        <!--
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_bottom_border"
+                    android:textColorHint="@android:color/darker_gray">
+
+                    <TextView
+                        style="@style/TextBottomTheme"
+                        android:layout_marginLeft="@dimen/hw_5_dp"
+                        android:text="@string/where_region"
+                        android:textColor="@color/my_order" />
+
+                    <TextView
+                        android:id="@+id/tv_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/hw_20_dp"
+                        android:drawablePadding="@dimen/hw_5_dp"
+                        android:gravity="center"
+                        android:padding="@dimen/hw_15_dp"
+                        android:text="山东济南"
+                        android:textColor="@color/text_2_color"
+                        android:textSize="@dimen/text_12_dp" />
+                </RelativeLayout>
+        -->
+
+<!--
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_bottom_border"
+            android:textColorHint="@android:color/darker_gray">
+
+            <TextView
+                android:id="@+id/tv_identity_interest"
+                style="@style/TextBottomTheme"
+                android:layout_marginLeft="@dimen/hw_5_dp"
+                android:text="@string/identity_interest"
+                android:textColor="@color/my_order" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/hw_20_dp"
+                android:drawablePadding="@dimen/hw_5_dp"
+                android:gravity="center"
+                android:padding="@dimen/hw_15_dp"
+                android:textColor="@color/text_2_color"
+                android:textSize="@dimen/text_12_dp" />
+        </RelativeLayout>
+-->
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,123 @@
+<resources>
+    <string name="app_name">拍品汇</string>
+    <string name="network_not_connected_tips">当前无网络链接，请检查网络</string>
+    <!--我的-->
+    <!--买家中心-->
+    <string name="take_product">参加拍品</string>
+    <string name="title_balance">余额</string>
+    <string name="signin">签到</string>
+    <string name="integral">积分</string>
+    <string name="my_order">我的订单</string>
+    <string name="view_more_orders">查看更多订单</string>
+    <string name="manual_bidding">
+        参拍人可根据系统提示的出价价格进行直接出价，也可以高于下一竞价价格的任一价格手动出价，出价成功后不可取消。
+    </string>
+    <string name="proxy_bidding">
+        代理出价是系统根据参拍人设定的可接受最高价的金额，当有其他参拍人出价时，系统自动在参拍人输入的最高价范围内，
+        以最小加价幅度出价，以确保参拍人处于领先状态。直到参拍成功或者设置的最高出价金额被其他参拍人超过时为止。
+    </string>
+    <string name="about_bidding">
+        1.拍卖是严谨的交易方式，出价代表您认可该拍品，若竞拍不买则影响您的账户信誉，并将受到处罚，请谨慎出价。
+        2.参拍者在拍卖前应该对拍品进行充分了解和必要评估，一旦出价，无法撤销。
+    </string>
+    <string name="pending_payment">待付款</string>
+    <string name="pending_delivery">待发货</string>
+    <string name="goods_received">待收货</string>
+    <string name="to_evaluated">待评价</string>
+    <string name="refund_after_sale">退款售后</string>
+    <string name="authentication_center">认证中心</string>
+    <string name="my_attention">我的关注</string>
+    <string name="special_field_bit">专场推广位</string>
+    <string name="collection">我的收藏</string>
+    <string name="share_app">分享app</string>
+    <string name="switch_seller_version">切换卖家版</string>
+    <string name="my_tracks">我的足迹</string>
+    <string name="feedback">意见反馈</string>
+    <string name="customer_service">客服</string>
+    <string name="about_product_name">拍品汇</string>
+    <string name="help">帮助</string>
+    <string name="empty_network_error">似乎已断开网络连接</string>
+    <string name="empty_no_data">暂无数据</string>
+    <string name="empty_no_order">暂无订单数据</string>
+    <!--<string name="ip_all_images">所有图片</string>
+    <string name="ip_complete">完成</string>
+    <string name="ip_select_complete">完成(%1$d/%2$d)</string>
+    <string name="ip_preview">预览</string>
+    <string name="ip_preview_count">预览(%1$d)</string>-->
+    <!--卖家中心-->
+    <string name="to_be_confirmed">待确认</string>
+    <string name="auction_management">藏品管理</string>
+    <string name="drafts">草稿箱</string>
+    <string name="store_report">店铺报表</string>
+    <string name="balance">我的余额</string>
+    <string name="seller_center">认证中心</string>
+    <string name="seller_enter">商家入驻</string>
+    <string name="seller_share_app">分享app</string>
+    <string name="extension_center">推广中心</string>
+    <string name="switch_buyer_version">切换买家版</string>
+    <string name="my_rule">如何获得积分？
+    登录App、每日签到、分享内容及邀请好友等操作都可以获取积分。获得的积分可以在积分商城中兑换优惠券、礼品卡以及调调精选好物等礼品。具体的积分规则及获得方式如下：
+    每日签到
+    连续签到第1天 - 第5天：每日签到积分+3
+    连续签到5天：额外获得15积分；
+    连续签到第6天 - 第30天：每日签到积分+5，
+    连续签到10天：额外获得20积分奖励；
+    连续签到20天：额外获得50积分奖励；
+    连续签到30天：额外获得100积分奖励；
+    连续签到第31天及以上：每日签到积分+10；
+    连续签到31天后每连续签到15天：额外100积分奖励；
+    当连续签到中断后，则回到初始签到状态重新累计连续签到天数；
+    </string>
+
+    <!--设置-->
+    <string name="head_portrait">头像</string>
+    <string name="modify_cell_phone">修改手机号</string>
+    <string name="modify_pwd">修改登录密码</string>
+    <string name="forget_pwd">忘记密码</string>
+    <string name="receiving_address">收货地址</string>
+    <string name="security_payment">支付安全</string>
+    <string name="about_us">关于我们</string>
+    <string name="clear_caching">清除缓存</string>
+    <string name="exit_logon">退出登录</string>
+    <string name="digits">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <!--个人设置-->
+    <string name="nickname">昵称</string>
+    <string name="brief_introduction">个性签名</string>
+    <string name="personal_sex">性别</string>
+    <string name="where_region">所在地区</string>
+    <string name="identity_interest">身份标签</string>
+
+    <!--店铺信息-->
+    <string name="default_proportion">违约比例</string>
+    <string name="shop_desc">店铺介绍</string>
+    <string name="authentication_type">认证类型</string>
+    <string name="shop_where_region">所在地区</string>
+
+    <!--推广中心-->
+    <string name="classification_extension_bit">分类推广位</string>
+    <string name="home_extension_bit">首页推广位</string>
+    <string name="selected_extension_bit">精选推广位</string>
+    <string name="activity_extension_bit">活动推广位</string>
+    <string name="leak_hunting_extension_bit">捡漏推广位</string>
+    <string name="shop_extension_bit">优店推广位</string>
+    <string name="expert_review">专家评审评论</string>
+    <!--消息-->
+    <string name="message">消息</string>
+    <string name="system_message">系统消息</string>
+    <string name="trading_news">交易消息</string>
+    <string name="private_letter">私信</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <!--购物车-->
+    <string name="rmb_X">¥&#160;%1$.2f</string>
+    <string name="cart">购物车(%1$d)</string>
+    <string name="all_select">全选</string>
+    <string name="edit_done">完成</string>
+    <string name="go_settle_X">去结算(%1$d)</string>
+    <string name="go_submission_order">提交订单(%1$d)</string>
+    <string name="go_add_favorites">移入收藏</string>
+    <string name="go_settle">去结算</string>
+    <string name="delete_X">删除(%1$d)</string>
+    <string name="total_">合计：</string>
+    <string name="edit">编辑</string>
+    <string name="normal_tip_X">购物车中有 %1$d 件商品已经降价，快去看看</string>
+</resources>

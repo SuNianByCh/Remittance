@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_user_headportra"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_head_portrait"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        app:left_button_image="@drawable/return_left"
+        app:right_button_text="修改"
+        app:right_button_textColor="@color/text_1_color"
+        app:right_button_textSize="14sp"
+        app:title_backgrounds="@color/main_tone"
+        app:title_text="头像"
+        app:title_textColor="@color/text_1_color"
+        app:title_textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/iv_userhead"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_centerVertical="true"
+        android:background="@drawable/goods"
+        android:scaleType="centerCrop" />
+</RelativeLayout>

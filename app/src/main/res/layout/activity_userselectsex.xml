@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background_color"
+    android:orientation="vertical">
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_select_sex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        app:left_button_image="@drawable/return_left"
+        app:title_backgrounds="@color/main_tone"
+        app:title_text="选择性别"
+        app:title_textColor="@color/text_1_color"
+        app:title_textSize="18sp" />
+    <RelativeLayout
+        android:id="@+id/male_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white" >
+        <TextView
+            style="@style/select_report_tv"
+            android:textSize="14sp"
+            android:text="男"
+            android:paddingLeft="@dimen/hw_10_dp"
+            android:textColor="@color/black" />
+        <CheckBox
+            style="@style/RadioButtonStyles"
+            android:id="@+id/man"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:checked="true"
+            android:layout_alignParentRight="true"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/province_line_border" />
+    <RelativeLayout
+        android:id="@+id/female_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white" >
+        <TextView
+            style="@style/select_report_tv"
+            android:textSize="14sp"
+            android:text="女"
+            android:paddingLeft="@dimen/hw_10_dp"
+            android:textColor="@color/black" />
+        <CheckBox
+            style="@style/RadioButtonStyles"
+            android:id="@+id/woman"
+            android:layout_width="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</LinearLayout>

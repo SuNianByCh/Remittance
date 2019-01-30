@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/rl_allorder_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/main_tone">
+
+        <TextView
+            android:id="@+id/et_go"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="123123"
+            android:textColor="@color/text_1_color"
+            android:textSize="@dimen/text_17_dp" />
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="@dimen/hw_10_dp"
+            android:gravity="center"
+            android:src="@drawable/return_left" />
+
+        <ImageView
+            android:id="@+id/shop"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/hw_10_dp"
+            android:layout_toLeftOf="@+id/message"
+            android:scaleType="center"
+            android:src="@drawable/shoppingcart"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/message"
+            android:layout_width="@dimen/hw_30_dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/hw_10_dp"
+            android:gravity="center"
+            android:scaleType="center"
+            android:src="@drawable/more"
+            android:visibility="gone" />
+    </RelativeLayout>
+</RelativeLayout>

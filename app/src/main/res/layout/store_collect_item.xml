@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingTop="@dimen/hw_10_dp"
+    android:paddingBottom="@dimen/hw_10_dp"
+    android:layout_marginBottom="1dp"
+    android:layout_marginTop="@dimen/hw_5_dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/hw_10_dp"
+        android:layout_marginRight="@dimen/hw_10_dp"
+        android:padding="@dimen/hw_5_dp"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.liji.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/civ_touxiang4"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/user_settings"
+                app:circle_border_color="@color/white"
+                app:circle_border_width="1dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/hw_10_dp"
+                android:layout_marginTop="@dimen/hw_5_dp"
+                android:layout_toRightOf="@+id/civ_touxiang4"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="古玩之家"
+                    android:textColor="@color/text_1_color"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/hw_5_dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_home_view"
+                        android:text="收藏家"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="@dimen/hw_10_dp"
+                        android:background="@drawable/corner_home_view"
+                        android:text="收藏家"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/btn_attention_closeAttention"
+                android:layout_width="wrap_content"
+                android:layout_height="24dip"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/select_btn_attention"
+                android:focusable="false"
+                android:paddingLeft="8dp"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/hw_20_dp"
+                android:paddingRight="@dimen/hw_10_dp"
+                android:text="取消收藏"
+                android:textColor="@color/main_tone"
+                android:textSize="10sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>
+

@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_enter"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_enter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        app:left_button_image="@drawable/return_left"
+        app:right_button_text="入驻说明"
+        app:title_backgrounds="@color/main_tone"
+        app:title_text="商家入驻"
+        app:title_textColor="@color/text_1_color"
+        app:title_textSize="18sp" />
+
+    <!--  开始认证  -->
+    <ScrollView
+        android:id="@+id/sv_dealer_addrzdata"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_enter_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/hw_20_dp"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="@dimen/hw_80_dp"
+                    android:layout_height="@dimen/hw_80_dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/hw_40_dp"
+                    android:src="@drawable/enter_icon" />
+
+                <TextView
+                    android:id="@+id/et_enter_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:hint="对不起，申请成为商家需要先进行个人或企业认证"
+                    android:paddingRight="16dp"
+                    android:singleLine="true"
+                    android:textColor="#666666"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_enter_infomation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/hw_20_dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    style="@style/select_report_tv"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:text="填写商家入驻信息："
+                    android:textColor="@color/text_2_color"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/hw_0.5_dp"
+                    android:background="@color/linen" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_user_enter_head_portrait"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:paddingBottom="@dimen/hw_10_dp"
+                    android:paddingLeft="@dimen/hw_10_dp"
+                    android:paddingTop="@dimen/hw_10_dp">
+
+                    <TextView
+                        style="@style/select_report_tv"
+                        android:text="商户头像:"
+                        android:textColor="@color/text_1_color"
+                        android:textSize="14sp" />
+
+                    <com.liji.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/user_enter_mCircleImageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/hw_15_dp"
+                        android:src="@drawable/user_settings"
+                        app:circle_border_color="@color/white"
+                        app:circle_border_width="1dp" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/rl_shopinfo_portrait"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/hw_10_dp"
+                    android:paddingLeft="@dimen/hw_10_dp"
+                    android:paddingTop="@dimen/hw_10_dp">
+
+                    <TextView
+                        android:id="@+id/tv_shopinfo"
+                        style="@style/select_report_tv"
+                        android:text="店铺背景图片:"
+                        android:textColor="@color/text_1_color"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/iv_shopinfo_image"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_below="@+id/tv_shopinfo"
+                        android:layout_margin="@dimen/hw_10_dp"
+                        android:src="@drawable/add_photo" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/hw_0.5_dp"
+                    android:background="@color/linen" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:paddingBottom="@dimen/hw_10_dp"
+                    android:paddingLeft="@dimen/hw_10_dp"
+                    android:paddingTop="@dimen/hw_10_dp">
+
+                    <TextView
+                        style="@style/select_report_tv"
+                        android:text="店铺名称:"
+                        android:textColor="@color/text_1_color"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/et_enter_name"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="left|center_vertical"
+                        android:hint="请输入店铺名称"
+                        android:lines="2"
+                        android:paddingRight="16dp"
+                        android:singleLine="true"
+                        android:textColor="#666666"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/hw_0.5_dp"
+                    android:background="@color/linen" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:paddingBottom="@dimen/hw_10_dp"
+                    android:paddingLeft="@dimen/hw_10_dp"
+                    android:paddingTop="@dimen/hw_10_dp">
+
+                    <TextView
+                        style="@style/select_report_tv"
+                        android:text="店铺标签:"
+                        android:textColor="@color/text_1_color"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_user_enter_label"
+                        style="@style/TextBottomTheme"
+                        android:layout_marginRight="@dimen/hw_10_dp"
+                        android:background="@null"
+                        android:gravity="center|right"
+                        android:inputType="number|numberDecimal"
+                        android:text=""
+                        android:textColor="@color/text_1_color"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/hw_0.5_dp"
+                    android:background="@color/linen" />
+
+                <LinearLayout
+                    android:id="@+id/ll_enter_class"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:paddingBottom="@dimen/hw_10_dp"
+                    android:paddingLeft="@dimen/hw_10_dp"
+                    android:paddingTop="@dimen/hw_10_dp">
+
+                    <TextView
+                        style="@style/select_report_tv"
+                        android:text="入驻分类:"
+                        android:textColor="@color/text_1_color"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/et_enter_class"
+                        style="@style/TextBottomTheme"
+                        android:layout_marginRight="@dimen/hw_10_dp"
+                        android:background="@null"
+                        android:gravity="center|right"
+                        android:inputType="number|numberDecimal"
+                        android:text=""
+                        android:textColor="@color/text_1_color"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/hw_0.5_dp"
+                    android:background="@color/linen" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:paddingBottom="@dimen/hw_10_dp"
+                    android:paddingLeft="@dimen/hw_10_dp"
+                    android:paddingTop="@dimen/hw_10_dp">
+
+                    <TextView
+                        style="@style/select_report_tv"
+                        android:text="入驻保证金:"
+                        android:textColor="@color/text_1_color"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/rz_tv_money"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="@dimen/hw_10_dp"
+                        android:background="@null"
+                        android:gravity="center|right"
+                        android:paddingBottom="@dimen/hw_15_dp"
+                        android:paddingLeft="@dimen/hw_10_dp"
+                        android:paddingRight="@dimen/hw_10_dp"
+                        android:paddingTop="@dimen/hw_15_dp"
+                        android:text="0.00"
+                        android:textColor="@color/text_1_color"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/hw_0.5_dp"
+                    android:background="@color/linen" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/ll_contract"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="@dimen/hw_15_dp">
+
+                    <ImageView
+                        android:id="@+id/img_contract"
+                        android:layout_width="@dimen/hw_22_dp"
+                        android:layout_height="@dimen/hw_22_dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_checkeds" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center|right"
+                    android:text="买卖合同"
+                    android:textColor="@color/text_1_color"
+                    android:textSize="@dimen/text_14_dp" />
+
+                <TextView
+                    android:id="@+id/tv_look_contract"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/hw_5_dp"
+                    android:drawableRight="@drawable/ic_right"
+                    android:gravity="center|right"
+                    android:paddingRight="@dimen/hw_15_dp"
+                    android:text="查看合同详情"
+                    android:textColor="@color/text_2_color"
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="@dimen/text_14_dp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/ben_user_enter_Submission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="22dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/corner_view"
+                android:text="提交"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

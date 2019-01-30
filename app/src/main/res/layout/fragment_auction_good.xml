@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_release_auction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        app:left_button_image="@drawable/return_left"
+        app:title_backgrounds="@color/main_tone"
+        app:title_text="发布拍品"
+        app:title_textColor="@color/text_1_color"
+        app:title_textSize="18sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:divider="@color/grey_line_bg"
+            android:orientation="vertical"
+            android:showDividers="middle|end">
+
+            <LinearLayout
+                android:id="@+id/ll_newCreatePhoto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="14dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="47dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
+                    android:text="上传图片"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+                <!--<ImageView
+                    android:id="@+id/gv_addMyPhoto"
+                    android:layout_width="@dimen/hw_100_dp"
+                    android:layout_height="@dimen/hw_100_dp"
+                    android:layout_marginBottom="8dp"
+                    android:scrollbars="none"
+                    android:src="@drawable/add_photo"
+                    />-->
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:choiceMode="singleChoice"
+                    android:divider="@null"
+                    android:fadingEdge="none"
+                    android:listSelector="@android:color/transparent"
+                    android:scrollbarStyle="outsideOverlay"
+                    app:layoutManager="android.support.v7.widget.GridLayoutManager"
+                    app:spanCount="4"
+                    tools:listitem="@layout/list_item_image" />
+            </LinearLayout>
+            <!--拍品名称-->
+
+            <LinearLayout
+                style="@style/NewCollect"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
+                    android:text="拍品名称"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@android:color/holo_red_dark" />
+
+                <EditText
+                    android:id="@+id/et_LotName"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="right|center_vertical"
+                    android:hint="请填写拍品名称"
+                    android:paddingRight="9dp"
+                    android:singleLine="true"
+                    android:textColor="#999999"
+                    android:textColorHint="#999999"
+                    android:textSize="12sp" />
+            </LinearLayout>
+            <!--拍品介绍-->
+            <LinearLayout
+                style="@style/NewCollect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
+                    android:text="拍品介绍"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+
+                <com.yaer.remittance.view.MyEditText
+                    android:id="@+id/et_Lotdetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/hw_100_dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:gravity="top"
+                    android:hint="请填写拍品描述"
+                    android:imeOptions="actionSearch"
+                    android:padding="@dimen/hw_10_dp"
+                    android:textColorHint="#666666"
+                    android:textSize="14dp" />
+
+                <!--    <EditText
+                        android:id="@+id/et_product_description"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="right|center_vertical"
+                        android:hint=""
+                        android:paddingRight="9dp"
+                        android:textColor="#999999"
+                        android:textColorHint="#999999"
+                        android:textSize="12sp" />-->
+            </LinearLayout>
+            <!--商品价格-->
+            <LinearLayout
+                style="@style/NewCollect"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
+                    android:text="拍品原价"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/et_auction_price"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:digits="1234567890"
+                    android:gravity="right|center_vertical"
+                    android:hint="请输入拍品价格"
+                    android:inputType="number|numberDecimal"
+                    android:paddingRight="9dp"
+                    android:singleLine="true"
+                    android:textColor="#999999"
+                    android:textColorHint="#999999"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!--起拍价-->
+            <LinearLayout
+                style="@style/NewCollect"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
+                    android:text="起拍价"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@android:color/holo_red_dark" />
+
+                <EditText
+                    android:id="@+id/et_LotStarting_Price"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:digits="1234567890"
+                    android:gravity="right|center_vertical"
+                    android:hint="请输入起拍价"
+                    android:inputType="number|numberDecimal"
+                    android:paddingRight="9dp"
+                    android:singleLine="true"
+                    android:textColor="#999999"
+                    android:textColorHint="#999999"
+                    android:textSize="12sp" />
+            </LinearLayout>
+            <!--加价幅度-->
+            <LinearLayout
+                style="@style/NewCollect"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
+                    android:text="加价幅度"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@android:color/holo_red_dark" />
+
+                <EditText
+                    android:id="@+id/et_LotMarkup"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:digits="1234567890"
+                    android:gravity="right|center_vertical"
+                    android:hint="请输入加价幅度"
+                    android:inputType="number|numberDecimal"
+                    android:paddingRight="9dp"
+                    android:singleLine="true"
+                    android:textColor="#999999"
+                    android:textColorHint="#999999"
+                    android:textSize="12sp" />
+            </LinearLayout>
+            <!--邮费-->
+            <LinearLayout
+                style="@style/NewCollect"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
+                    android:text="运费"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@android:color/holo_red_dark" />
+
+                <EditText
+                    android:id="@+id/et_auction_freight"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:digits="1234567890"
+                    android:gravity="right|center_vertical"
+                    android:hint="请输入运费"
+                    android:inputType="number|numberDecimal"
+                    android:paddingRight="9dp"
+                    android:singleLine="true"
+                    android:textColor="#999999"
+                    android:textColorHint="#999999"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!--保证金-->
+            <!--
+                        <LinearLayout
+                            style="@style/NewCollect"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginRight="5dp"
+                                android:gravity="center_vertical"
+                                android:text="保证金"
+                                android:textColor="#333333"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_LotBond"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:drawablePadding="9dp"
+                                android:drawableRight="@drawable/ic_right"
+                                android:gravity="right|center_vertical"
+                                android:hint="请选择"
+                                android:singleLine="true"
+                                android:text="0"
+                                android:textColor="#999999"
+                                android:textColorHint="#999999"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+            -->
+
+            <LinearLayout
+                style="@style/NewCollect"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
+                    android:text="拍卖起始时间"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@android:color/holo_red_dark" />
+
+                <TextView
+                    android:id="@+id/tv_StartTime"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:drawablePadding="9dp"
+                    android:drawableRight="@drawable/ic_right"
+                    android:gravity="right|center_vertical"
+                    android:hint="请选择"
+                    android:singleLine="true"
+                    android:textColor="#999999"
+                    android:textColorHint="#999999"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!--拍卖时间-->
+            <LinearLayout
+                style="@style/NewCollect"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
+                    android:text="拍卖截止时间"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@android:color/holo_red_dark" />
+
+                <TextView
+                    android:id="@+id/tv_EndTime"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:drawablePadding="9dp"
+                    android:drawableRight="@drawable/ic_right"
+                    android:gravity="right|center_vertical"
+                    android:hint="请选择"
+                    android:singleLine="true"
+                    android:textColor="#999999"
+                    android:textColorHint="#999999"
+                    android:textSize="12sp" />
+            </LinearLayout>
+            <!--分类-->
+            <LinearLayout
+                style="@style/NewCollect"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
+                    android:text="分类"
+                    android:textColor="@color/text_1_color"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_auction_good_type"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:drawablePadding="9dp"
+                    android:drawableRight="@drawable/ic_right"
+                    android:gravity="right|center_vertical"
+                    android:hint="请选择"
+                    android:singleLine="true"
+                    android:textColor="#999999"
+                    android:textColorHint="#999999"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- 同步到拍场 -->
+            <RelativeLayout
+                android:id="@+id/rl_notice_voice"
+                style="@style/NewCollect">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:text="同步到拍场"
+                    android:textColor="@color/text_1_color"
+                    android:textSize="14sp" />
+
+                <Switch
+                    android:id="@+id/sc_notice_voice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/hw_15_dp"
+                    android:layout_marginRight="@dimen/hw_10_dp"
+                    android:checked="false"
+                    android:thumb="@drawable/switch_ios_thumb"
+                    android:track="@drawable/switch_ios_track_selector" />
+
+                <!--
+                                <ToggleButton
+                                    android:id="@+id/tb_notice_voice"
+                                    android:layout_width="@dimen/hw_58_dp"
+                                    android:layout_height="@dimen/hw_30_dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_gravity="center_horizontal"
+                                    android:background="@android:color/transparent"
+                                    android:button="@drawable/ios7_btn"
+                                    android:text=""
+                                    android:textOff=""
+                                    android:textOn="" />
+                -->
+            </RelativeLayout>
+
+            <!--
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="47dp"
+                                android:background="@color/grey_line_bg"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="*"
+                                    android:textColor="@android:color/holo_red_dark" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center_vertical"
+                                    android:text=" 为必填项"
+                                    android:textColor="#999999"
+                                    android:textSize="13sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+            -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_lotRelease"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="22dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/corner_view"
+                    android:text="发布"
+                    android:textColor="@color/white" />
+
+<!--
+                <Button
+                    android:id="@+id/btndrafts"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="22dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/corner_home_view"
+                    android:text="保存草稿箱"
+                    android:textColor="@color/white" />
+-->
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

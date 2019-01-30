@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_leak_list"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/hw_5_dp"
+        android:layout_marginRight="@dimen/hw_5_dp"
+        android:layout_marginTop="@dimen/hw_5_dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_leak_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_elementbeijin"
+                android:layout_width="140dp"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/hw_10_dp"
+                android:layout_marginTop="-30dp"
+                android:background="@drawable/corner_view"
+                android:text="拍卖中"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/hw_5_dp"
+            android:layout_toRightOf="@+id/ll_leak_icon"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/hw_5_dp">
+
+                <TextView
+                    android:id="@+id/tv_leak_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的名称我的名称我的名称"
+                    android:textSize="12sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/hw_10_dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/hw_5_dp"
+                            android:text="当前价："
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/leak_money"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/hw_5_dp"
+                            android:text="￥99999"
+                            android:textColor="@color/main_tone"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/hw_5_dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/hw_5_dp"
+                        android:text="截拍时间："
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_end_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/hw_5_dp"
+                        android:text="今日12:00"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/hw_5_dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/hw_5_dp"
+                        android:text="剩余时间："
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_remaining_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/hw_5_dp"
+                        android:text="1小时27分36秒"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+              <!--  <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/hw_5_dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/hw_5_dp"
+                        android:text="参与人数："
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_person_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/hw_5_dp"
+                        android:text="666人"
+                        android:textSize="12sp" />
+                </LinearLayout>-->
+
+                <!--
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/hw_10_dp"
+                                    android:orientation="horizontal">
+
+                                    <com.liji.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                                        android:id="@+id/civ_dianputx"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_centerVertical="true"
+                                        android:src="@drawable/user_settings"
+                                        app:circle_border_color="@color/white"
+                                        app:circle_border_width="1dp" />
+
+                                    <TextView
+                                        android:id="@+id/tv_shop_name"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginLeft="@dimen/hw_5_dp"
+                                        android:layout_toRightOf="@+id/civ_dianputx"
+                                        android:text="店铺名称："
+                                        android:maxEms="7"
+                                        android:maxLines="1"
+                                        android:ellipsize="end"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginRight="@dimen/hw_5_dp"
+                                        android:background="@drawable/edge_leak"
+                                        android:text="出价"
+                                        android:textColor="@color/white"
+                                        android:textSize="16sp" />
+                                </RelativeLayout>
+                -->
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:orientation="vertical">
+    <!-- <com.yaer.auction.view.X5WebView
+         android:id="@+id/x5_webview"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"/>-->
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_help_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        app:left_button_image="@drawable/return_left"
+        app:title_backgrounds="@color/main_tone"
+        android:maxLength="10"
+        app:title_text="帮助中心详情"
+        app:title_textColor="@color/text_1_color"
+        app:title_textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_help_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/sp_20"
+        android:text="123123"
+        android:textColor="@color/text_2_color"
+        android:textSize="14sp" />
+</LinearLayout>

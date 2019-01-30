@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_integral"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        app:left_button_image="@drawable/return_left"
+        app:right_button_text="积分规则"
+        app:right_button_textColor="@color/text_1_color"
+        app:right_button_textSize="14sp"
+        app:title_backgrounds="@color/main_tone"
+        app:title_text="积分"
+        app:title_textColor="@color/text_1_color"
+        app:title_textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginLeft="@dimen/hw_10_dp"
+        android:layout_marginRight="@dimen/hw_10_dp"
+        android:background="@drawable/bkg_user_blance"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/hw_10_dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dp_40"
+            android:padding="@dimen/hw_5_dp">
+
+            <com.liji.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/civ_integral"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/user_settings"
+                app:circle_border_color="@color/white"
+                app:circle_border_width="1dp" />
+
+            <LinearLayout
+                android:id="@+id/ll_toux"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/hw_10_dp"
+                android:layout_marginTop="@dimen/hw_5_dp"
+                android:layout_toRightOf="@+id/civ_integral"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/hw_10_dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_integral_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="古玩之家"
+                        android:textColor="@color/text_1_color"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/hw_5_dp"
+                        android:text="Lv3"
+                        android:textColor="@color/main_tones"
+                        android:textSize="12sp" />
+                </LinearLayout>
+<!--
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/hw_5_dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_integral_lable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shap_attention_true"
+                        android:padding="@dimen/hw_5_dp"
+                        android:text="收藏家"
+                        android:textColor="@color/main_tone"
+                        android:textSize="12sp" />
+                </LinearLayout>
+-->
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/hw_10_dp"
+                android:layout_below="@+id/civ_integral"
+                android:padding="@dimen/hw_10_dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="可用积分:"
+                    android:textSize="@dimen/sp_14" />
+
+                <TextView
+                    android:id="@+id/tv_user_uintegral"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="123123"
+                    android:textColor="@color/main_tones"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+    <com.tencent.smtt.sdk.WebView
+        android:id="@+id/userintegral"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <!-- <ScrollView
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:orientation="vertical">-->
+    <!--
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/hw_10_dp"
+                    android:layout_marginRight="@dimen/hw_10_dp"
+                    android:background="@drawable/bkg_user_blance"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/hw_10_dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:padding="@dimen/hw_5_dp">
+
+                        <com.liji.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/civ_integral"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/user_settings"
+                            app:circle_border_color="@color/white"
+                            app:circle_border_width="1dp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/hw_10_dp"
+                            android:layout_marginTop="@dimen/hw_5_dp"
+                            android:layout_toRightOf="@+id/civ_integral"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tv_integral_name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="古玩之家"
+                                    android:textColor="@color/text_1_color"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/hw_5_dp"
+                                    android:text="Lv3"
+                                    android:textColor="@color/main_tones"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/hw_5_dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tv_integral_lable"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/shap_attention_true"
+                                    android:padding="@dimen/hw_5_dp"
+                                    android:text="收藏家"
+                                    android:textColor="@color/main_tone"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+    -->
+
+
+    <!--中间按钮-->
+
+    <!--    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:padding="@dimen/dp_10"
+            android:layout_marginTop="@dimen/hw_60_dp"
+            android:src="@drawable/item_class"/>-->
+    <!--积分商城-->
+    <!--   <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="@dimen/hw_40_dp">
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_centerVertical="true"
+               android:layout_marginLeft="12dp"
+               android:text="积分商城"
+               android:textColor="@color/my_order"
+               android:textSize="@dimen/text_14_dp" />
+
+           <LinearLayout
+               android:id="@+id/full_order"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentRight="true"
+               android:layout_centerVertical="true"
+               android:orientation="horizontal">
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginRight="6dp"
+                   android:text="查看更多"
+                   android:textSize="@dimen/text_12_dp" />
+
+               <ImageView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginRight="12dp"
+                   android:background="@drawable/ic_right" />
+           </LinearLayout>
+       </RelativeLayout>
+</LinearLayout>
+</ScrollView>-->
+</LinearLayout>

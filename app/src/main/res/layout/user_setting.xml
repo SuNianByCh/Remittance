@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/beijing"
+    android:orientation="vertical">
+
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        app:left_button_image="@drawable/return_left"
+        app:title_backgrounds="@color/main_tone"
+        app:title_text="设置"
+        app:title_textColor="@color/text_1_color"
+        app:title_textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/doc_notice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/selector_bottom_border"
+                            android:orientation="horizontal"
+                            android:textColorHint="@android:color/darker_gray">
+                            <ImageView
+                                android:layout_width="18.5dp"
+                                android:layout_height="18dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="@dimen/hw_30_dp"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/auction_management" />
+                            <TextView
+                                android:id="@+id/tv_head_portrait"
+                                style="@style/TextBottomTheme"
+                                android:text="@string/head_portrait"
+                                android:textColor="@color/my_order" />
+                        </RelativeLayout>
+            -->
+
+<!--
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_bottom_border"
+                android:orientation="horizontal"
+                android:textColorHint="@android:color/darker_gray">
+
+                <TextView
+                    android:id="@+id/tv_modify_cell_phone"
+                    style="@style/TextBottomTheme"
+                    android:text="@string/modify_cell_phone"
+                    android:textColor="@color/my_order" />
+            </LinearLayout>
+-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_bottom_border"
+                android:orientation="horizontal"
+                android:textColorHint="@android:color/darker_gray">
+
+                <TextView
+                    android:id="@+id/tv_modify_pwd"
+                    style="@style/TextBottomTheme"
+                    android:text="@string/modify_pwd"
+                    android:textColor="@color/my_order" />
+            </LinearLayout>
+
+<!--
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_bottom_border"
+                android:orientation="horizontal"
+                android:textColorHint="@android:color/darker_gray">
+
+                <TextView
+                    android:id="@+id/tv_payment_password"
+                    style="@style/TextBottomTheme"
+                    android:text="设置支付密码"
+                    android:textColor="@color/my_order" />
+            </LinearLayout>
+-->
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/hw_10_dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_bottom_border"
+                android:orientation="horizontal"
+                android:textColorHint="@android:color/darker_gray">
+
+                <TextView
+                    android:id="@+id/tv_receiving_address"
+                    style="@style/TextBottomTheme"
+                    android:text="@string/receiving_address"
+                    android:textColor="@color/my_order" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_bottom_border"
+                android:orientation="horizontal"
+                android:textColorHint="@android:color/darker_gray">
+
+                <TextView
+                    android:id="@+id/tv_security_payment"
+                    style="@style/TextBottomTheme"
+                    android:text="@string/security_payment"
+                    android:textColor="@color/my_order" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_bottom_border"
+            android:orientation="horizontal"
+            android:textColorHint="@android:color/darker_gray">
+            <TextView
+                android:id="@+id/tv_setting_feedback"
+                style="@style/TextBottomTheme"
+                android:text="@string/feedback"
+                android:textColor="@color/my_order" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/hw_10_dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_bottom_border"
+                android:textColorHint="@android:color/darker_gray">
+
+                <TextView
+                    android:id="@+id/tv_clear_caching"
+                    style="@style/TextBottomTheme"
+                    android:text="@string/clear_caching"
+                    android:textColor="@color/my_order" />
+
+                <TextView
+                    android:id="@+id/tv_clean"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/hw_20_dp"
+                    android:drawablePadding="@dimen/hw_5_dp"
+                    android:gravity="center"
+                    android:padding="@dimen/hw_15_dp"
+                    android:text="2.0M"
+                    android:textColor="@color/text_2_color"
+                    android:textSize="@dimen/text_12_dp" />
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_bottom_border"
+            android:orientation="horizontal"
+            android:textColorHint="@android:color/darker_gray">
+
+            <TextView
+                android:id="@+id/tv_about_us"
+                style="@style/TextBottomTheme"
+                android:text="@string/about_us"
+                android:textColor="@color/my_order" />
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/banben"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/hw_15_dp"
+        android:drawablePadding="@dimen/hw_5_dp"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/text_3_color"
+        android:textSize="@dimen/text_12_dp" />
+
+    <TextView
+        android:id="@+id/tv_sign_out"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/hw_10_dp"
+        android:layout_marginRight="@dimen/hw_10_dp"
+        android:layout_marginTop="@dimen/hw_20_dp"
+        android:background="@drawable/edge_setting"
+        android:gravity="center"
+        android:padding="@dimen/hw_10_dp"
+        android:text="@string/exit_logon"
+        android:textColor="@color/main_tone"
+        android:textSize="16sp" />
+</LinearLayout>

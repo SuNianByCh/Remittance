@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_balance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        app:left_button_image="@drawable/return_left"
+        app:right_button_text="余额明细"
+        app:right_button_textColor="@color/text_1_color"
+        app:right_button_textSize="14sp"
+        app:title_backgrounds="@color/main_tone"
+        app:title_text="余额"
+        app:title_textColor="@color/text_1_color"
+        app:title_textSize="18sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/hw_10_dp"
+                android:layout_marginRight="@dimen/hw_10_dp"
+                android:background="@drawable/bkg_user_blance"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:padding="@dimen/hw_5_dp">
+
+                    <com.liji.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/civ_balance_image"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/user_settings"
+                        app:circle_border_color="@color/white"
+                        app:circle_border_width="1dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/civ_balance_image"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="@dimen/hw_10_dp"
+                        android:layout_marginTop="@dimen/hw_5_dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tv_balance_nickname"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="古玩之家"
+                                android:textColor="@color/text_1_color"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_balance_lenev"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/hw_5_dp"
+                                android:text="Lv3"
+                                android:textColor="@color/main_tones"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="-80dp"
+                android:background="@drawable/bg_circular"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_balance_amountmoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/hw_40_dp"
+                    android:text="¥0.00"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/hw_10_dp"
+                    android:text="可用余额"
+                    android:textSize="14sp" />
+            </LinearLayout>
+            <!--中间按钮-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/hw_10_dp">
+
+                <Button
+                    android:id="@+id/btn_recharge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/hw_10_dp"
+                    android:background="@drawable/corner_view"
+                    android:text="充值"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/btn_forward"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shap_attention_true"
+                    android:text="提现"
+                    android:textColor="@color/main_tones"
+                    android:textSize="16sp" />
+            </LinearLayout>
+            <!--底部-->
+            <LinearLayout
+                android:id="@+id/doc_notice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/ll_manage_bank"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/hw_15_dp"
+                    android:layout_marginRight="@dimen/hw_15_dp"
+                    android:background="@drawable/selector_bottom_border"
+                    android:orientation="horizontal"
+                    android:textColorHint="@android:color/darker_gray">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/hw_15_dp"
+                        android:src="@drawable/bankcard" />
+
+                    <TextView
+                        android:id="@+id/tv_cardr"
+                        style="@style/TextBottomTheme"
+                        android:text="管理银行卡"
+                        android:textColor="@color/my_order" />
+                </LinearLayout>
+
+                <!--
+                                <LinearLayout
+                                    android:id="@+id/ll_security_payment"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/hw_15_dp"
+                                    android:layout_marginRight="@dimen/hw_15_dp"
+                                    android:background="@drawable/selector_bottom_border"
+                                    android:orientation="horizontal"
+                                    android:textColorHint="@android:color/darker_gray">
+
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginLeft="@dimen/hw_15_dp"
+                                        android:src="@drawable/payment" />
+
+                                    <TextView
+                                        android:id="@+id/tv_apayment"
+                                        style="@style/TextBottomTheme"
+                                        android:text="支付安全"
+                                        android:textColor="@color/my_order" />
+                                </LinearLayout>
+                -->
+
+                <LinearLayout
+                    android:id="@+id/ll_bond"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/hw_15_dp"
+                    android:layout_marginRight="@dimen/hw_15_dp"
+                    android:background="@drawable/selector_bottom_border"
+                    android:orientation="horizontal"
+                    android:textColorHint="@android:color/darker_gray">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/hw_15_dp"
+                        android:src="@drawable/bond" />
+
+                    <TextView
+                        android:id="@+id/tv_money"
+                        style="@style/TextBottomTheme"
+                        android:text="保证金"
+                        android:textColor="@color/my_order" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <!-- <com.yaer.auction.view.X5WebView
+         android:id="@+id/x5_webview"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"/>-->
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_expert_authentication"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        app:left_button_image="@drawable/return_left"
+        app:title_backgrounds="@color/main_tone"
+        app:title_text="专家认证中心"
+        app:title_textColor="@color/text_1_color"
+        app:title_textSize="18sp" />
+
+    <!--  您还没有认证身份  -->
+    <RelativeLayout
+        android:id="@+id/rl_dealer_firstSqRz"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:paddingLeft="16dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="您还没有认证身份!"
+            android:textColor="#999999"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_dealer_startRZ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/corner_view"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="申请认证"
+            android:textColor="#ffffff" />
+
+    </RelativeLayout>
+
+    <!--  开始认证  -->
+    <ScrollView
+        android:id="@+id/sv_dealer_addrzdata"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--  请填写相关资料....  -->
+            <LinearLayout
+                android:id="@+id/ll_dealer_firstRZ"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:divider="@drawable/selector_bottom_border"
+                android:showDividers="middle|end"
+                android:padding="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/hw_5_dp"
+                    android:text="认证申请的真实姓名将是成为提现的姓名，一经认证，无法修改 "
+                    android:textColor="#999999"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_farenInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:visibility="visible">
+                <!--  姓名  -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="47dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center_vertical"
+                        android:text="真实姓名"
+                        android:textColor="@color/edittextcolor"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@android:color/holo_red_dark" />
+
+                    <EditText
+                        android:id="@+id/et_dealer_name"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="18dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="left|center_vertical"
+                        android:paddingRight="16dp"
+                        android:singleLine="true"
+                        android:textColor="#666666"
+                        android:textSize="13sp"
+                        android:hint="请填写真实姓名"/>
+                </LinearLayout>
+                <!--  姓名  -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="47dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center_vertical"
+                        android:text="身份证号"
+                        android:textColor="@color/edittextcolor"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@android:color/holo_red_dark" />
+
+                    <EditText
+                        android:id="@+id/et_idCard"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="18dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:digits="1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
+                        android:gravity="left|center_vertical"
+                        android:paddingRight="16dp"
+                        android:singleLine="true"
+                        android:textColor="#666666"
+                        android:textSize="13sp"
+                        android:lines="2"
+                        android:hint="请填写身份证号"/>
+                </LinearLayout>
+                <!--图片的位置-->
+                <LinearLayout
+                    android:id="@+id/ll_dealer_personPic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dip"
+                    android:layout_marginBottom="10dip">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/hw_20_dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:textColor="@color/edittextcolor"
+                            android:text="上传获奖证书或资质证明"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="*"
+                            android:textColor="@android:color/holo_red_dark" />
+                    </LinearLayout>
+                    <ImageView
+                        android:id="@+id/iv_expert_photo"
+                        android:layout_width="@dimen/hw_200_dp"
+                        android:layout_height="120dp"
+                        android:paddingLeft="-20dp"
+                        android:src="@drawable/add_photo"
+                        ></ImageView>
+                </LinearLayout>
+                <!--  身份证  -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="47dp"
+                    android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:text="手持身份证正反面"
+                    android:textColor="@color/edittextcolor"
+                    android:textSize="14sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@android:color/holo_red_dark" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+                    <ImageView
+                        android:id="@+id/iv_company_idcard_just"
+                        android:layout_weight="1"
+                        android:layout_width="200dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/add_photo"
+                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="center_vertical">
+                    </ImageView>
+
+                    <ImageView
+                        android:id="@+id/iv_company_idcard_back"
+                        android:layout_weight="1"
+                        android:layout_width="200dp"
+                        android:layout_height="120dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/add_photo"
+                        android:layout_marginLeft="5dp"></ImageView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <Button
+                android:id="@+id/btn_dealer_RZsubmit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginBottom="22dp"
+                android:background="@drawable/corner_view"
+                android:text="提交"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

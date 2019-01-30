@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_receiving_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        app:left_button_image="@drawable/return_left"
+        app:right_button_text="新增"
+        app:right_button_textColor="@color/text_1_color"
+        app:right_button_textSize="16sp"
+        app:title_backgrounds="@color/main_tone"
+        app:title_text="收货地址"
+        app:title_textColor="@color/text_1_color"
+        app:title_textSize="18sp" />
+    <ListView
+        android:id="@+id/lv_user_address"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

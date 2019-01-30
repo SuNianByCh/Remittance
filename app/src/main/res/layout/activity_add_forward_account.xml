@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_add_forward"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        app:left_button_image="@drawable/return_left"
+        app:title_backgrounds="@color/main_tone"
+        app:title_text="添加银行卡"
+        app:title_textColor="@color/text_1_color"
+        app:title_textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/hw_20_dp"
+        android:layout_marginTop="@dimen/hw_1_dp"
+        android:background="@android:color/white"
+        android:paddingLeft="@dimen/hw_10_dp"
+        android:paddingTop="@dimen/hw_10_dp">
+
+        <TextView
+            style="@style/select_report_tv"
+            android:layout_marginLeft="@dimen/hw_10_dp"
+            android:text="姓名"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/et_forward_name"
+            style="@style/select_report_tv"
+            android:layout_width="match_parent"
+            android:background="@null"
+            android:hint="请输入持卡人姓名"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/rl_amount_of_money"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/hw_20_dp"
+        android:layout_marginTop="@dimen/hw_1_dp"
+        android:background="@android:color/white"
+        android:paddingBottom="@dimen/hw_10_dp"
+        android:paddingLeft="@dimen/hw_10_dp"
+        android:paddingTop="@dimen/hw_10_dp">
+
+        <TextView
+            style="@style/select_report_tv"
+            android:layout_marginLeft="@dimen/hw_10_dp"
+            android:text="银行账号"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/et_bank_money"
+            style="@style/select_report_tv"
+            android:layout_width="match_parent"
+            android:background="@null"
+            android:hint="请输入银行账号"
+            android:inputType="number|numberDecimal"
+            android:maxLength="19"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_add_forward_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="22dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="22dp"
+        android:background="@drawable/corner_view"
+        android:text="下一步"
+        android:textColor="@color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/hw_15_dp"
+        android:paddingRight="@dimen/hw_15_dp">
+
+        <TextView
+            style="@style/select_report_tv"
+            android:text="温馨提示："
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/hw_10_dp"
+            android:text="为了保证您的资金安全，系统只允许提现到与您资金账户姓名一致的储蓄卡。"
+            android:textColor="@color/text_2_color"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_modify_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        app:left_button_image="@drawable/return_left"
+        app:right_button_text="确定"
+        app:right_button_textColor="@color/text_1_color"
+        app:right_button_textSize="16sp"
+        app:title_backgrounds="@color/main_tone"
+        app:title_text="修改手机号"
+        app:title_textColor="@color/text_1_color"
+        app:title_textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_bottom_border"
+                android:orientation="horizontal"
+                android:textColorHint="@android:color/darker_gray">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/hw_15_dp"
+                    android:paddingLeft="@dimen/hw_10_dp"
+                    android:paddingRight="@dimen/hw_10_dp"
+                    android:paddingTop="@dimen/hw_15_dp"
+                    android:text="手机号"
+                    android:textColor="@color/my_order" />
+
+                <com.yaer.remittance.view.MyEditText
+                    android:id="@+id/met_modify_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@null"
+                    android:drawablePadding="@dimen/hw_10_dp"
+                    android:hint="请输入手机号"
+                    android:inputType="number"
+                    android:maxLength="11"
+                    android:numeric="integer"
+                    android:paddingLeft="@dimen/hw_10_dp"
+                    android:textColor="@color/text_2_color"
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="@dimen/text_14_dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_bottom_border"
+                android:orientation="horizontal"
+                android:textColorHint="@android:color/darker_gray">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/hw_15_dp"
+                    android:paddingLeft="@dimen/hw_10_dp"
+                    android:paddingRight="@dimen/hw_10_dp"
+                    android:paddingTop="@dimen/hw_15_dp"
+                    android:text="验证码"
+                    android:textColor="@color/my_order" />
+
+                <EditText
+                    android:id="@+id/et_modify_phone_yzm"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:drawablePadding="@dimen/hw_10_dp"
+                    android:hint="请输入验证码"
+                    android:inputType="number"
+                    android:paddingLeft="@dimen/hw_10_dp"
+                    android:textColor="@color/text_1_color"
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="@dimen/text_14_dp" />
+
+                <TextView
+                    android:id="@+id/tv_obtain_yzm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/hw_10_dp"
+                    android:layout_marginRight="@dimen/hw_10_dp"
+                    android:background="@drawable/edge_setting"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/hw_5_dp"
+                    android:paddingLeft="@dimen/hw_10_dp"
+                    android:paddingRight="@dimen/hw_10_dp"
+                    android:paddingTop="@dimen/hw_5_dp"
+                    android:text="获取验证码"
+                    android:textColor="@color/main_tone" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

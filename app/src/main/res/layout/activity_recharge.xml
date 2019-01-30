@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_recharge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        app:left_button_image="@drawable/return_left"
+        app:title_backgrounds="@color/main_tone"
+        app:title_text="账户充值"
+        app:title_textColor="@color/text_1_color"
+        app:title_textSize="18sp" />
+
+    <LinearLayout
+        android:id="@+id/rl_amount_of_money"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/hw_20_dp"
+        android:layout_marginTop="@dimen/hw_20_dp"
+        android:background="@android:color/white"
+        android:paddingBottom="@dimen/hw_10_dp"
+        android:paddingLeft="@dimen/hw_10_dp"
+        android:paddingTop="@dimen/hw_10_dp">
+
+        <TextView
+            style="@style/select_report_tv"
+            android:text="金额（元）"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/et_rechargemoney"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:hint="请输入金额"
+            android:inputType="number|numberDecimal"
+            android:maxLength="6"
+            android:padding="@dimen/hw_10_dp"
+            android:text="0"
+            android:textColor="@color/edittextcolor"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/wx_payment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:paddingLeft="@dimen/hw_10_dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/order_wechat_icon" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/select_report_tv"
+                    android:text="微信支付"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    style="@style/select_screen_tv"
+                    android:text="使用微信支付，安全便捷"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/cb_wx"
+            style="@style/RadioButtonStyles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"
+            android:checked="true" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray" />
+
+    <RelativeLayout
+        android:id="@+id/zfb_payment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/hw_10_dp"
+        android:background="@android:color/white"
+        android:paddingLeft="@dimen/hw_10_dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/order_alipay_icon" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/select_report_tv"
+                    android:text="支付宝支付"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    style="@style/select_screen_tv"
+                    android:text="使用银行卡/支付宝转账，请保留凭证"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+         <CheckBox
+             android:id="@+id/cb_zfb"
+             style="@style/RadioButtonStyles"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentRight="true"
+             android:layout_margin="10dp" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_payment_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="22dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="22dp"
+        android:background="@drawable/corner_view"
+        android:text="确认支付"
+        android:textColor="@color/white" />
+</LinearLayout>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_assess_publish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        app:left_button_image="@drawable/return_left"
+        app:title_backgrounds="@color/main_tone"
+        app:title_text="发布评价"
+        app:title_textColor="@color/text_1_color"
+        app:title_textSize="18sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ct_assess_publish">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="@android:color/white"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="#FFFFFF">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="10dp"
+                        android:scaleType="fitXY" />
+
+                    <TextView
+                        android:id="@+id/tv_manners"
+                        style="@style/content_text_style"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/image"
+                        android:text="描述相符："
+                        android:textSize="14dp" />
+
+                    <RatingBar
+                        android:id="@+id/ratingBar_matchs"
+                        style="@style/CustomRatingStyle"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/tv_manners" />
+
+                    <TextView
+                        android:id="@+id/tv_good"
+                        style="@style/content_text_style"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/ratingBar_matchs"
+                        android:text="非常好"
+                        android:textSize="14dp" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <EditText
+                    android:id="@+id/user_publish_assess"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="@android:color/white"
+                    android:ems="10"
+                    android:gravity="left"
+                    android:hint="宝贝满足你的期待吗？说说它的优点和不足吧...."
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/choose_image"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:paddingLeft="10dp"
+                    android:src="@drawable/choose_image" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/radio_lin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/accessbottom"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_attitude"
+                        style="@style/content_text_style"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="服务态度："
+                        android:textSize="14dp" />
+
+                    <RatingBar
+                        android:id="@+id/ratingBar_service"
+                        style="@style/CustomRatingStyle"
+                        android:layout_toRightOf="@+id/tv_attitude" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_manner"
+                        style="@style/content_text_style"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="物流服务："
+                        android:textSize="14dp" />
+
+                    <RatingBar
+                        android:id="@+id/ratingBar_match"
+                        style="@style/CustomRatingStyle"
+                        android:layout_toRightOf="@+id/tv_manner" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/accessbottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <CheckBox
+                android:id="@+id/select_anonymity"
+                style="@style/RadioButtonStyles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp" />
+
+            <TextView
+                style="@style/content_text_style"
+                android:layout_toRightOf="@+id/select_anonymity"
+                android:paddingLeft="5dp"
+                android:text="匿名评价"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_publisher_assess"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/select_shop"
+            android:layout_weight="1"
+            android:background="@drawable/parameter_background"
+            android:gravity="center"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:text="发表评价"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </LinearLayout>
+</RelativeLayout>

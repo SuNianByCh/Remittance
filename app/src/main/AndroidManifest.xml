@@ -1,0 +1,926 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.yaer.remittance">
+
+
+    //允许查看当前网络状态，比如是3G还是WIFI上网
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    //允许访问网络
+    <uses-permission android:name="android.permission.INTERNET" />
+    //读外部存储的权限/往SDCard写入数据权限
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    //允许程序访问Wi-Fi网络状态信息
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    //检查是否有读取联系人权限
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    //读写设置权限
+    <uses-permission android:name="android.permission.READ_SETTINGS" />
+    //写入设置权限
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    //允许挂载和反挂载文件系统可移动存储/在SDCard中创建与删除文件权限
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+    <!-- 相机权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    //读外部存储器/从SDCard读取数据权限
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    //允许程序改变Wi-Fi连接状态
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    //桌面悬浮框权限
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+    //允许程序读取底层系统日志文件
+    <uses-permission
+        android:name="android.permission.READ_LOGS"
+        tools:ignore="ProtectedPermissions" />
+    <permission
+        android:name="${applicationId}.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+    <!-- Required  一些系统要求的权限，如访问网络等-->
+    <uses-permission android:name="${applicationId}.permission.JPUSH_MESSAGE" />
+
+    <!-- 个推SDK权限配置开始 -->
+    //允许使用PowerManager的 WakeLocks保持进程在休眠时从屏幕消失
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    //允许一个程序接收到 ACTION_BOOT_COMPLETED广播在系统完成启动
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    //允许访问振动设备
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <!-- 选举使用，当应用有删除或者更新时需要重新选举，复用推送通道 -->
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_CHANGED" />
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_REPLACED" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    //允许一个程序获取信息有关当前或最近运行的任务，一个缩略的任务状态，是否活动等等
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission
+        android:name="android.permission.SET_DEBUG_APP"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <!-- 允许task重排序 -->
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
+    //用户唤醒机器的权限!
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <!-- Optional for location -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
+    //允许应用程序访问额外的位置提供命令
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    //允许程序改变网络连接状态
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <!-- 硬件加速对X5视频播放非常重要，建议开启 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!--按照其他应用的权限-->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="28" />
+
+    <application
+        android:name=".BaseApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/logo"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/logo"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar">
+        <!--更新软件需要的-->
+        <provider
+            android:name=".update.MyFileProvider"
+            android:authorities="com.yaer.remittance.MyFileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+        <!--加载页（判断进入首页还是进入引导页）-->
+        <activity
+            android:name=".base.SpashActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBarAndTitle">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="jpush.testAction" />
+                <category android:name="jpush.testCategory" />
+            </intent-filter>
+        </activity>
+
+        <!--这个是解决融云拍照android高版本权限的问题-->
+        <provider
+            android:name="com.yaer.remittance.base.RongFileProvider"
+            android:authorities="com.yaer.remittance.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:replace="name,authorities,exported,grantUriPermissions">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"
+                tools:replace="name,resource" />
+        </provider>
+        <meta-data
+            android:name="RONG_CLOUD_APP_KEY"
+            android:value="qf3d5gbjqhjbh" />
+        <!--会话列表-->
+        <activity
+            android:name=".ui.news_modular.ConversationListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="com.yaer.remittance"
+                    android:pathPrefix="/conversationlist"
+                    android:scheme="rong" />
+            </intent-filter>
+        </activity>
+        <!--融云广播-->
+        <receiver
+            android:name="com.yaer.remittance.ui.news_modular.NotificationReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="io.rong.push.intent.MESSAGE_ARRIVED" />
+                <action android:name="io.rong.push.intent.MI_MESSAGE_ARRIVED" />
+                <action android:name="io.rong.push.intent.MESSAGE_CLICKED" />
+                <action android:name="io.rong.push.intent.MI_MESSAGE_CLICKED" />
+                <action android:name="io.rong.push.intent.THIRD_PARTY_PUSH_STATE" />
+            </intent-filter>
+        </receiver>
+        <!--会话界面-->
+        <activity android:name=".ui.news_modular.ConversationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="com.yaer.remittance"
+                    android:pathPrefix="/conversation/"
+                    android:scheme="rong" />
+            </intent-filter>
+        </activity>
+        <!--引导页-->
+        <activity
+            android:name=".base.GuideActivity"
+            android:screenOrientation="portrait" />
+        <!--图片上传辅助类-->
+        <activity android:name=".ui.user_modular.personal.TakePhotoActivity" />
+        <!-- 首页 -->
+        <activity
+            android:name=".base.MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <!--查看图片-->
+        <activity
+            android:name=".ui.user_modular.user_seller.addcollection.ImageGridActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/ImagePickerTheme" />
+        <!--获取图片展示方法-->
+        <activity
+            android:name="com.lzy.imagepicker.ui.ImagePreviewDelActivity"
+            android:theme="@style/ImagePickerThemeFullScreen" />
+        <!-- 购物车-->
+        <activity
+            android:name=".ui.shopping_modular.shoppingcart.ShoppingCartActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 登录 -->
+        <activity
+            android:name=".ui.login_modular.LoginActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--协议封装 -->
+        <activity
+            android:name=".ui.login_modular.AgreementActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 忘记密码
+        <activity
+            android:name=".ui..login_modular.Forget_Pwd_Activity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" /> -->
+        <!-- 验证码登录 -->
+        <activity
+            android:name=".ui.login_modular.Login_Verification_Activity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 分类界面 -->
+        <activity
+            android:name=".ui.home_modular.classification.ClassActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 认证中心 -->
+        <activity
+            android:name=".ui.user_modular.user_seller.authentication.UserAuthenticationCenterActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 编辑拍品 -->
+        <activity
+            android:name=".ui.user_modular.user_seller.auctionmanagement.EditedAuctionActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 编辑商品 -->
+        <activity
+            android:name=".ui.user_modular.user_seller.auctionmanagement.EditedCommodityActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!-- 店铺信息 -->
+        <activity
+            android:name=".ui.user_modular.user_seller.shopinfo.UserShopInfoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 意见反馈 -->
+        <activity
+            android:name=".ui.user_modular.user_buyer.feedback.UserFeedBackActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!-- 参加拍品 -->
+        <activity
+            android:name=".ui.user_modular.user_buyer.joinlot.UserJoinLotActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 参加拍品 -->
+        <activity
+            android:name=".ui.shopping_modular.commodity.CommentDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--认证中心_专家认证-->
+        <activity
+            android:name=".ui.user_modular.user_seller.authentication.UserExpertAuthenticationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--认证中心_个人认证-->
+        <activity
+            android:name=".ui.user_modular.user_seller.authentication.UserPersonalAuthenticationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 认证中心_企业认证-->
+        <activity
+            android:name=".ui.user_modular.user_seller.authentication.UserCompanyAuthenticationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 商家填写店铺信息-->
+        <activity
+            android:name=".ui.user_modular.user_seller.enter.UserEnterActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--商家入驻-->
+        <activity
+            android:name=".ui.user_modular.user_seller.authentication.UserAuthenticationStatusActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--我的关注页面-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.attention.UserAttentionActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 我的设置 -->
+        <activity
+            android:name=".ui.user_modular.setup.UserSettingActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 关于我们 -->
+        <activity
+            android:name=".ui.user_modular.setup.UserAboutUsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 设置修改手机号 -->
+        <activity
+            android:name=".ui.user_modular.setup.UserModifyPhoneActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 设置修改密码 -->
+        <activity
+            android:name=".ui.user_modular.setup.UserModifyPwdActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 设置忘记密码 -->
+        <activity
+            android:name=".ui.user_modular.setup.UserForgetPwdActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 设置头像 -->
+        <activity
+            android:name=".ui.user_modular.personal.UserHeadPortraitActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 设置店铺头像 -->
+        <activity
+            android:name=".ui.user_modular.shopinfo.ShopHeadPortraitActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 设置店铺名称 -->
+        <activity
+            android:name=".ui.user_modular.shopinfo.ShopNickNameActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 设置店铺简介 -->
+        <activity
+            android:name=".ui.user_modular.shopinfo.ShoplProfileActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 设置店铺背景 -->
+        <activity
+            android:name=".ui.user_modular.shopinfo.ShopStoreBackgroundActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 设置收货地址 -->
+        <activity
+            android:name=".ui.user_modular.setup.UserReceivingAddressActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 设置新增收货地址 -->
+        <activity
+            android:name=".ui.user_modular.setup.AddedReceicingAddress"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 设置修改收货地址 -->
+        <activity
+            android:name=".ui.user_modular.setup.UpdateReceicingAddress"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!-- 设置支付安全 -->
+        <activity
+            android:name=".ui.user_modular.setup.UserSecurityPaymentActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 获取支付安全验证码 -->
+        <activity
+            android:name=".ui.user_modular.setup.UserSetPwdYzmActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 设置支付安全设置密码 -->
+        <activity
+            android:name=".ui.user_modular.setup.UserSetPwdActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 推广中心 -->
+        <activity
+            android:name=".ui.user_modular.user_seller.extensioncenter.UserExtensionCenterActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--我的推广服务-->
+        <activity
+            android:name=".ui.user_modular.user_seller.extensioncenter.UserMyAuctionActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 推广详情 -->
+        <activity
+            android:name=".ui.user_modular.user_seller.extensioncenter.UserExtensionDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 帮助 -->
+        <activity
+            android:name=".ui.user_modular.user_seller.help.UserHelpActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 帮助详情 -->
+        <activity
+            android:name=".ui.user_modular.user_seller.help.UserHelpDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 0元拍 -->
+        <activity
+            android:name=".ui.home_modular.elementbeat.ElementBeatActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 专家说 -->
+        <activity
+            android:name=".ui.home_modular.expertssay.ExpertsSayActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 专家说详情 -->
+        <activity
+            android:name=".ui.home_modular.expertssay.ExpertsSayDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--拍卖专场-->
+        <activity
+            android:name=".ui.home_modular.auctionspecial.AuctionSpecialActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--邀请界面-->
+        <activity
+            android:name=".ui.user_modular.share.ShareAppActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--被邀请界面-->
+        <activity
+            android:name=".ui.user_modular.share.ShareAppBeInvitedActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--活动专区-->
+        <activity
+            android:name=".ui.home_modular.activespecial.ActivityAreaActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--分类筛选-->
+        <activity
+            android:name=".ui.home_modular.classification.ClassificationScreeningActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--捡漏-->
+        <activity
+            android:name=".ui.home_modular.leakhunting.LeakHuntingActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--搜索-->
+        <activity
+            android:name=".ui.home_modular.search.ActivitySearch"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--搜索内容-->
+        <activity
+            android:name=".ui.home_modular.search.WikipediaSearchContent"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--私信消息页面-->
+        <activity
+            android:name=".ui.news_modular.PrivateMessageActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--系统消息页面-->
+        <activity
+            android:name=".ui.news_modular.SystemMessageActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--交易消息页面-->
+        <activity
+            android:name=".ui.news_modular.TransactionMessageActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--收藏-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.collect.UserCollectActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--余额-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.balance.UserBalanceActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--我的足迹-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.footprint.UserFootPrintActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--买家全部订单-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.order.AllOrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--售后买家退款退货-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.order.RefundInfoListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--售后卖家退款退货-->
+        <activity
+            android:name=".ui.user_modular.user_seller.order.SellerRefundInfoListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--售后卖家退款退货详情-->
+        <activity
+            android:name=".ui.user_modular.user_seller.order.RefundReturnSellerDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--买家退款界面-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.order.RefundActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--买家退款或退货界面-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.order.RefundReturnActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--买家退货界面-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.order.ReturnGoodsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--买家退款退货详情 看看真机上的时间 -->
+        <activity
+            android:name=".ui.user_modular.user_buyer.order.RefundReturnDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--卖家订单发货-->
+        <activity
+            android:name=".ui.user_modular.DeliverGoodsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--订单完成成功界面-->
+        <activity
+            android:name=".payment.SuccessfulOperationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--查看物流-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.logistics.LogisticsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--卖家全部订单-->
+        <activity
+            android:name=".ui.user_modular.user_seller.order.SellerAllOrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--订单评论-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.order.OrderCommentActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--卖家订单详情-->
+        <activity
+            android:name=".ui.user_modular.user_seller.order.OrderSellerDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--买家订单详情-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.order.OrderDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--商品详情-->
+        <activity
+            android:name=".ui.shopping_modular.commodity.CommodityDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--分享-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.ShareActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--买家优惠券-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.coupons.CouponActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--卖家优惠券-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.coupons.CouponSellerActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--添加优惠券-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.coupons.AddCouponActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--积分-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.integral.UserIntegralActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--积分规则-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.integral.UserIntegralRuleActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--签到-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.signin.UserSignInActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--草稿箱-->
+        <activity
+            android:name=".ui.user_modular.user_seller.drafts.DraftsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--藏品管理-->
+        <activity
+            android:name=".ui.user_modular.user_seller.auctionmanagement.AuctionActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--添加提现银行账号-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.balance.AddForwardAccountActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--添加提现银行账号下一步-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.balance.AddIdPhoneActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!--保证金-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.balance.BondActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--余额明细-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.balance.FineBalanceActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--管理提现账号-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.balance.ManageForwardAccountActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--提现-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.balance.PutForwardActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--账户充值-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.balance.RechargeActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--个人设置-->
+        <activity
+            android:name=".ui.user_modular.personal.PersonalInformationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--店铺设置-->
+        <activity
+            android:name=".ui.user_modular.shopinfo.ShopInformationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--发布藏品-->
+        <activity
+            android:name=".ui.user_modular.user_seller.addcollection.AddCollectionActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--发布商品-->
+        <activity
+            android:name=".ui.user_modular.user_seller.addcollection.CommodityActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--发布拍品-->
+        <activity
+            android:name=".ui.user_modular.user_seller.addcollection.AuctionGoodActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!-- 设置密码 -->
+        <activity
+            android:name=".ui.user_modular.setup.SetPswActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 设置手机号-->
+        <activity
+            android:name=".ui.user_modular.setup.SetPhoneActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--添加评价-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.assesspublish.AssessPublishActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--设置昵称-->
+        <activity
+            android:name=".ui.user_modular.personal.NickNameActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--设置性别-->
+        <activity
+            android:name=".ui.user_modular.personal.UserSelectSexActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--设置个人简介-->
+        <activity
+            android:name=".ui.user_modular.personal.PersonalProfileActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--设置标签-->
+        <activity
+            android:name=".ui.user_modular.personal.UserAddTagActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--店铺首页-->
+        <activity
+            android:name=".ui.shopping_modular.shop.ShopActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--拍卖详情-->
+        <activity
+            android:name=".ui.home_modular.auctiondetails.AuctionDetailsActivity"
+            android:screenOrientation="portrait" />
+        <!--出价规则-->
+        <activity
+            android:name=".ui.home_modular.auctiondetails.AuctionRuleActivity"
+            android:screenOrientation="portrait" />
+        <!--出价记录-->
+        <activity
+            android:name=".ui.home_modular.auctiondetails.AuctionViewRecordsActivity"
+            android:screenOrientation="portrait" />
+        <!--拍卖专场列表-->
+        <activity
+            android:name=".ui.home_modular.auctionspecial.AuctionSpecialDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--举报界面-->
+        <!--   <activity
+               android:name=".ui.user_modular.setup.ReportActivity"
+               android:screenOrientation="portrait"
+               android:windowSoftInputMode="adjustPan" />-->
+        <!--确认订单-->
+        <activity
+            android:name=".ui.shopping_modular.shoppingcart.ConfirmOrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--店铺报表-->
+        <activity
+            android:name=".ui.user_modular.user_seller.storetable.StoreTableActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--填写订单-->
+        <activity
+            android:name=".ui.shopping_modular.commodity.ConfirmationOrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--确认支付-->
+        <activity
+            android:name=".ui.shopping_modular.confirmpayment.ConfirmPaymentActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!-- 微信支付 -->
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <!--支付宝支付配置-->
+        <!-- alipay sdk begin -->
+
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+        <activity
+            android:name="com.alipay.sdk.app.H5AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+        <!-- alipay sdk end -->
+        <!--
+            以下是uemng和极光的配置
+        -->
+        <!--微信-->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!--  android:screenOrientation="portrait"-->
+        <!--新浪微博-->
+        <activity
+            android:name=".WBShareActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!--qq精简版-->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!--这里的scheme是qq分享要用的，100424468为自己申请的appid，真实项目中需要替换-->
+                <data android:scheme="101516410" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!--分享编辑页-->
+        <activity
+            android:name="com.umeng.socialize.editorpage.ShareActivity"
+            android:excludeFromRecents="true"
+            android:theme="@style/Theme.UMDefault" />
+        <!--极光推送-->
+        <meta-data
+            android:name="JPUSH_APPKEY"
+            android:value="${JPUSH_APPKEY}" /> <!--  </>值来自开发者平台取得的AppKey-->
+        <!-- Rich push 核心功能 since 2.0.6-->
+        <activity
+            android:name="cn.jpush.android.ui.PopWinActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.NoTitleBar"></activity>
+
+        <!-- Required SDK核心功能-->
+        <activity
+            android:name="cn.jpush.android.ui.PushActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:theme="@android:style/Theme.NoTitleBar">
+            <intent-filter>
+                <action android:name="cn.jpush.android.ui.PushActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </activity>
+
+        <!-- Required SDK 核心功能-->
+        <!-- 可配置android:process参数将PushService放在其他进程中 -->
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:exported="false"
+            android:process=":mult">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service>
+        <!-- since 3.0.9 Required SDK 核心功能-->
+        <provider
+            android:name="cn.jpush.android.service.DataProvider"
+            android:authorities="${applicationId}.DataProvider"
+            android:exported="false" />
+
+        <!-- since 1.8.0 option 可选项。用于同一设备中不同应用的JPush服务相互拉起的功能。 -->
+        <!-- 若不启用该功能可删除该组件，将不拉起其他应用也不能被其他应用拉起 -->
+        <service
+            android:name="cn.jpush.android.service.DaemonService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.DaemonService" />
+                <category android:name="${applicationId}" />
+            </intent-filter>
+
+        </service>
+        <!-- since 3.1.0 Required SDK 核心功能-->
+        <provider
+            android:name="cn.jpush.android.service.DownloadProvider"
+            android:authorities="${applicationId}.DownloadProvider"
+            android:exported="true" />
+        <!-- Required SDK核心功能-->
+        <receiver
+            android:name="cn.jpush.android.service.PushReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter android:priority="1000">
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />   <!--Required  显示通知栏 -->
+                <category android:name="${applicationId}" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <!-- Optional -->
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Required SDK核心功能-->
+        <receiver
+            android:name="cn.jpush.android.service.AlarmReceiver"
+            android:exported="false" />
+
+        <!-- User defined.  For test only  用户自定义的广播接收器-->
+        <receiver
+            android:name=".jpush.JpushReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" /> <!--Required  用户注册SDK的intent-->
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" /> <!--Required  用户接收SDK消息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!--Required  用户接收SDK通知栏信息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!--Required  用户打开自定义通知栏的intent-->
+                <action android:name="cn.jpush.android.intent.CONNECTION" /><!-- 接收网络变化 连接/断开 since 1.6.3 -->
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

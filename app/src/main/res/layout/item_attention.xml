@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/corner_linearlayout"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_10"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/rl_attention"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.liji.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/civ_shop_icon"
+                android:layout_width="@dimen/hw_60_dp"
+                android:layout_height="@dimen/hw_60_dp"
+                android:src="@drawable/user_settings"
+                app:circle_border_color="@color/white"
+                app:circle_border_width="1dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/hw_10_dp"
+                android:layout_marginTop="@dimen/hw_5_dp"
+                android:layout_toRightOf="@+id/civ_shop_icon"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_shop_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="古玩之家"
+                    android:textColor="@color/text_1_color"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_shop_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_home_view"
+                        android:text="收藏家"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_attention_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/hw_20_dp"
+                android:background="@drawable/shap_attention_false"
+                android:paddingBottom="@dimen/hw_5_dp"
+                android:paddingLeft="@dimen/dp_10"
+                android:paddingRight="@dimen/dp_10"
+                android:paddingTop="@dimen/hw_5_dp"
+                android:text="+关注"
+                android:textColor="@color/text_2_color"
+                android:textSize="12sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/hw_0.5_dp"
+        android:background="@color/grey_line_bg" />
+</LinearLayout>
+

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!--<View-->
+        <!--android:id="@+id/fake_status_bar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/statusbar_view_height"-->
+        <!--android:background="@color/title_green" />-->
+
+        <LinearLayout
+            android:id="@+id/rl_search_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/main_tone"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <com.yaer.remittance.view.ClearEditText
+                android:id="@+id/et_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="@dimen/hw_20_dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_toLeftOf="@+id/cancel"
+                android:layout_weight="1"
+                android:background="@drawable/bg_edittext"
+                android:drawableLeft="@drawable/search_searc"
+                android:drawablePadding="8dp"
+                android:hint="输入搜索内容"
+                android:imeOptions="actionSearch"
+                android:paddingBottom="6dp"
+                android:paddingLeft="@dimen/hw_15_dp"
+                android:paddingRight="@dimen/hw_10_dp"
+                android:paddingTop="6dp"
+                android:singleLine="true"
+                android:textColorHint="#666666"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/hw_10_dp"
+                android:padding="@dimen/hw_5_dp"
+                android:text="取消"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/layout_notice"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="@dimen/hw_10_dp"
+                    android:text="热门搜索"
+                    android:textColor="@color/text_1_color"
+                    android:textSize="14sp" />
+
+                <com.yaer.remittance.view.FlowLayout
+                    android:id="@+id/flowlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="@dimen/hw_10_dp"
+                    android:layout_marginTop="@dimen/hw_10_dp" />
+
+                <LinearLayout
+                    android:id="@+id/search_history_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/contentTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="4dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="4dp"
+                        android:text="历史搜索"
+                        android:textColor="@color/text_1_color"
+                        android:textSize="14sp" />
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="12dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <com.yaer.remittance.view.ListViewForScrollView
+                                android:id="@+id/search_history_lv"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:divider="@color/linen"
+                                android:dividerHeight="1dp"
+                                android:listSelector="@drawable/list_item_selector" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/linen" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="20dp"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:padding="@dimen/hw_10_dp">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/delete" />
+
+                                <TextView
+                                    android:id="@+id/clear_history_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="@dimen/hw_10_dp"
+                                    android:text="清空搜索记录"
+                                    android:textColor="@color/text_2_color"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </ScrollView>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+    <!--
+        <LinearLayout
+            android:id="@+id/ll_comm"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical" />-->
+</RelativeLayout>

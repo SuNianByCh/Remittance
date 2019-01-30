@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_shop_class"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/hw_5_dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!-- <com.liji.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:id="@+id/civ_shopping_class_image"
+             android:layout_width="40dp"
+             android:layout_height="40dp"
+             android:layout_gravity="center"
+             android:src="@drawable/ys"
+             app:circle_border_color="@color/white"
+             app:circle_border_width="1dp" />-->
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/civ_shopping_class_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/imagedetail_defaullt"
+            app:riv_corner_radius_top_left="@dimen/hw_5_dp"
+            app:riv_corner_radius_top_right="@dimen/hw_5_dp"
+            app:riv_mutate_background="true"
+            app:riv_oval="false" />
+
+        <TextView
+            android:id="@+id/tv_shopping_class_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/hw_5_dp"
+            android:text="玉翠珠宝"
+            android:textColor="@color/text_shpping_biaoti"
+            android:textSize="12sp" />
+    </LinearLayout>
+</LinearLayout>

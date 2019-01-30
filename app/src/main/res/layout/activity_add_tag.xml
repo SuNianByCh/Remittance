@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:flowlayout="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+<com.yaer.remittance.view.CustomTitlebar
+    android:id="@+id/ct_add_tag"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_tone"
+    app:left_button_image="@drawable/return_left"
+    app:right_button_text="完成"
+    app:title_backgrounds="@color/main_tone"
+    app:title_text="设置标签"
+    app:title_textColor="@color/text_1_color"
+    app:title_textSize="18sp" />
+
+    <com.yaer.remittance.view.FlowLayout
+        android:id="@+id/flow_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        flowlayout:horizontal_spacing="10dp"
+        flowlayout:vertical_spacing="10dp" />
+</LinearLayout>

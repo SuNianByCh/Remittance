@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_collect_item"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/hw_100_dp"
+        android:padding="@dimen/hw_10_dp">
+
+        <ImageView
+            android:id="@+id/goods_icon"
+            android:layout_width="@dimen/hw_100_dp"
+            android:layout_height="@dimen/hw_100_dp"
+            android:layout_marginLeft="@dimen/hw_5_dp"
+            android:background="@drawable/secces_defaullt"
+            android:scaleType="fitXY" />
+
+        <RelativeLayout
+            android:id="@+id/llGoodInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/hw_10_dp"
+            android:layout_toRightOf="@+id/goods_icon">
+
+            <TextView
+                android:id="@+id/tv_goodsname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/hw_10_dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="乾隆玉溪"
+                android:textColor="@color/text_2_color"
+                android:textSize="14sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true">
+
+                <TextView
+                    android:id="@+id/tv_goods_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="￥50000"
+                    android:textColor="@color/main_tones"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_detils_NumS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/hw_10_dp"
+                    android:background="@drawable/shap_attention_false"
+                    android:paddingBottom="@dimen/hw_5_dp"
+                    android:paddingLeft="@dimen/dp_10"
+                    android:paddingRight="@dimen/dp_10"
+                    android:paddingTop="@dimen/hw_5_dp"
+                    android:text="取消收藏"
+                    android:textColor="@color/text_3_color"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/hw_0.5_dp"
+        android:background="@color/grey_line_bg" />
+</LinearLayout>

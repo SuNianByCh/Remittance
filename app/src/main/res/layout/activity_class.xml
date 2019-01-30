@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_home_class"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/hw_10_dp">
+
+            <ImageView
+                android:id="@+id/iv_class"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/return_left" />
+        </LinearLayout>
+        <!--
+                <com.yaer.remittance.view.ClearEditText
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="@dimen/hw_5_dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_edittext"
+                    android:drawableLeft="@drawable/search_searc"
+                    android:drawablePadding="10dp"
+                    android:drawableRight="@drawable/icon_clear"
+                    android:hint="搜索拍品/商家"
+                    android:imeOptions="actionSearch"
+                    android:paddingBottom="6dp"
+                    android:paddingLeft="@dimen/hw_15_dp"
+                    android:paddingRight="@dimen/hw_10_dp"
+                    android:paddingTop="6dp"
+                    android:singleLine="true"
+                    android:textColorHint="#999999"
+                    android:textSize="14sp" />
+        -->
+        <com.yaer.remittance.view.ClearEditText
+            android:id="@+id/ct_classedittext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="@dimen/hw_10_dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_edittext"
+            android:cursorVisible="false"
+            android:drawableLeft="@drawable/search_searc"
+            android:drawablePadding="10dp"
+            android:focusableInTouchMode="false"
+            android:hint="搜索拍品/商家"
+            android:imeOptions="actionSearch"
+            android:paddingBottom="6dp"
+            android:paddingLeft="@dimen/hw_15_dp"
+            android:paddingRight="@dimen/hw_10_dp"
+            android:paddingTop="6dp"
+            android:singleLine="true"
+            android:textColorHint="#999999"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_classlist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <ListView
+            android:id="@+id/lv_menu"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#EDECEC"
+            android:divider="@null" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ListView
+                    android:id="@+id/lv_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <!--  <TextView
+                  android:id="@+id/tv_class_titile"
+                  android:layout_width="match_parent"
+                  android:layout_height="35dp"
+                  android:background="@color/white"
+                  android:gravity="center_vertical"
+                  android:paddingLeft="20dp"
+                  android:text="@string/app_name"
+                  android:textColor="@color/black"
+                  android:textSize="12dp" />-->
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_class_nonetwork"
+        style="@style/bg"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            style="@style/empty_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/no_data" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="网络不给力啊，请检查一下网络在试试吧"
+            android:textColor="@color/txt_color"
+            android:textSize="12sp" />
+    </LinearLayout>
+</LinearLayout>

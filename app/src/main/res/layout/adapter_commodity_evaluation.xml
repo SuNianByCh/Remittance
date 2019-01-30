@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:hl="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/hw_5_dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/hw_5_dp">
+
+            <com.liji.circleimageview.CircleImageView
+                android:id="@+id/iv_comment_shop_image"
+                android:layout_width="@dimen/hw_30_dp"
+                android:layout_height="@dimen/hw_30_dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/hw_5_dp"
+                android:src="@drawable/user_settings" />
+
+            <!--
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/hw_10_dp"
+                            android:layout_toRightOf="@+id/iv_comment_shop_image"
+                            android:orientation="vertical"
+                            android:padding="@dimen/hw_5_dp">
+
+                            <TextView
+                                android:id="@+id/tv_comment_shop_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="放飞心灵"
+                                android:textColor="@color/text_1_color"
+                                android:textSize="@dimen/sp_12" />
+                            <RatingBar
+                                android:id="@+id/sb_commodity_score"
+                                style="@style/CustomRatingStyle"
+                                android:layout_below="@+id/tv_comment_shop_name"
+                                android:layout_marginTop="@dimen/hw_5_dp"
+                                android:layout_toRightOf="@+id/tv_manner"
+                                android:isIndicator="true"
+                                android:minHeight="40px" />
+
+                        </LinearLayout>
+            -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/iv_comment_shop_image"
+                android:background="@android:color/white"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/tv_comment_shop_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="放飞心灵"
+                    android:textColor="@color/text_1_color"
+                    android:textSize="@dimen/sp_12" />
+
+                <RatingBar
+                    android:id="@+id/sb_commodity_score"
+                    style="@style/CustomRatingStyle"
+                    android:layout_below="@+id/tv_comment_shop_name"
+                    android:layout_marginTop="@dimen/hw_5_dp"
+                    android:layout_toRightOf="@+id/tv_manner"
+                    android:isIndicator="true"
+                    android:minHeight="40px" />
+            </RelativeLayout>
+
+            <!--
+                        <RatingBar
+                            android:id="@+id/ratingBar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:isIndicator="false"
+                            android:clickable="false"
+                            android:numStars="5"
+                            android:rating="1.5"></RatingBar>
+            -->
+
+            <TextView
+                android:id="@+id/tv_commodity_gtime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/hw_5_dp"
+                android:text="2018-12-22-10:00:17"
+                android:textColor="@color/text_2_color"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/hw_5_dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_comment_shop_describe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="完美！宝贝从“颜色”到“样式”到“版型”处处散发着气质与知性美！瞬间路转粉！看着就舒服"
+                android:textColor="@color/text_1_color"
+                android:textSize="@dimen/sp_12" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/linen" />
+    </LinearLayout>
+</RelativeLayout>

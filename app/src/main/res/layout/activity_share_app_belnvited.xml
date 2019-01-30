@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/share_background"
+    android:orientation="vertical">
+
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_belcvited_app"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        app:left_button_image="@drawable/return_left"
+        app:title_backgrounds="@color/main_tone"
+        app:title_text="邀请中心"
+        app:title_textColor="@color/text_1_color"
+        app:title_textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/hw_100_dp"
+            android:layout_height="@dimen/hw_100_dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/hw_100_dp"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/hw_30_dp"
+            android:gravity="center"
+            android:text="请输入邀请码"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dimen_size_20"
+            android:textStyle="bold" />
+
+        <com.yaer.remittance.view.MyEditText
+            android:id="@+id/et_courier_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/hw_60_dp"
+            android:layout_marginRight="@dimen/hw_60_dp"
+            android:layout_marginTop="@dimen/hw_20_dp"
+            android:background="@color/white"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyz"
+            android:hint="请输入邀请码"
+            android:inputType="textEmailAddress"
+            android:padding="@dimen/hw_10_dp"
+            android:paddingLeft="@dimen/hw_10_dp"
+            android:textColor="@color/text_2_color"
+            android:textColorHint="@color/hint_color"
+            android:textSize="@dimen/text_14_dp" />
+
+        <TextView
+            android:id="@+id/tv_confirm"
+            android:layout_width="@dimen/hw_200_dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/hw_60_dp"
+            android:background="@drawable/extension_angle_button"
+            android:gravity="center"
+            android:text="确认"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_16" />
+    </LinearLayout>
+</RelativeLayout>

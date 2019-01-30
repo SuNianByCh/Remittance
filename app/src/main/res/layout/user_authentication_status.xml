@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_authentication_center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        app:left_button_image="@drawable/return_left"
+        app:title_backgrounds="@color/main_tone"
+        app:title_text="商家入驻"
+        app:title_textColor="@color/text_1_color"
+        app:title_textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/hw_60_dp"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="@dimen/hw_60_dp"
+            android:layout_height="@dimen/hw_60_dp"
+            android:src="@drawable/join_logo"
+            android:layout_gravity="center"/>
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_16"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_10"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:text="认证成功"/>
+        <TextView
+            android:id="@+id/tv_status_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_12"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/hw_20_dp"
+            android:text="对不起，申请成为商家之前需要先进行个人认证或企业认证"/>
+
+        <Button
+            android:id="@+id/btn_dealer_RZsubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="22dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="@dimen/dp_40"
+            android:background="@drawable/corner_view"
+            android:text="去认证"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</LinearLayout>

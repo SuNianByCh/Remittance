@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundCorlo"
+    android:orientation="vertical">
+
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_set_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        app:left_button_image="@drawable/return_left"
+        app:title_backgrounds="@color/main_tone"
+        app:title_text="设置密码"
+        app:title_textColor="@color/text_1_color"
+        app:title_textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/hw_40_dp"
+        android:padding="@dimen/hw_30_dp"
+        android:orientation="vertical">
+
+        <com.yaer.remittance.view.PasswordInputView
+            android:id="@+id/password_view"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:inputType="number"
+            app:borderWidth="1dp"
+            app:borderColor="@color/view_xiahuaxie"
+            app:passwordColor="@color/my_order"
+            app:passwordLength="6"
+            app:passwordWidth="6dp" />
+    </LinearLayout>
+</LinearLayout>

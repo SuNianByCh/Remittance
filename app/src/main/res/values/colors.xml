@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimaryDarkTrans">#CC4CAF50</color>
+
+
+    <color name="white">#ffffff</color>
+    <color name="colorred">#D81e06</color>
+    <color name="process_color">#f2f2f2</color>
+    <color name="background_color">#f2f2f5</color>
+    <color name="black">#000000</color>
+    <color name="defaultgreen">#FF009688</color>
+    <color name="text_danhui_color">#acacac</color>
+    <color name="my_order">#151515</color>
+    <color name="text_user">#f9f6ea</color>
+    <color name="text_shpping_biaoti">#101010</color>
+    <color name="leak_red">#b1351c</color>
+    <color name="default_line_color">#e6e6e6</color>
+    <color name="backgroundCorlo">#f6f6f6</color>
+    <color name="list_item_focus">#0a000000</color>
+    <color name="white_alpha_percent_45">#73ffffff</color>
+    <color name="province_line_border">#C7C7C7</color>
+    <color name="pickerview_timebtn_pre">#c2daf5</color>
+    <color name="transparent">#00000000</color>
+    <color name="text_color_grey">#ff808080</color>
+    <color name="text_color_back">#333333</color>
+    <color name="grey_text_color_normal">#8A8A8A</color>
+    <color name="deep_transparent">#bb000000</color>
+    <color name="grey_line_bg">#E4E4E4</color>
+    <color name="boderr_ys">#e0e0e0</color>
+    <color name="auction_scene">#222222</color>
+    <color name="navpage">#FFE1E8EB</color>
+    <color name="bg">#F0F0F0</color>
+    <color name="txt_color">#48495F</color>
+    <color name="colorKeyPress">#cccccc</color>
+    //下划线灰色
+    <color name="linen">#f2f2f8</color>
+    <color name="beijing">#fafafa</color>
+    <color name="view_xiahuaxie">#999999</color>
+    <!--字体提示颜色-->
+    <color name="hint_color">#c6c6c6</color>
+    <color name="edittextcolor">#404040</color>
+    //字体颜色
+    <color name="text_1_color">#333333</color>
+    <color name="text_2_color">#666666</color>
+    <color name="text_3_color">#999999</color>
+    <color name="title_color_phone">#616161</color>
+    <color name="title_color_gray">#f52d50</color>
+
+    <color name="background">#f1f1f1</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <!--主色调-->
+    <color name="main_tone">#D9C992</color>
+    <color name="main_tones">#BDA75D</color>
+    <color name="main_background">#f5f5f5</color>
+    <color name="gray">#808080</color>
+    <color name="lightYellow">#FFFFF0</color>
+    <color name="lightCyan">#E1FFFF</color>
+    <color name="cengse">#f8520b</color>
+    <color name="dancengse">#fb9606</color>
+    <color name="bga_pp_loading_progress_endColor">@color/colorPrimaryDarkTrans</color>
+</resources>

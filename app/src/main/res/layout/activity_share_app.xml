@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/share_background"
+    android:orientation="vertical">
+
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_sharre_app"
+        app:left_button_image="@drawable/return_left"
+        app:title_backgrounds="@color/main_tone"
+        app:title_text="邀请中心"
+        app:title_textColor="@color/text_1_color"
+        app:title_textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/hw_100_dp"
+            android:layout_height="@dimen/hw_100_dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/hw_100_dp"
+            android:src="@mipmap/logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/hw_30_dp"
+            android:gravity="center"
+            android:text="您的邀请码"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dimen_size_20"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_uinvitationcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/hw_20_dp"
+            android:text="WO258"
+            android:textColor="@color/main_tone"
+            android:textSize="@dimen/dimen_size_30"
+            android:textStyle="bold" />
+<!--
+        <TextView
+            android:id="@+id/tv_invitation_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_10"
+            android:gravity="center"
+            android:text="您已邀请3个好友"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_16" />-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="成功邀请将获得对应邀请积分"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_16" />
+
+
+        <TextView
+            android:id="@+id/tv_to_invite"
+            android:layout_width="@dimen/hw_200_dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/hw_40_dp"
+            android:background="@drawable/extension_angle_button"
+            android:gravity="center"
+            android:text="去邀请"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_16" />
+
+        <TextView
+            android:id="@+id/tv_was_invited_here"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/hw_15_dp"
+            android:padding="@dimen/hw_10_dp"
+            android:text="我是被邀请来的"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_zixunshare"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/hw_5_dp"
+            android:text="分享到以下平台" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
+
+            <ImageView
+                android:id="@+id/iv_wechat"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/icon_wechat" />
+
+            <ImageView
+                android:id="@+id/iv_wechatMoments"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/icon_moments" />
+
+            <ImageView
+                android:id="@+id/iv_QQ"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/icon_qq" />
+
+            <ImageView
+                android:id="@+id/iv_qqZone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/icon_qqzone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="@color/province_line_border"></LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_zixunsharecancle"
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/edittextcolor" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_touchzixunshare"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ll_zixunshare"
+        android:orientation="vertical" />
+
+</RelativeLayout>

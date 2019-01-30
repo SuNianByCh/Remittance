@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_successful_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        app:left_button_image="@drawable/return_left"
+        app:title_backgrounds="@color/main_tone"
+        app:title_text="订单提示"
+        app:title_textColor="@color/text_1_color"
+        app:title_textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ct_successful_order"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/hw_30_dp"
+            android:src="@drawable/seccess" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/hw_20_dp"
+            android:text="操作成功"
+            android:textColor="@color/text_1_color"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_confirm_success"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/hw_10_dp"
+            android:layout_marginRight="@dimen/hw_10_dp"
+            android:layout_marginTop="@dimen/hw_30_dp"
+            android:background="@drawable/edge_setting"
+            android:gravity="center"
+            android:padding="@dimen/hw_10_dp"
+            android:text="确认"
+            android:textColor="@color/main_tone"
+            android:textSize="16sp" />
+    </LinearLayout>
+</RelativeLayout>

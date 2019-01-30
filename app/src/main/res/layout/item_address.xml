@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?><!--收货地址子布局-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/hw_10_dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/hw_5_dp">
+
+            <TextView
+                android:id="@+id/address_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="侯杰"
+                android:textColor="@color/text_1_color"
+                android:textSize="@dimen/text_15_dp" />
+
+            <TextView
+                android:id="@+id/address_tel"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/hw_10_dp"
+                android:text="13717870853"
+                android:textColor="@color/text_1_color"
+                android:textSize="@dimen/text_15_dp" />
+        </LinearLayout>
+
+        <com.yaer.remittance.view.WsbTextView
+            android:id="@+id/address_dizhi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/hw_8_dp"
+            android:layout_marginTop="@dimen/hw_10_dp"
+            android:padding="@dimen/hw_5_dp"
+            android:text="北京市海淀区北新华街29号北京市海淀区北新华街29号北京市海淀区北新华街29号"
+            android:textColor="@color/text_1_color"
+            android:textSize="@dimen/text_12_dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/hw_0.5_dp"
+            android:layout_marginTop="@dimen/hw_5_dp"
+            android:background="@color/linen" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/hw_5_dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <CheckBox
+                    android:id="@+id/cb_Default_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@null"
+                    android:button="@drawable/btn_default_radiobutton"
+                    android:checked="true"
+                    android:padding="@dimen/hw_5_dp" />
+
+                <TextView
+                    android:id="@+id/tv_aisdefault"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/hw_5_dp"
+                    android:text="设置默认地址"
+                    android:textColor="@color/text_2_color"
+                    android:textSize="@dimen/text_14_dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/ll_address_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/hw_15_dp"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/hw_5_dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/hw_10_dp"
+                        android:background="@drawable/user_edit" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="编辑"
+                        android:textColor="@color/text_2_color"
+                        android:textSize="@dimen/text_12_dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_address_del"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/hw_10_dp"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/hw_5_dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/hw_10_dp"
+                        android:background="@drawable/address_del" />
+
+                    <TextView
+                        android:id="@+id/address_up"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="删除"
+                        android:textColor="@color/text_2_color"
+                        android:textSize="@dimen/text_12_dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

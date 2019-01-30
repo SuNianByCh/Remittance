@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_set_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        app:right_button_textColor="@color/text_1_color"
+        app:right_button_textSize="16sp"
+        app:title_backgrounds="@color/main_tone"
+        app:left_button_image="@drawable/return_left"
+        app:title_text="设置密码"
+        app:title_textColor="@color/text_1_color"
+        app:title_textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/hw_60_dp"
+        android:padding="@dimen/hw_20_dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/hw_60_dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/psw_1_"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:digits="@string/digits"
+                android:drawableLeft="@drawable/psw"
+                android:drawablePadding="@dimen/hw_10_dp"
+                android:hint="请输入密码"
+                android:inputType="textPassword"
+                android:maxLength="20"
+                android:textColor="@color/text_1_color"
+                android:textColorHint="@color/hint_color"
+                android:textSize="@dimen/text_15_dp" />
+
+            <ImageView
+                android:id="@+id/chang_first_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/hw_0.5_dp"
+            android:background="@color/linen" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/hw_60_dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/psw_2_"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:digits="@string/digits"
+                android:drawableLeft="@drawable/psw"
+                android:drawablePadding="@dimen/hw_10_dp"
+                android:hint="请确认密码"
+                android:inputType="textPassword"
+                android:maxLength="20"
+                android:textColor="@color/text_1_color"
+                android:textColorHint="@color/hint_color"
+                android:textSize="@dimen/text_15_dp" />
+
+            <ImageView
+                android:id="@+id/chang_two_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/hw_0.5_dp"
+            android:background="@color/linen" />
+
+        <TextView
+            android:id="@+id/quick_login"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/hw_40_dp"
+            android:layout_marginTop="@dimen/hw_40_dp"
+            android:background="@drawable/tones"
+            android:gravity="center"
+            android:text="确定"
+            android:layout_marginBottom="@dimen/hw_20_dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_14_dp" />
+    </LinearLayout>
+
+</LinearLayout>

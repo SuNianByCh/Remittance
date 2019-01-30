@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_newproduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/hw_5_dp"
+        android:layout_marginLeft="@dimen/hw_5_dp"
+        android:layout_marginRight="@dimen/hw_5_dp"
+        android:layout_marginTop="@dimen/hw_5_dp"
+        android:orientation="vertical">
+        <!--android:background="@drawable/back_layerlist"-->
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/riv_newimage"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:scaleType="centerCrop"
+            app:riv_corner_radius_top_left="@dimen/hw_5_dp"
+            app:riv_corner_radius_top_right="@dimen/hw_5_dp"
+            app:riv_mutate_background="true"
+            app:riv_oval="false" />
+
+
+        <TextView
+            android:id="@+id/tv_newname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/hw_10_dp"
+            android:layout_marginTop="6dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxEms="8"
+            android:singleLine="true"
+            android:text="陶瓷玉器"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="@dimen/hw_10_dp"
+            android:layout_marginLeft="@dimen/hw_10_dp"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/tv_dangqianjia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="当前价:"
+                android:textColor="#666666"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_newprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/hw_5_dp"
+                android:layout_toRightOf="@+id/tv_dangqianjia"
+                android:text="99999"
+                android:textColor="#bda75b"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+

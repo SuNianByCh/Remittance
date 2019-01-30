@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/hw_10_dp"
+    android:background="@drawable/back_layerlist"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_paimai"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/special_auction_description"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/rc_dimen_size_50"
+                android:layout_below="@+id/iv_paimai"
+                android:layout_marginTop="-50dp"
+                android:background="#33000000"
+                android:padding="@dimen/hw_10_dp"
+                android:maxLines="2"
+                android:text="明成化青花斗彩喜上眉梢斗笠茶碗，精品插件摆设，仿古瓷器收藏古玩"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/hw_5_dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/hw_5_dp">
+
+                <TextView
+                    android:id="@+id/special_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="拍卖会"
+                    android:textColor="@color/text_1_color"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_paimaistate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/corner_view"
+                    android:text="进行中"
+                    android:padding="@dimen/dp_4"
+                    android:textColor="@color/white"
+                    android:textSize="10sp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/hw_5_dp"
+                android:paddingRight="@dimen/hw_5_dp">
+                <TextView
+                    android:id="@+id/special_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12.12-12.15"
+                    android:gravity="center"
+                    android:textColor="@color/text_2_color"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

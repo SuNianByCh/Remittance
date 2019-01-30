@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_select_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/hw_5_dp"
+        android:layout_marginLeft="@dimen/hw_8_dp"
+        android:layout_marginRight="@dimen/hw_8_dp"
+        android:layout_marginTop="@dimen/hw_5_dp"
+        android:background="@drawable/back_layerlist"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/riv_selectimage"
+                android:layout_width="163dp"
+                android:layout_height="163dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/imagedetail_defaullt"
+                app:riv_corner_radius_bottom_left="@dimen/dp_10"
+                app:riv_corner_radius_bottom_right="@dimen/dp_10"
+                app:riv_corner_radius_top_left="@dimen/dp_10"
+                app:riv_corner_radius_top_right="@dimen/dp_10"
+                app:riv_mutate_background="true"
+                app:riv_oval="false" />
+
+            <TextView
+                android:layout_width="@dimen/hw_30_dp"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginLeft="@dimen/hw_10_dp"
+                android:background="@drawable/shopauctiontype"
+                android:gravity="center" />
+        </RelativeLayout>
+
+        <!--
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/riv_selectimage"
+                    android:layout_width="163dp"
+                    android:layout_height="163dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/imagedetail_defaullt"
+                    app:riv_corner_radius_top_left="5dp"
+                    app:riv_corner_radius_top_right="5dp"
+                    app:riv_mutate_background="true"
+                    app:riv_oval="false" />
+        -->
+
+        <TextView
+            android:id="@+id/tv_selectname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/hw_10_dp"
+            android:layout_marginTop="6dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxEms="8"
+            android:singleLine="true"
+            android:text="陶瓷玉器"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/hw_10_dp"
+            android:layout_marginLeft="@dimen/hw_10_dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_ddqj"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="当前价:"
+                    android:textColor="#666666"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_select_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/hw_10_dp"
+                    android:layout_toRightOf="@+id/tv_ddqj"
+                    android:text="99999"
+                    android:textColor="#bda75b"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:layout_marginRight="@dimen/hw_10_dp">
+
+                <ImageView
+                    android:id="@+id/iv_vitalit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/vitalityvalue" />
+
+                <TextView
+                    android:id="@+id/tv_vitalityvalue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/iv_vitalit"
+                    android:text="120"
+                    android:textColor="@color/text_2_color"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <!--
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/hw_10_dp"
+                    android:layout_marginLeft="@dimen/hw_10_dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:id="@+id/tv_dangqianjia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="当前价:"
+                        android:textColor="#666666"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_select_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/tv_dangqianjia"
+                        android:layout_marginLeft="@dimen/hw_5_dp"
+                        android:text="99999"
+                        android:textColor="#bda75b"
+                        android:textSize="14sp" />
+                </LinearLayout>
+        -->
+    </LinearLayout>
+</LinearLayout>
+

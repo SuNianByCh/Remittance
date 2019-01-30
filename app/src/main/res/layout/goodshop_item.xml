@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_background"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/hw_5_dp"
+    android:paddingTop="@dimen/hw_5_dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rl_goodshop_id"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+
+                <com.liji.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/civ_goodshop_tx"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/user_settings"
+                    app:circle_border_color="@color/grey_line_bg"
+                    app:circle_border_width="1dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="@dimen/hw_5_dp"
+                    android:layout_toRightOf="@+id/civ_goodshop_tx"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_shangpinname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="商家名称"
+                        android:textColor="@color/text_1_color"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_goodshop_slabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/hw_4_dp"
+                        android:text="收藏家"
+                        android:textColor="@color/main_tone"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_goodshop_follow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:gravity="right"
+                android:orientation="vertical"
+                android:padding="@dimen/hw_10_dp">
+
+                <TextView
+                    android:id="@+id/tv_goodshop_follow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shap_attention_true"
+                    android:paddingBottom="@dimen/hw_5_dp"
+                    android:paddingLeft="@dimen/hw_10_dp"
+                    android:paddingRight="@dimen/hw_10_dp"
+                    android:paddingTop="@dimen/hw_5_dp"
+                    android:text="+关注"
+                    android:textColor="@color/main_tone"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/mGridRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/hw_5_dp" />
+    </LinearLayout>
+</LinearLayout>

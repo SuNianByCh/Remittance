@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_news"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        app:title_backgrounds="@color/main_tone"
+        app:title_text="消息"
+        app:title_textColor="@color/black"
+        app:title_textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/hw_1_dp"
+            android:background="@color/linen" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/doc_notice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/ll_systemmessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_bottom_border"
+                    android:orientation="horizontal"
+                    android:textColorHint="@android:color/darker_gray">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/hw_10_dp"
+                        android:src="@drawable/systemmessage" />
+
+                    <TextView
+                        android:id="@+id/send_balance"
+                        style="@style/TextBottomTheme"
+                        android:text="@string/system_message"
+                        android:textColor="@color/title_color_phone" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_transactionmessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_bottom_border"
+                    android:orientation="horizontal"
+                    android:textColorHint="@android:color/darker_gray">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/hw_8_dp"
+                        android:src="@drawable/transaction_message" />
+
+                    <TextView
+                        android:id="@+id/send_collection"
+                        style="@style/TextBottomTheme"
+                        android:text="@string/trading_news"
+                        android:textColor="@color/title_color_phone" />
+                </LinearLayout>
+
+<!--
+                <LinearLayout
+                    android:id="@+id/ll_customer_service"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_bottom_border"
+                    android:orientation="horizontal"
+                    android:textColorHint="@android:color/darker_gray">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/hw_8_dp"
+                        android:src="@drawable/transaction_message" />
+
+                    <TextView
+                        android:id="@+id/tv_customer_service"
+                        style="@style/TextBottomTheme"
+                        android:text="客服"
+                        android:textColor="@color/title_color_phone" />
+                </LinearLayout>
+-->
+
+<!--
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_bottom_border"
+                    android:orientation="horizontal"
+                    android:textColorHint="@android:color/darker_gray">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/hw_8_dp"
+                        android:src="@drawable/transaction_message" />
+
+                    <TextView
+                        android:id="@+id/tv_new_Ceshi"
+                        style="@style/TextBottomTheme"
+                        android:text="测试"
+                        android:textColor="@color/title_color_phone" />
+                </LinearLayout>
+-->
+
+
+<!--
+                <LinearLayout
+                    android:id="@+id/ll_privatemessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_bottom_border"
+                    android:orientation="horizontal"
+                    android:textColorHint="@android:color/darker_gray">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/hw_10_dp"
+                        android:src="@drawable/private_message" />
+
+                    <TextView
+                        android:id="@+id/send_drafts"
+                        style="@style/TextBottomTheme"
+                        android:text="@string/private_letter"
+                        android:textColor="@color/title_color_phone" />
+                </LinearLayout>
+-->
+
+                <LinearLayout
+                    android:id="@+id/ll_session_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_bottom_border"
+                    android:orientation="horizontal"
+                    android:textColorHint="@android:color/darker_gray">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/hw_8_dp"
+                        android:src="@drawable/transaction_message" />
+
+                    <TextView
+                        android:id="@+id/tv_liiebiaoname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/hw_15_dp"
+                        android:paddingLeft="@dimen/hw_10_dp"
+                        android:paddingRight="@dimen/hw_10_dp"
+                        android:paddingTop="@dimen/hw_15_dp"
+                        android:text="私信列表"
+                        android:textColor="@color/title_color_phone" />
+
+                    <TextView
+                        style="@style/TextBottomTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/title_color_phone" />
+                </LinearLayout>
+
+<!--
+                <LinearLayout
+                    android:id="@+id/ceshi2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_bottom_border"
+                    android:orientation="horizontal"
+                    android:textColorHint="@android:color/darker_gray">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/hw_8_dp"
+                        android:src="@drawable/transaction_message" />
+
+                    <TextView
+                        style="@style/TextBottomTheme"
+                        android:text="会话"
+                        android:textColor="@color/title_color_phone" />
+                </LinearLayout>
+-->
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

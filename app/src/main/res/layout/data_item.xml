@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_data_intent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/hw_5_dp"
+        android:layout_marginRight="@dimen/hw_5_dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/back_layerlist"
+        android:orientation="vertical">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/riv_data_image"
+            android:layout_width="match_parent"
+            android:layout_height="163dp"
+            android:scaleType="centerCrop"
+            app:riv_corner_radius_top_left="@dimen/hw_5_dp"
+            app:riv_corner_radius_top_right="@dimen/hw_5_dp"
+            app:riv_mutate_background="true"
+            app:riv_oval="false" />
+
+        <TextView
+            android:id="@+id/tv_data_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_4"
+            android:layout_marginRight="@dimen/dp_4"
+            android:layout_marginTop="@dimen/dp_4"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="陶瓷玉器"
+            android:textColor="#666666"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_data_gmoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="@dimen/dp_4"
+            android:layout_marginTop="2dp"
+            android:text="¥ 99999"
+            android:textColor="@color/main_tone"
+            android:textSize="12sp" />
+
+        <!--    <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/hw_0.5_dp"
+                android:background="@color/grey_line_bg" />-->
+
+        <!--
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp_4">
+
+                    <com.liji.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/civ_goodshop_tx"
+                        android:layout_width="@dimen/hw_30_dp"
+                        android:layout_height="@dimen/hw_30_dp"
+                        android:background="@drawable/user_settings"
+                        app:circle_border_color="@color/grey_line_bg"
+                        app:circle_border_width="1dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="@dimen/hw_2_dp"
+                        android:layout_toRightOf="@+id/civ_goodshop_tx"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_shangpinname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="商家名称"
+                            android:textColor="@color/text_1_color"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/tv_goodshop_slabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/hw_2_dp"
+                            android:text="收藏家"
+                            android:textColor="@color/main_tone"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+                </RelativeLayout>
+        -->
+    </LinearLayout>
+</LinearLayout>
+
