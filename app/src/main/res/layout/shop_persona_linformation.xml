@@ -136,7 +136,32 @@
                 android:textColor="@color/text_2_color"
                 android:textSize="@dimen/text_12_dp" />
         </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_bottom_border"
+            android:padding="@dimen/hw_5_dp"
+            android:textColorHint="@android:color/darker_gray">
 
+            <TextView
+                android:id="@+id/tv_personal_sex"
+                style="@style/TextBottomTheme"
+                android:text="店铺背景图"
+                android:textColor="@color/my_order" />
+
+            <com.liji.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/iv_shopinfo_image"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/hw_30_dp"
+                android:background="@drawable/user_settings"
+                app:circle_border_color="@color/white"
+                app:circle_border_width="1dp" />
+        </RelativeLayout>
+
+<!--
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -168,6 +193,7 @@
                 android:src="@drawable/add_photo" />
 
         </RelativeLayout>
+-->
 
         <!--
                 <RelativeLayout

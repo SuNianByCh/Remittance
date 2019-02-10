@@ -30,6 +30,7 @@
             android:textSize="12dp" />
     </RelativeLayout>
 
+<!--
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -37,6 +38,7 @@
         android:layout_marginRight="@dimen/hw_10_dp"
         android:layout_marginTop="@dimen/hw_5_dp"
         android:background="@drawable/yczb" />
+-->
 
     <com.yaer.remittance.view.GridViewForScrollView
         android:id="@+id/gridView"

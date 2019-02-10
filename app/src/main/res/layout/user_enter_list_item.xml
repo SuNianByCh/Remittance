@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/hw_30_dp"
-        android:paddingLeft="@dimen/hw_10_dp"
+        android:paddingLeft="@dimen/hw_20_dp"
         android:paddingRight="@dimen/hw_10_dp"
         android:paddingTop="@dimen/hw_30_dp" />
 
@@ -24,7 +24,7 @@
         <Button
             android:id="@+id/btn_enter_confirm"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginBottom="22dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
@@ -36,7 +36,7 @@
         <Button
             android:id="@+id/btn_enter_cancel"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginBottom="22dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"

@@ -115,7 +115,7 @@ public class ShopInformationActivity extends BaseActivity implements CustomTitle
     TextView tv_shop_slabel_detils;
     /*店铺背景*/
     @BindView(R.id.iv_shopinfo_image)
-    ImageView iv_shopinfo_image;
+    CircleImageView iv_shopinfo_image;
     @BindView(R.id.rl_shop_headportra)
     LinearLayout rl_shop_headportra;
 
@@ -177,17 +177,17 @@ public class ShopInformationActivity extends BaseActivity implements CustomTitle
                 });
     }
 
+
     private void lableshow() {
-        str.add("茶文化");
-        str.add("天然玉石");
-        str.add("家具");
         str.add("珠串雅玩");
-        str.add("美食");
         str.add("金石篆刻");
-        str.add("时尚首饰");
-        str.add("文房雅玩");
         str.add("民俗工艺");
-        str.add("生活百货");
+        str.add("鬼斧神雕");
+        str.add("古瓷韵味");
+        str.add("当代工艺");
+        str.add("珠宝玉石");
+        str.add("陈设摆件");
+        str.add("古董珍品");
         for (int i = 0; i < str.size(); i++) {
             linkLabelBean = new LinkLabelBean();
             linkLabelBean.setStr(str.get(i));
