@@ -1,12 +1,7 @@
 package com.yaer.remittance.ui.user_modular.user_seller.storetable;
 
-import android.content.pm.PackageInfo;
 import android.view.View;
-import android.widget.SimpleAdapter;
 
-import com.alibaba.fastjson.JSONObject;
-import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 import com.yaer.remittance.R;
@@ -15,20 +10,14 @@ import com.yaer.remittance.api.Constant;
 import com.yaer.remittance.base.BaseActivity;
 import com.yaer.remittance.base.BaseMode;
 import com.yaer.remittance.bean.ReportFormBean;
-import com.yaer.remittance.bean.UserBean;
 import com.yaer.remittance.callback.JsonCallback;
-import com.yaer.remittance.ui.login_modular.LoginActivity;
 import com.yaer.remittance.ui.user_modular.user_seller.adapter.PictureAdapter;
 import com.yaer.remittance.utils.AppUtile;
-import com.yaer.remittance.utils.SharedPreferencesUtils;
 import com.yaer.remittance.utils.ToastUtils;
 import com.yaer.remittance.view.CustomTitlebar;
 import com.yaer.remittance.view.WsbGridView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 

@@ -79,8 +79,10 @@ public class ShopActivity extends BaseActivity {
     CollapsingToolbarLayout collapsing_toolbar;
     @BindView(R.id.iv_shop_imaege)
     RoundedImageView iv_shop_imaege;
+/*
     @BindView(R.id.ll_shop)
     LinearLayout ll_shop;
+*/
     /*店铺关注状态*/
     @BindView(R.id.tv_shopinfo_followstatus)
     TextView tv_shopinfo_followstatus;
@@ -264,13 +266,13 @@ public class ShopActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.toolbar, R.id.tv_shopinfo_followstatus, R.id.tv_privateletter, R.id.ll_shop})
+    @OnClick({R.id.toolbar, R.id.tv_shopinfo_followstatus, R.id.tv_privateletter})
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.ll_shop:
+          /*  case R.id.ll_shop:
                 Intent intent = new Intent(this, UserShopInfoActivity.class);
                 startActivity(intent);
-                break;
+                break;*/
             case R.id.toolbar:
                 finish();
                 break;

@@ -11,7 +11,6 @@ import android.os.StatFs;
 import android.telephony.TelephonyManager;
 import android.text.format.Formatter;
 
-import com.alibaba.fastjson.JSON;
 import com.yaer.remittance.base.MainActivity;
 
 import java.io.BufferedReader;
@@ -254,7 +253,14 @@ public class SystemUtil {
         Date date = new Date(timeMillis);
         return simpleDateFormat.format(date);
     }
-
+    /*
+     * 将时间戳转换为时间
+     */
+    public static String stampAuctionDetails(long timeMillis) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd HH:mm");
+        Date date = new Date(timeMillis);
+        return simpleDateFormat.format(date);
+    }
     /*
      * 将时间戳转换为时间
      */

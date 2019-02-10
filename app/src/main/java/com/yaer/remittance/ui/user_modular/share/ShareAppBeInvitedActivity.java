@@ -44,7 +44,7 @@ public class ShareAppBeInvitedActivity extends BaseActivity implements CustomTit
     @Override
     protected void initImmersionBar() {
         super.initImmersionBar();
-        mImmersionBar.titleBar(R.id.et_courier_number).init();
+        mImmersionBar.titleBar(R.id.ct_belcvited_app).init();
     }
 
     @Override

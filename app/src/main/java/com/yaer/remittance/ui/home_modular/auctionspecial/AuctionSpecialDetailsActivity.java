@@ -29,7 +29,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import pl.droidsonroids.gif.GifImageView;
 
 /**
  * 拍卖专场详情
@@ -39,8 +38,6 @@ public class AuctionSpecialDetailsActivity extends BaseActivity implements Custo
     CustomTitlebar ct_auction_special_list;
     @BindView(R.id.auction_list_refreshLayout)
     SmartRefreshLayout auction_list_refreshLayout;
-    @BindView(R.id.gifview)
-    GifImageView gifview;
     @BindView(R.id.iv_paimai)
     ImageView iv_paimai;
     @BindView(R.id.rv_auction_special_list)

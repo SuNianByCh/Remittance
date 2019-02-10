@@ -21,8 +21,6 @@ import com.yaer.remittance.base.BaseActivity;
 import com.yaer.remittance.base.BaseMode;
 import com.yaer.remittance.bean.GetFollowGoodsBean;
 import com.yaer.remittance.callback.JsonCallback;
-import com.yaer.remittance.ui.user_modular.user_buyer.attention.UserAttentionActivity;
-import com.yaer.remittance.ui.user_modular.user_buyer.footprint.UserFootPrintActivity;
 import com.yaer.remittance.utils.AppUtile;
 import com.yaer.remittance.utils.NetworkUtils;
 import com.yaer.remittance.utils.ToastUtils;
@@ -34,7 +32,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import pl.droidsonroids.gif.GifImageView;
 
 /**
  * 收藏
@@ -45,8 +42,6 @@ public class UserCollectActivity extends BaseActivity implements CustomTitlebar.
     /*刷新控件*/
     @BindView(R.id.collect_refreshLayout)
     SmartRefreshLayout collect_refreshLayout;
-    @BindView(R.id.gifview)
-    GifImageView gifview;
     private UserCollectAdapter collectAdapter;
     private List<GetFollowGoodsBean> collectItemList = new ArrayList<>();
     private int page = 1;

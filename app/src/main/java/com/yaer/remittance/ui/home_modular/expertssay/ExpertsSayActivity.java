@@ -31,16 +31,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import pl.droidsonroids.gif.GifImageView;
 
 /**
  * 专家说
  */
 public class ExpertsSayActivity extends BaseActivity implements CustomTitlebar.TitleBarOnClickListener {
 
-    //刷新icon
-    @BindView(R.id.gifview)
-    GifImageView gifview;
     //标题栏
     @BindView(R.id.ct_experts_say)
     CustomTitlebar ct_experts_say;

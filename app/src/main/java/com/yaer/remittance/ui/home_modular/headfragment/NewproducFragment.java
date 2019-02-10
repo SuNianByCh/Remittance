@@ -17,11 +17,8 @@ import com.yaer.remittance.api.Constant;
 import com.yaer.remittance.base.BaseLazyFragment;
 import com.yaer.remittance.base.BaseMode;
 import com.yaer.remittance.bean.NewGoodsBean;
-import com.yaer.remittance.bean.selectGoodsByNameBean;
 import com.yaer.remittance.callback.JsonCallback;
-import com.yaer.remittance.ui.adapter.NewProductAdapter;
 import com.yaer.remittance.ui.adapter.NewproducItemAdapter;
-import com.yaer.remittance.ui.home_modular.search.SearchLotAdapter;
 import com.yaer.remittance.utils.AppUtile;
 import com.yaer.remittance.utils.NetworkUtils;
 import com.yaer.remittance.utils.ToastUtils;
@@ -30,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import pl.droidsonroids.gif.GifImageView;
 
 /**
  * 新品首发页面
@@ -40,8 +36,6 @@ public class NewproducFragment extends BaseLazyFragment {
     /*刷新控件*/
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
-    @BindView(R.id.gifview)
-    GifImageView gifview;
     @BindView(R.id.rv_new_produc)
     RecyclerView rv_new_produc;
     private NewproducItemAdapter newproducItemAdapter;

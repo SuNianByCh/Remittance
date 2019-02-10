@@ -39,7 +39,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import pl.droidsonroids.gif.GifImageView;
 
 /**
  * 专家说详情

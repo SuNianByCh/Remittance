@@ -1,6 +1,5 @@
 package com.yaer.remittance.ui.user_modular.user_buyer.attention;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,23 +21,12 @@ import com.yaer.remittance.api.AppApi;
 import com.yaer.remittance.api.Constant;
 import com.yaer.remittance.base.BaseActivity;
 import com.yaer.remittance.base.BaseMode;
-import com.yaer.remittance.bean.GetFollowGoodsBean;
 import com.yaer.remittance.bean.GetFollowShopBean;
-import com.yaer.remittance.bean.NewGoodsBean;
 import com.yaer.remittance.callback.JsonCallback;
-import com.yaer.remittance.payment.PayDialogFragment;
-import com.yaer.remittance.ui.adapter.NewProductAdapter;
-import com.yaer.remittance.ui.login_modular.LoginActivity;
 import com.yaer.remittance.ui.shopping_modular.shop.ShopActivity;
 import com.yaer.remittance.ui.user_modular.user_buyer.adapter.AttentionAdapter;
-import com.yaer.remittance.ui.user_modular.user_buyer.collect.UserCollectActivity;
-import com.yaer.remittance.ui.user_modular.user_buyer.logistics.LogisticsActivity;
-import com.yaer.remittance.ui.user_modular.user_buyer.order.AllOrderActivity;
-import com.yaer.remittance.ui.user_modular.user_buyer.order.OrderCommentActivity;
-import com.yaer.remittance.ui.user_modular.user_buyer.order.OrderDetailsActivity;
 import com.yaer.remittance.utils.AppUtile;
 import com.yaer.remittance.utils.NetworkUtils;
-import com.yaer.remittance.utils.SharedPreferencesUtils;
 import com.yaer.remittance.utils.ToastUtils;
 import com.yaer.remittance.view.CustomTitlebar;
 import com.yaer.remittance.view.LoadingDialog2;
@@ -48,8 +36,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import io.rong.imkit.RongIM;
-import pl.droidsonroids.gif.GifImageView;
 
 /**
  * 我的关注页面
@@ -61,8 +47,6 @@ public class UserAttentionActivity extends BaseActivity implements CustomTitleba
     /*刷新控件*/
     @BindView(R.id.attention_refreshLayout)
     SmartRefreshLayout attention_refreshLayout;
-    @BindView(R.id.gifview)
-    GifImageView gifview;
     private AttentionAdapter attentionAdapter;
     private List<GetFollowShopBean> AttentionItemList = new ArrayList<>();
     private int page = 1;

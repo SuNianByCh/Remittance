@@ -30,7 +30,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * 分享
+ * 邀请好友
  */
 public class ShareAppActivity extends BaseActivity implements CustomTitlebar.TitleBarOnClickListener {
     @BindView(R.id.tv_was_invited_here)

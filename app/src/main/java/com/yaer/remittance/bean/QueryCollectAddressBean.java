@@ -1,6 +1,7 @@
 package com.yaer.remittance.bean;
 
-import com.alibaba.fastjson.JSONObject;
+
+import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.HashMap;

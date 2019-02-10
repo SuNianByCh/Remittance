@@ -1,10 +1,5 @@
 package com.yaer.remittance.bean;
 
-import com.alibaba.fastjson.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * 2018-11-13
  * 开发者 houjie

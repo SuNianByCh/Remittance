@@ -406,7 +406,6 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
                 .params("gid", gid)
                 .params("uid", AppUtile.getUid(this))
                 .execute(new JsonCallback<BaseMode<selectGoodsInfoAutionBean>>(this) {
-                    @SuppressLint("ResourceAsColor")
                     @Override
                     public void onSuccess(Response<BaseMode<selectGoodsInfoAutionBean>> response) {
                         Log.e("text", "根据id查询拍品详情: " + response.body().code);
@@ -415,7 +414,7 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
                             /*商品店铺绑定数据*/
                             String shopnewmoney = response.body().result.getGmoney();
                             /*限制如果为空的话就让他显示0*/
-                            if (shopnewmoney.equals("")) {
+                            if (shopnewmoney.equals("0")) {
                                 ll_purchase_original_price.setBackgroundResource(R.color.text_3_color);//setVisibility(View.GONE);
                                 ll_purchase_original_price.setClickable(false);
                                 shopnewmoney = "0";
@@ -438,7 +437,7 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
                             tv_auction_details_name.setText(response.body().result.getGname());
                             //sid = String.valueOf(response.body().result.getShopInfoModel().getSid());//店铺id
                             sname = response.body().result.getShopInfoModel().getSname();//店铺名称
-                            Glatestbid = Double.parseDouble(response.body().result.getGlatestbid());
+                            Glatestbid = Double.parseDouble(response.body().result.getGlatestbid());//出价价格
                             money = AmountUtil.priceNum(Double.parseDouble(response.body().result.getGlatestbid()));//带后两位的出价价格
                             if (!AppUtile.isEmptyNull(response.body().result.getGaddprice())) {
                                 jjmoney = AmountUtil.priceNum(Double.parseDouble(response.body().result.getGaddprice()));//带后两位的加价价格
@@ -468,30 +467,32 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
                             tv_start_price.setText("￥" + startmoney);
                             tv_add_price.setText("￥" + addmoney);
                             // tv_auction_bond.setText("￥" + bondmoney);
-                            String starttime = SystemUtil.stampToDateauction(Long.parseLong(response.body().result.getGauctiontime()));//开始时间
-                            endTime = SystemUtil.stampToDateauction(Long.parseLong(response.body().result.getGstoptime()));//结束时间
-                            String isendTime = SystemUtil.stampToDatemm(Long.parseLong(response.body().result.getGstoptime()));//结束时间判断
+                            String starttime = SystemUtil.stampAuctionDetails(Long.parseLong(response.body().result.getGauctiontime()));//开始时间
+                            //endTime = SystemUtil.stampAuctionDetails(Long.parseLong(response.body().result.getGstoptime()));//结束时间
+                            String isendTime = SystemUtil.stampAuctionDetails(Long.parseLong(response.body().result.getGstoptime()));//结束时间判断
                             String time = SystemUtil.stampToDatemm(System.currentTimeMillis());//系统时间
                             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");//年-月-日 时-分
+                            Date date1 = null;//系统时间
+                            Date date2 = null;//结 束时间
                             try {
-                                Date date1 = dateFormat.parse(time.toString());//开始时间
-                                Date date2 = dateFormat.parse(isendTime);//结 束时间
-                                // 1 结束时间小于开始时间 2 开始时间与结束时间相同 3 结束时间大于开始时间
-                                if (date1.getTime() >= date2.getTime()) {
-                                    tv_auction_details_time.setText("拍卖结束");
-                                    ll_purchase_original_price.setBackgroundResource(R.color.text_3_color);//setVisibility(View.GONE);
-                                    ll_purchase_original_price.setClickable(false);
-                                    tv_good_detail_buy.setBackgroundResource(R.color.text_3_color);
-                                    tv_good_detail_buy.setClickable(false);
-                                } else {
-                                    ll_purchase_original_price.setBackgroundResource(R.color.main_tone);
-                                    ll_purchase_original_price.setClickable(true);
-                                    tv_good_detail_buy.setBackgroundResource(R.color.leak_red);
-                                    tv_good_detail_buy.setClickable(true);
-                                    //tv_auction_details_time.setText(starttime + "至" + endTime);
-                                }
+                                date1 = dateFormat.parse(time.toString());
+                                date2 = dateFormat.parse(SystemUtil.stampToDate(response.body().result.getGstoptime()));
                             } catch (ParseException e) {
                                 e.printStackTrace();
+                            }
+                            // 1 结束时间小于开始时间 2 开始时间与结束时间相同 3 结束时间大于开始时间
+                            if (date1.getTime() >= date2.getTime()) {
+                                tv_auction_details_time.setText("拍卖结束");
+                                ll_purchase_original_price.setBackgroundResource(R.color.text_3_color);//setVisibility(View.GONE);
+                                ll_purchase_original_price.setClickable(false);
+                                tv_good_detail_buy.setBackgroundResource(R.color.text_3_color);
+                                tv_good_detail_buy.setClickable(false);
+                            } else {
+                                ll_purchase_original_price.setBackgroundResource(R.color.main_tone);
+                                ll_purchase_original_price.setClickable(true);
+                                tv_good_detail_buy.setBackgroundResource(R.color.leak_red);
+                                tv_good_detail_buy.setClickable(true);
+                                tv_auction_details_time.setText(starttime + "至" + isendTime);
                             }
                             tv_auction_slabel.setText(response.body().result.getShopInfoModel().getSlabel());
                             tv_auction_details.setText(response.body().result.getGdesc());

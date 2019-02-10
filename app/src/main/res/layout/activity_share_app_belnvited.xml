@@ -47,14 +47,13 @@
             android:layout_marginLeft="@dimen/hw_60_dp"
             android:layout_marginRight="@dimen/hw_60_dp"
             android:layout_marginTop="@dimen/hw_20_dp"
-            android:background="@color/white"
-            android:digits="0123456789abcdefghijklmnopqrstuvwxyz"
+            android:background="@drawable/myedittext_white"
             android:hint="请输入邀请码"
             android:inputType="textEmailAddress"
             android:padding="@dimen/hw_10_dp"
+            android:textColorHint="@color/white"
             android:paddingLeft="@dimen/hw_10_dp"
-            android:textColor="@color/text_2_color"
-            android:textColorHint="@color/hint_color"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_14_dp" />
 
         <TextView

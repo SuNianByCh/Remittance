@@ -1,13 +1,11 @@
 package com.yaer.remittance.ui.user_modular.user_buyer.joinlot;
 
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.base.Request;
@@ -20,11 +18,8 @@ import com.yaer.remittance.api.Constant;
 import com.yaer.remittance.base.BaseLazyFragment;
 import com.yaer.remittance.base.BaseMode;
 import com.yaer.remittance.bean.AtAuctionBean;
-import com.yaer.remittance.bean.NewGoodsBean;
 import com.yaer.remittance.callback.JsonCallback;
-import com.yaer.remittance.ui.adapter.NewProductAdapter;
 import com.yaer.remittance.ui.user_modular.user_buyer.adapter.AtAuctionAdapter;
-import com.yaer.remittance.ui.user_modular.user_buyer.attention.UserAttentionActivity;
 import com.yaer.remittance.utils.AppUtile;
 import com.yaer.remittance.utils.NetworkUtils;
 import com.yaer.remittance.utils.ToastUtils;
@@ -34,7 +29,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import pl.droidsonroids.gif.GifImageView;
 
 /**
  * 拍卖中拍品
@@ -43,8 +37,6 @@ public class AtAuctionFragment extends BaseLazyFragment {
     /*刷新控件*/
     @BindView(R.id.at_auction_refreshLayout)
     SmartRefreshLayout at_auction_refreshLayout;
-    @BindView(R.id.gifview)
-    GifImageView gifview;
     @BindView(R.id.rv_at_auction)
     RecyclerView rv_at_auction;
     private AtAuctionAdapter atAuctionAdapter;

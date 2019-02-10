@@ -787,7 +787,7 @@ public class UserFragment extends BaseFragment {
                 goToActivity(UserEnterActivity.class);
                 break;*/
             /**
-             * 卖家分享
+             * 卖家邀请好友
              * */
             case R.id.ll_seller_share:
                 goToActivity(ShareAppActivity.class);

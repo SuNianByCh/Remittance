@@ -1,10 +1,5 @@
 package com.yaer.remittance.bean;
 
-import com.alibaba.fastjson.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
-
 public class InsertGoodsBean {
     //用户id
     private int uid;
@@ -155,27 +150,6 @@ public class InsertGoodsBean {
 
     public void setGissoldout(String gissoldout) {
         this.gissoldout = gissoldout;
-    }
-
-    public static String getJsonString(InsertGoodsBean userBean) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("uid", userBean.getUid());
-        map.put("utoken", userBean.getUtoken());
-        map.put("gname", userBean.getGname());
-        map.put("gisauction", userBean.getGisauction());
-        map.put("gmoney", userBean.getGmoney());
-        map.put("gdesc", userBean.getGdesc());
-        map.put("gcid", userBean.getGcid());
-        map.put("gimg", userBean.getGimg());
-        map.put("gvideo", userBean.getGvideo());
-        map.put("gstartingprice", userBean.getGstartingprice());
-        map.put("gaddprice", userBean.getGaddprice());
-        map.put("gstoptime", userBean.getGstoptime());
-        map.put("gcollateral", userBean.getGcollateral());
-        map.put("gauctiontime", userBean.getGauctiontime());
-        map.put("gissoldout", userBean.getGissoldout());
-        JSONObject jsonObject = new JSONObject(map);
-        return jsonObject.toString();
     }
 
 }
