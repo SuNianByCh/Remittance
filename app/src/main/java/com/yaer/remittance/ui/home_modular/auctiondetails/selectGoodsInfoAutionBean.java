@@ -176,6 +176,14 @@ public class selectGoodsInfoAutionBean {
     public String getGstoptime() {
         return gstoptime;
     }
+    public long getGstoptimeLong(){
+        try {
+
+            return Long.parseLong(gstoptime);
+        }catch (Throwable e){
+            return  0;
+        }
+    }
 
     public void setGstoptime(String gstoptime) {
         this.gstoptime = gstoptime;
@@ -207,6 +215,14 @@ public class selectGoodsInfoAutionBean {
 
     public String getGauctiontime() {
         return gauctiontime;
+    }
+    public  long getGauctiontimeLong(){
+        try {
+           return Long.parseLong(gauctiontime);
+        }catch (Throwable e){
+
+            return 0;
+        }
     }
 
     public void setGauctiontime(String gauctiontime) {

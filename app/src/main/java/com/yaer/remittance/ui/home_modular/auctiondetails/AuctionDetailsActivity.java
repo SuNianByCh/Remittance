@@ -394,6 +394,7 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
      */
     private LoadingDialog2 photoDiloag;
     private int isautobidding;//当前委托出价状态
+    private selectGoodsInfoAutionBean mSelectGoodsInfoAutionBean;
 
     /**
      * 根据id查询拍品详情
@@ -410,7 +411,8 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
                     public void onSuccess(Response<BaseMode<selectGoodsInfoAutionBean>> response) {
                         Log.e("text", "根据id查询拍品详情: " + response.body().code);
                         Log.e("text", "根据id查询拍品详情: " + response.body().result);
-                        if (response.body().code.equals(Constant.SUEECECODE)) {
+                        if (response.body().code.equals(Constant.SUEECECODE) && response.body().result != null) {
+                            mSelectGoodsInfoAutionBean = response.body().result;
                             /*商品店铺绑定数据*/
                             String shopnewmoney = response.body().result.getGmoney();
                             /*限制如果为空的话就让他显示0*/
@@ -481,7 +483,28 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
                                 e.printStackTrace();
                             }
                             // 1 结束时间小于开始时间 2 开始时间与结束时间相同 3 结束时间大于开始时间
-                            if (date1.getTime() >= date2.getTime()) {
+                            if(mSelectGoodsInfoAutionBean.getGauctiontimeLong()> System.currentTimeMillis()){
+                                tv_auction_details_time.setText("拍卖还未开始");
+                                ll_purchase_original_price.setBackgroundResource(R.color.text_3_color);//setVisibility(View.GONE);
+                                ll_purchase_original_price.setClickable(false);
+                                tv_good_detail_buy.setBackgroundResource(R.color.text_3_color);
+                                tv_good_detail_buy.setClickable(false);
+                            }else if(mSelectGoodsInfoAutionBean.getGstoptimeLong()< System.currentTimeMillis()){
+                                ll_purchase_original_price.setBackgroundResource(R.color.main_tone);
+                                ll_purchase_original_price.setClickable(true);
+                                tv_good_detail_buy.setBackgroundResource(R.color.leak_red);
+                                tv_good_detail_buy.setClickable(true);
+                                tv_auction_details_time.setText(starttime + "至" + isendTime);
+                            }else {
+                                tv_auction_details_time.setText("拍卖结束");
+                                ll_purchase_original_price.setBackgroundResource(R.color.text_3_color);//setVisibility(View.GONE);
+                                ll_purchase_original_price.setClickable(false);
+                                tv_good_detail_buy.setBackgroundResource(R.color.text_3_color);
+                                tv_good_detail_buy.setClickable(false);
+                            }
+
+
+                          /*  if (date1.getTime() >= date2.getTime()) {
                                 tv_auction_details_time.setText("拍卖结束");
                                 ll_purchase_original_price.setBackgroundResource(R.color.text_3_color);//setVisibility(View.GONE);
                                 ll_purchase_original_price.setClickable(false);
@@ -493,7 +516,7 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
                                 tv_good_detail_buy.setBackgroundResource(R.color.leak_red);
                                 tv_good_detail_buy.setClickable(true);
                                 tv_auction_details_time.setText(starttime + "至" + isendTime);
-                            }
+                            }*/
                             tv_auction_slabel.setText(response.body().result.getShopInfoModel().getSlabel());
                             tv_auction_details.setText(response.body().result.getGdesc());
                             tv_auction_product_brief.setText(response.body().result.getGdesc());
