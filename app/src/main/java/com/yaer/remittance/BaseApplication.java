@@ -66,7 +66,10 @@ public class BaseApplication extends MultiDexApplication {
         initJPush();
         initUmeng();
         initLogger();
-        //test kjhkjhkjjh;;;h;l
+        //test kjh
+        //
+        //
+        // kjhkjjh;;;h;l
        // NineGridView.setImageLoader(new PicassoImageLoader());
         RongYongSingleton.getInstance();
     }
