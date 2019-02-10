@@ -70,6 +70,7 @@ public class BaseApplication extends MultiDexApplication {
         //
         //
         // kjhkjjh;;;h;l
+        //这些是我加的
        // NineGridView.setImageLoader(new PicassoImageLoader());
         RongYongSingleton.getInstance();
     }
