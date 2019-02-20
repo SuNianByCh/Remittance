@@ -38,6 +38,8 @@ public class getMyAuctionBean {
      * glatestbid : 80.00
      * followStatus : false
      * gstate : 0
+     * biddingnumber:0
+     * ghot:7470
      */
 
     private int gid;
@@ -67,6 +69,24 @@ public class getMyAuctionBean {
     private String glatestbid;
     private boolean followStatus;
     private int gstate;
+    private int biddingnumber;
+    private int ghot;
+
+    public int getBiddingnumber() {
+        return biddingnumber;
+    }
+
+    public void setBiddingnumber(int biddingnumber) {
+        this.biddingnumber = biddingnumber;
+    }
+
+    public int getGhot() {
+        return ghot;
+    }
+
+    public void setGhot(int ghot) {
+        this.ghot = ghot;
+    }
 
     public int getGid() {
         return gid;
@@ -119,6 +139,7 @@ public class getMyAuctionBean {
     public String getGimg() {
         return gimg;
     }
+
     public List<String> getImgesPath() {
         if (TextUtils.isEmpty(getGimg())) {
             return null;

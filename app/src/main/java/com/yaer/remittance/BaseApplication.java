@@ -24,6 +24,7 @@ import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
 import com.yaer.remittance.base.HttpEventListener;
+import com.yaer.remittance.base.MyConnectionStatusListener;
 import com.yaer.remittance.base.RongYongSingleton;
 import com.yaer.remittance.utils.AppUtile;
 
@@ -37,6 +38,7 @@ import java.util.logging.Level;
 import cn.jpush.android.api.JPushInterface;
 import cn.jpush.android.api.TagAliasCallback;
 import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
 import okhttp3.OkHttpClient;
 
 public class BaseApplication extends MultiDexApplication {
@@ -53,8 +55,9 @@ public class BaseApplication extends MultiDexApplication {
         app = this;
         /*数据库实例化*/
         LitePal.initialize(app);
-        /*客服*/
+        /*初始化融云*/
         RongIM.init(this);
+        RongIM.setConnectionStatusListener( new MyConnectionStatusListener());
         //友盟
         UMConfigure.setLogEnabled(true);
         //全局异常扑获
@@ -66,7 +69,6 @@ public class BaseApplication extends MultiDexApplication {
         initJPush();
         initUmeng();
         initLogger();
-        //test kjh
         //
         //
         //这些是我加的
@@ -355,11 +357,14 @@ public class BaseApplication extends MultiDexApplication {
     }*/
 
     private void initTBS() {
+        //搜集本地tbs内核信息并上报服务器，服务器返回结果决定使用哪个内核。
         QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
+
             @Override
             public void onViewInitFinished(boolean arg0) {
                 // TODO Auto-generated method stub
-                Log.e("app", " onViewInitFinished is " + arg0);
+                //x5內核初始化完成的回调，为true表示x5内核加载成功，否则表示x5内核加载失败，会自动切换到系统内核。
+                Log.d("app", " onViewInitFinished is " + arg0);
             }
 
             @Override
@@ -367,7 +372,8 @@ public class BaseApplication extends MultiDexApplication {
                 // TODO Auto-generated method stub
             }
         };
-        QbSdk.initX5Environment(getApplicationContext(), cb);
+        //x5内核初始化接口
+        QbSdk.initX5Environment(getApplicationContext(),  cb);
     }
 
     /**

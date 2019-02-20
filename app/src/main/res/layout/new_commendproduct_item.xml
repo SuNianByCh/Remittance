@@ -5,7 +5,6 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical">
-
     <LinearLayout
         android:id="@+id/ll_new_comment_product"
         android:layout_width="wrap_content"
@@ -20,7 +19,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/riv_new_commend_image"
                 android:layout_width="163dp"
@@ -106,7 +104,6 @@
                     android:textColor="@color/text_2_color"
                     android:textSize="10sp" />
             </LinearLayout>
-
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

@@ -5,10 +5,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.ViewDragHelper;
 import android.support.v7.widget.GridLayoutManager;
@@ -27,12 +28,13 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.util.Util;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.gyf.barlibrary.ImmersionBar;
@@ -70,7 +72,6 @@ import com.yaer.remittance.ui.user_modular.user_buyer.balance.RechargeActivity;
 import com.yaer.remittance.utils.AmountUtil;
 import com.yaer.remittance.utils.AppUtile;
 import com.yaer.remittance.utils.GlideImageLoader;
-import com.yaer.remittance.utils.GlideLoadUtils;
 import com.yaer.remittance.utils.NetworkUtils;
 import com.yaer.remittance.utils.SystemUtil;
 import com.yaer.remittance.utils.ToastUtils;
@@ -96,7 +97,6 @@ import butterknife.OnClick;
 import io.rong.imkit.RongIM;
 import io.rong.imkit.manager.IUnReadMessageObserver;
 import io.rong.imlib.model.Conversation;
-import q.rorbin.badgeview.QBadgeView;
 
 /**
  * 拍卖详情首页
@@ -182,6 +182,8 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
     /*拍卖规则*/
     @BindView(R.id.rl_auction_rules)
     RelativeLayout rl_auction_rules;
+    @BindView(R.id.tv_auction_details_time_tip)
+    TextView tv_auction_details_time_tip;
     private String sid;//店铺id
     private String sname;//店铺名称
     /*拍品出价数量*/
@@ -268,10 +270,10 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
 
         api = UMShareAPI.get(this);
         gid = getIntent().getStringExtra("gidshopping");//拍品id
-        selectGoodsInfo();//查询拍品详情
-        getBalace();//查询余额
+        //selectGoodsInfo();//查询拍品详情
+        // getBalace();//查询余额
         getDeviceDensity();
-        getBiddinList();//查询出价记录
+        // getBiddinList();//查询出价记录
         /*出价列表*/
         rv_offer_record.setLayoutManager(new LinearLayoutManager(this));
         offerRecordAdapter = new OfferRecordAdapter();
@@ -308,38 +310,11 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
         nlv_auction_detial_imgs.setAdapter(commodityImageAdapter);
         commodityImageAdapter.setPreLoadNumber(1);
         GetNewGoods(page, pagesize);//为你推荐
-        initListeners();
-        getJoingroup();
+        initListeners();//点击事件
         Conversation.ConversationType[] conversationTypes = {
                 Conversation.ConversationType.GROUP
         };
-
         RongIM.getInstance().addUnReadMessageCountChangedObserver(this, conversationTypes);
-    }
-
-    public void getJoingroup() {
-        //这个是加入群组的方法，我只有加入群组以后才可以去进入到聊天界面，实例化用户信息没有问题了
-        OkGo.<BaseMode>post(AppApi.BASE_URL + AppApi.JOINGROUP)
-                .tag(this)
-                .params("gid", gid)
-                .params("uid", AppUtile.getUid(this))
-                .params("gname", gname)
-                .execute(new JsonCallback<BaseMode>(this) {
-                    @Override
-                    public void onSuccess(Response<BaseMode> response) {
-                        Log.e("test", "连接融云成功" + response.body().result);
-                        Log.e("test", "连接融云成功" + response.body().code);
-                        if (AppUtile.isEmptyNull(response.body().result)) {
-                        } else {
-                            if (response.body().code.equals(Constant.SUEECECODE)) {
-                                Log.e("test", "连接融云成功");
-                                //  RongIM.getInstance().startGroupChat(AuctionDetailsActivity.this, gid, gname);
-                            } else {
-                                ToastUtils.showToast(response.body().msg);
-                            }
-                        }
-                    }
-                });
     }
 
     /**
@@ -394,6 +369,7 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
      */
     private LoadingDialog2 photoDiloag;
     private int isautobidding;//当前委托出价状态
+    private String autobidding;//当前委托出价状态
     private selectGoodsInfoAutionBean mSelectGoodsInfoAutionBean;
 
     /**
@@ -414,19 +390,9 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
                         if (response.body().code.equals(Constant.SUEECECODE) && response.body().result != null) {
                             mSelectGoodsInfoAutionBean = response.body().result;
                             /*商品店铺绑定数据*/
-                            String shopnewmoney = response.body().result.getGmoney();
-                            /*限制如果为空的话就让他显示0*/
-                            if (shopnewmoney.equals("0")) {
-                                ll_purchase_original_price.setBackgroundResource(R.color.text_3_color);//setVisibility(View.GONE);
-                                ll_purchase_original_price.setClickable(false);
-                                shopnewmoney = "0";
-                            } else {
-                                ll_purchase_original_price.setBackgroundResource(R.color.main_tone);
-                                ll_purchase_original_price.setClickable(true);
-                                tv_good_detail_money.setText("￥" + AmountUtil.priceNum(Double.parseDouble(shopnewmoney)));//原价购
-                            }
-                            isautobidding = response.body().result.getIsautobidding();//当前委托出价状态
-                            ototalvalue = Double.parseDouble(shopnewmoney);//当前价格
+                            // String shopnewmoney = response.body().result.getGmoney();
+                            autobidding = response.body().result.getAutobidding();//当前委托出价状态
+                            ototalvalue = Double.parseDouble(response.body().result.getGmoney());//当前价格
                             sid = String.valueOf(response.body().result.getShopInfoModel().getSid());//店铺id
                             ordergid = response.body().result.getGid();//商品id
                             ognumber = response.body().result.getGnumber();//库存数量
@@ -434,7 +400,6 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
                             gname = response.body().result.getGname();//商品名称
                             gimg = response.body().result.getGimg();//商品图片
                             gdesc = response.body().result.getGdesc();//商品描述
-
                             tvGoodTitle.setText(gname);
                             tv_auction_details_name.setText(response.body().result.getGname());
                             //sid = String.valueOf(response.body().result.getShopInfoModel().getSid());//店铺id
@@ -444,79 +409,48 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
                             if (!AppUtile.isEmptyNull(response.body().result.getGaddprice())) {
                                 jjmoney = AmountUtil.priceNum(Double.parseDouble(response.body().result.getGaddprice()));//带后两位的加价价格
                             }
-                            startmoney = AmountUtil.priceNum(Double.parseDouble(response.body().result.getGstartingprice()));//带后两位的起拍价格
+                            if (!AppUtile.isEmptyNull(response.body().result.getGstartingprice())) {
+                                startmoney = AmountUtil.priceNum(Double.parseDouble(response.body().result.getGstartingprice()));//带后两位的起拍价格
+                            }
                             addmoney = AmountUtil.priceNum(Double.parseDouble(response.body().result.getGaddprice()));//带后两位的加价价格
                             tv_biddingnumber.setText(String.valueOf(response.body().result.getBiddingnumber()));//出价次数
-                            ///startmoney判断当前
-                            if (Glatestbid >= ototalvalue) {
-                                ll_purchase_original_price.setBackgroundResource(R.color.text_3_color);//setVisibility(View.GONE);
-                                ll_purchase_original_price.setClickable(false);
-                            } else {
-                                ll_purchase_original_price.setBackgroundResource(R.color.main_tone);
-                                ll_purchase_original_price.setClickable(true);
-                            }
-                           /* shopfollow = response.body().result.isFollowStatus();
-                            if (shopfollow == false) {
-                                tv_auction_follow.setText("+关注");
-                            } else {
-                                tv_auction_follow.setText("已关注");
-                            }*/
-                            // bondmoney = AmountUtil.priceNum(Double.parseDouble(response.body().result.getGcollateral()));//带后两位的加价价格
-                            /*doublemoney = response.body().result.getGlatestbid();//double类型的出价价格
-                            doublejjmoney =response.body().result.getGaddprice();//double类型的加价价格*/
-
                             tv_auction_details_money.setText("￥" + money);
                             tv_start_price.setText("￥" + startmoney);
                             tv_add_price.setText("￥" + addmoney);
                             // tv_auction_bond.setText("￥" + bondmoney);
-                            String starttime = SystemUtil.stampAuctionDetails(Long.parseLong(response.body().result.getGauctiontime()));//开始时间
+                            /*String starttime = SystemUtil.stampAuctionDetails(Long.parseLong(response.body().result.getGauctiontime()));//开始时间
                             //endTime = SystemUtil.stampAuctionDetails(Long.parseLong(response.body().result.getGstoptime()));//结束时间
                             String isendTime = SystemUtil.stampAuctionDetails(Long.parseLong(response.body().result.getGstoptime()));//结束时间判断
                             String time = SystemUtil.stampToDatemm(System.currentTimeMillis());//系统时间
                             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");//年-月-日 时-分
                             Date date1 = null;//系统时间
-                            Date date2 = null;//结 束时间
+                            Date date2 = null;//结束时间
+                            Date date3 = null;//开始时间
                             try {
-                                date1 = dateFormat.parse(time.toString());
-                                date2 = dateFormat.parse(SystemUtil.stampToDate(response.body().result.getGstoptime()));
+                                date1 = dateFormat.parse(time.toString());//系统时间
+                                date2 = dateFormat.parse(SystemUtil.stampToDate(response.body().result.getGstoptime()));//结束时间
+                                date3 = dateFormat.parse(SystemUtil.stampToDate(response.body().result.getGauctiontime()));//开始时间
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
                             // 1 结束时间小于开始时间 2 开始时间与结束时间相同 3 结束时间大于开始时间
-                            if(mSelectGoodsInfoAutionBean.getGauctiontimeLong()> System.currentTimeMillis()){
+                            if (date3.getTime() > date1.getTime()) {//开始时间大于系统时间的拍卖还未开始
                                 tv_auction_details_time.setText("拍卖还未开始");
-                                ll_purchase_original_price.setBackgroundResource(R.color.text_3_color);//setVisibility(View.GONE);
-                                ll_purchase_original_price.setClickable(false);
-                                tv_good_detail_buy.setBackgroundResource(R.color.text_3_color);
-                                tv_good_detail_buy.setClickable(false);
-                            }else if(mSelectGoodsInfoAutionBean.getGstoptimeLong()< System.currentTimeMillis()){
-                                ll_purchase_original_price.setBackgroundResource(R.color.main_tone);
-                                ll_purchase_original_price.setClickable(true);
-                                tv_good_detail_buy.setBackgroundResource(R.color.leak_red);
-                                tv_good_detail_buy.setClickable(true);
+                                setBuyOrginPrice(false, false);
+                            } else if (date2.getTime() > date1.getTime()) {//结束时间小于系统时间开始拍卖
+                                setBuyOrginPrice(response.body().result.isBuyOrginPrice(), true);
                                 tv_auction_details_time.setText(starttime + "至" + isendTime);
-                            }else {
+                            } else if (date2.getTime() < date1.getTime()) {
                                 tv_auction_details_time.setText("拍卖结束");
-                                ll_purchase_original_price.setBackgroundResource(R.color.text_3_color);//setVisibility(View.GONE);
-                                ll_purchase_original_price.setClickable(false);
-                                tv_good_detail_buy.setBackgroundResource(R.color.text_3_color);
-                                tv_good_detail_buy.setClickable(false);
-                            }
-
-
-                          /*  if (date1.getTime() >= date2.getTime()) {
-                                tv_auction_details_time.setText("拍卖结束");
-                                ll_purchase_original_price.setBackgroundResource(R.color.text_3_color);//setVisibility(View.GONE);
-                                ll_purchase_original_price.setClickable(false);
-                                tv_good_detail_buy.setBackgroundResource(R.color.text_3_color);
-                                tv_good_detail_buy.setClickable(false);
-                            } else {
-                                ll_purchase_original_price.setBackgroundResource(R.color.main_tone);
-                                ll_purchase_original_price.setClickable(true);
-                                tv_good_detail_buy.setBackgroundResource(R.color.leak_red);
-                                tv_good_detail_buy.setClickable(true);
-                                tv_auction_details_time.setText(starttime + "至" + isendTime);
+                                setBuyOrginPrice(false, false);
                             }*/
+                            if (response.body().result.getGissoldout() == 1) {
+                                tv_auction_details_time.setText("已下架");
+                                setBuyOrginPrice(false, false);
+                            } else {
+                                startTime();
+                            }
+                            tv_good_detail_money.setText("￥" + AmountUtil.priceNum(Double.parseDouble(response.body().result.getGmoney())));//原价购
                             tv_auction_slabel.setText(response.body().result.getShopInfoModel().getSlabel());
                             tv_auction_details.setText(response.body().result.getGdesc());
                             tv_auction_product_brief.setText(response.body().result.getGdesc());
@@ -542,8 +476,197 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
                                     .setOnBannerListener(AuctionDetailsActivity.this)
                                     .setDelayTime(5000)
                                     .start();
+                            addBrowsingHistory();//添加足迹
+                            getJoingroup();//加入群组
                         } else {
                             ToastUtils.showShort(AuctionDetailsActivity.this, response.body().msg);
+                        }
+                    }
+                });
+    }
+
+    /*添加足迹*/
+    private void addBrowsingHistory() {
+        OkGo.<BaseMode>post(AppApi.BASE_URL + AppApi.ADDBROWSINGHISTORY)
+                .tag(this)
+                .params("gid", gid)
+                .params("uid", uid)
+                .execute(new JsonCallback<BaseMode>(this) {
+                    @Override
+                    public void onSuccess(Response<BaseMode> response) {
+                        Log.e("text", "添加足迹: " + response.body().code);
+                        Log.e("text", "添加足迹: " + response.body().result);
+                        if (response.body().code.equals(Constant.SUEECECODE)) {
+                            //ToastUtils.showShort(CommodityDetailsActivity.this, response.body().msg);
+                        } else {
+                            //ToastUtils.showShort(CommodityDetailsActivity.this, response.body().msg);
+                        }
+                    }
+                });
+    }
+
+    private String timeToString(long time) {
+        int day = 0;
+        int hours = 0;
+        int mimu = 0;
+        int second = 0;
+        time = time / 1000;
+
+        day = (int) ((time / 3600) / 24);
+
+        time = time - day * 3600 * 24;
+        hours = (int) ((time / 60) / 60);
+
+        time = time - hours * 3600;
+
+        mimu = (int) (time / 60);
+        second = (int) (time % 60);
+        return new StringBuffer().append(day).append("天").append(hours).append("小时").append(mimu).append("分钟").append(second).append("秒").toString();
+
+    }
+
+
+    private boolean isStartTime = false;
+
+
+    private void startTime() {
+        if (!isStartTime)
+            handlerTime.sendEmptyMessage(1);
+    }
+
+    @SuppressLint("HandlerLeak")
+    Handler handlerTime = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (isDestroyed()) {
+                return;
+            }
+            if (msg.what == 1) {
+               /*   isStartTime = true;
+                String time = SystemUtil.stampToDatemm(System.currentTimeMillis());//系统时间
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");//年-月-日 时-分
+                String starttime = dateFormat.format(mSelectGoodsInfoAutionBean.getGstoptimeLong());//结束时间
+                String isendTime = dateFormat.format(mSelectGoodsInfoAutionBean.getGauctiontimeLong());//开始时间
+                Date date1 = null;//系统时间
+                Date date2 = null;//结束时间
+                Date date3 = null;//开始时间
+                try {
+                    date1 = dateFormat.parse(time.toString());//系统时间
+                    date2 = dateFormat.parse(SystemUtil.stampToDate(mSelectGoodsInfoAutionBean.getGstoptime()));//结束时间
+                    date3 = dateFormat.parse(SystemUtil.stampToDate(mSelectGoodsInfoAutionBean.getGauctiontime()));//开始时间
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                // 1 结束时间小于开始时间 2 开始时间与结束时间相同 3 结束时间大于开始时间
+                if (date3.getTime() > date1.getTime()) {//开始时间大于系统时间的拍卖还未开始
+                    tv_auction_details_time.setText("拍卖还未开始");
+                    setBuyOrginPrice(false, false);
+                } else if (date2.getTime() > date1.getTime()) {//结束时间小于系统时间开始拍卖
+                    setBuyOrginPrice(mSelectGoodsInfoAutionBean.isBuyOrginPrice(), true);
+                   // tv_auction_details_time.setText(starttime + "至" + isendTime);
+                    tv_auction_details_time.setText(timeToString(System.currentTimeMillis() - mSelectGoodsInfoAutionBean.getGauctiontimeLong()));
+                    handlerTime.sendEmptyMessage(1);
+                } else if (date2.getTime() < date1.getTime()) {
+                    tv_auction_details_time.setText("拍卖结束");
+                    setBuyOrginPrice(false, false);
+                }*/
+                if (isNotBeginBuy()) {
+                    startBeginStartTime();
+                    handlerTime.sendEmptyMessageDelayed(1, 1000);
+                } else if (isBuying()) {
+                    buyTime();
+                    handlerTime.sendEmptyMessageDelayed(1, 1000);
+                } else {
+                    endTime();
+                }
+            }
+        }
+    };
+
+    //判断距离开始拍卖
+    private boolean isNotBeginBuy() {
+        return mSelectGoodsInfoAutionBean != null && mSelectGoodsInfoAutionBean.getGauctiontimeLong() > System.currentTimeMillis();
+    }
+
+    //判断距离结束拍卖时间
+    private boolean isBuying() {
+        return mSelectGoodsInfoAutionBean != null && mSelectGoodsInfoAutionBean.getGauctiontimeLong() <= System.currentTimeMillis() && System.currentTimeMillis() <= mSelectGoodsInfoAutionBean.getGstoptimeLong();
+    }
+
+
+    private void startBeginStartTime() {
+        tv_auction_details_time_tip.setText("离拍卖开始的时间");
+        long time = mSelectGoodsInfoAutionBean.getGauctiontimeLong() - System.currentTimeMillis();
+        if (time <= 0) {
+            buyTime();
+            return;
+        }
+        tv_auction_details_time.setText(timeToString(time));
+        setBuyOrginPrice(false, false);
+    }
+
+    private void buyTime() {
+        tv_auction_details_time_tip.setText("离拍卖结束的时间");
+        tv_auction_details_time.setText(timeToString(mSelectGoodsInfoAutionBean.getGstoptimeLong() - System.currentTimeMillis()));
+        setBuyOrginPrice(mSelectGoodsInfoAutionBean.isBuyOrginPrice(), true);
+
+    }
+
+    private void endTime() {
+        isStartTime = false;
+        tv_auction_details_time_tip.setText("拍卖时间");
+        /*SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String date2 = dateFormat.format(mSelectGoodsInfoAutionBean.getGstoptimeLong());//结束时间
+        String date3 = dateFormat.format(mSelectGoodsInfoAutionBean.getGauctiontimeLong());//开始时间
+        tv_auction_details_time.setText(date2 + "到" + date3);*/
+        tv_auction_details_time.setText("拍卖结束");
+        setBuyOrginPrice(false, false);
+
+    }
+
+
+    /**
+     * @param isCanBuy------boolean原价
+     * @param isCanBinding----boolen,出价
+     */
+    private void setBuyOrginPrice(boolean isCanBuy, boolean isCanBinding) {
+        if (isCanBuy) {
+            ll_purchase_original_price.setBackgroundResource(R.color.main_tone);
+            ll_purchase_original_price.setClickable(true);
+        } else {
+            ll_purchase_original_price.setBackgroundResource(R.color.text_3_color);
+            ll_purchase_original_price.setClickable(false);
+        }
+        if (isCanBinding) {
+            tv_good_detail_buy.setBackgroundResource(R.color.leak_red);
+            tv_good_detail_buy.setClickable(true);
+        } else {
+            tv_good_detail_buy.setBackgroundResource(R.color.text_3_color);
+            tv_good_detail_buy.setClickable(false);
+        }
+    }
+
+    public void getJoingroup() {
+        //这个是加入群组的方法，我只有加入群组以后才可以去进入到聊天界面，实例化用户信息没有问题了
+        OkGo.<BaseMode>post(AppApi.BASE_URL + AppApi.JOINGROUP)
+                .tag(this)
+                .params("gid", gid)
+                .params("uid", AppUtile.getUid(this))
+                .params("gname", gname)
+                .execute(new JsonCallback<BaseMode>(this) {
+                    @Override
+                    public void onSuccess(Response<BaseMode> response) {
+                        Log.e("test", "连接融云成功" + response.body().result);
+                        Log.e("test", "连接融云成功" + response.body().code);
+                        if (AppUtile.isEmptyNull(response.body().result)) {
+                        } else {
+                            if (response.body().code.equals(Constant.SUEECECODE)) {
+                                Log.e("test", "连接融云成功");
+                                //  RongIM.getInstance().startGroupChat(AuctionDetailsActivity.this, gid, gname);
+                            } else {
+                                ToastUtils.showToast(response.body().msg);
+                            }
                         }
                     }
                 });
@@ -552,6 +675,8 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
     @Override
     protected void onDestroy() {
         RongIM.getInstance().removeUnReadMessageCountChangedObserver(this);
+        if (handlerTime != null)
+            handlerTime.removeCallbacksAndMessages(null);
         super.onDestroy();
     }
 
@@ -901,6 +1026,7 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
     private String ototalnum;
     private double cjstartmoney;
     private double tvwtjgmoney;
+    private double AvailableAmount;
 
     private void showPopupWindow() {
         // 获取屏幕的width和height
@@ -908,7 +1034,7 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
         View contentView = LayoutInflater.from(AuctionDetailsActivity.this).inflate(
                 R.layout.commodity_add_crat_dialog, null);
         popupWindow = new PopupWindow(contentView, LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
+                LayoutParams.WRAP_CONTENT);
         TextView tv_commodity_confirm = (TextView) contentView.findViewById(R.id.tv_commodity_confirm);//确认出价按钮
         TextView auction_close = (TextView) contentView.findViewById(R.id.auction_close);//关闭按钮
         ImageView img_shop = (ImageView) contentView.findViewById(R.id.img_shop);//商品图片
@@ -920,30 +1046,22 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
         TextView accoutbalance = (TextView) contentView.findViewById(R.id.tv_account_balance);//当前余额最高可出价
         TextView maxnumbidable = (TextView) contentView.findViewById(R.id.tv_maximum_bidable_balance);//当前余额最高可出价
         TextView tv_account_startmoney = (TextView) contentView.findViewById(R.id.tv_account_startmoney);//起拍价格
-        CheckBox proxybid_checkbox = contentView.findViewById(R.id.proxybid_checkbox);//选择出价
+        // final CheckBox proxybid_checkbox = contentView.findViewById(R.id.proxybid_checkbox);//选择出价
         final MyEditText mye_proxybid = contentView.findViewById(R.id.mye_proxybid);//输入委托出价金额
-        final TextView tv_submit_proxybid = contentView.findViewById(R.id.tv_submit_proxybid);//提交委托出价按钮
-        if (isautobidding == 1) {
-            proxybid_checkbox.setChecked(true);
+         final TextView tv_submit_proxybid = contentView.findViewById(R.id.tv_submit_proxybid);//提交委托出价按钮
+        final TextView tv_entrustedbidamount = contentView.findViewById(R.id.tv_entrustedbidamount);//委托出价金额
+       /* ImageView proxybid_checkbox = (ImageView) contentView.findViewById(R.id.iv_good_detai_collect_unselect);//选择出价
+        if (autobidding.equals("")) {
+            proxybid_checkbox.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.unchecked));
+            tv_entrustedbidamount.setVisibility(View.GONE);
+            mye_proxybid.setVisibility(View.VISIBLE);
         } else {
-            proxybid_checkbox.setChecked(false);
-        }
-        proxybid_checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
-                if (checked) {
-                    if (isautobidding == 1) {
-                        ToastUtils.showToast("您已经设置过委托出价");
-                    } else {
-                        mye_proxybid.setVisibility(View.VISIBLE);
-                        tv_submit_proxybid.setVisibility(View.VISIBLE);
-                    }
-                } else {
-                    tv_submit_proxybid.setVisibility(View.GONE);
-                    mye_proxybid.setVisibility(View.GONE);
-                }
-            }
-        });
+            tv_entrustedbidamount.setText(autobidding);
+            proxybid_checkbox.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.selected));
+            proxybid_checkbox.setEnabled(false);
+            tv_entrustedbidamount.setVisibility(View.VISIBLE);
+            mye_proxybid.setVisibility(View.GONE);
+        }*/
         String[] strs = Images.split(",");
         Glide.with(AuctionDetailsActivity.this).load(strs[0]).fitCenter().into(img_shop);//商品图片
         cjstartmoney = Double.parseDouble(startmoney);//起拍价
@@ -960,7 +1078,8 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
         }
         ototalnum = AmountUtil.priceNum(tvcjmoney);
         accoutbalance.setText("￥" + Amountmoney);
-        maxnumbidable.setText("￥" + div(Double.parseDouble(Amountmoney), 0.07, 2));//Float.valueOf(Amountmoney) / 0.07
+        AvailableAmount = div(Double.parseDouble(Amountmoney), 0.07, 2);
+        maxnumbidable.setText("￥" + AvailableAmount);//Float.valueOf(Amountmoney) / 0.07
         tv_num.setText(ototalnum);
         popupWindow.setBackgroundDrawable(new ColorDrawable(0));
         popupWindow.setOutsideTouchable(true);
@@ -969,22 +1088,22 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
         tv_submit_proxybid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String proxybid = mye_proxybid.getText().toString().trim();
-                if (proxybid.equals("")) {
-                } else {
-                    tvwtjgmoney = Double.parseDouble(mye_proxybid.getText().toString().trim());//委托出价金额
-                }
                 if (!AppUtile.isEditText(mye_proxybid)) {
-                    ToastUtils.showToast("委托出价金额不能为空，请重新输入");
-                } else if (tvwtjgmoney <= tvcjmoney) {
+                    ToastUtils.showToast("委托出价金额不能为空");
+                } else if (Double.parseDouble(mye_proxybid.getText().toString().trim()) <= tvcjmoney) {
                     ToastUtils.showToast("委托出价金额不能小于" + tvcjmoney + "请重新输入");
                     mye_proxybid.setText("");
+                } else if (Double.parseDouble(mye_proxybid.getText().toString().trim()) >= AvailableAmount) {
+                    ToastUtils.showToast("委托出价金额不能大于" + AvailableAmount + "请重新输入");
+                    mye_proxybid.setText("");
                 } else {
+                    ToastUtils.showToast("出价成功");
                     tvwtjgmoney = Double.parseDouble(mye_proxybid.getText().toString().trim());//委托出价金额
                     addentrust(tvwtjgmoney);
                 }
             }
         });
+        /*减少价格*/
         tv_reduce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -998,6 +1117,7 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
                 }
             }
         });
+        /*价格增加按钮*/
         tv_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1024,7 +1144,7 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
                 String banlce = tv_num.getText().toString().trim();
                 if (AppUtile.getTicket(AuctionDetailsActivity.this).equals("")) {
                     goToActivity(LoginActivity.class, "type", "5");
-                } else if (Float.valueOf(Amountmoney) < Float.valueOf(banlce) * 0.07) {
+                } else if (Float.valueOf(banlce) >= AvailableAmount) {//Float.valueOf(Amountmoney) <= AvailableAmount
                     showDelDialog();
                 } else {
                     getaddBiddin(tv_num.getText().toString());
@@ -1036,7 +1156,7 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
     }
 
     private void showDelDialog() {
-        final UIAlertView delDialog = new UIAlertView(AuctionDetailsActivity.this, "温馨提示", "当前余额不足出价,请去充值",
+        final UIAlertView delDialog = new UIAlertView(AuctionDetailsActivity.this, "温馨提示", "尊敬的用户，您当前的余额已不足当前出价的7%，请先充值",
                 "取消", "确认");
         delDialog.show();
         delDialog.setClicklistener(new UIAlertView.ClickListenerInterface() {
@@ -1212,7 +1332,6 @@ public class AuctionDetailsActivity extends BaseActivity implements GradationScr
 
     @Override
     public void onCountChanged(final int i) {
-        //显示到这里了，不就是这里吗？
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {

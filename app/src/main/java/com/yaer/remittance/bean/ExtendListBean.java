@@ -54,13 +54,24 @@ public class ExtendListBean implements Serializable {
          * emid : 13
          * eid : 5
          * emoney : 3
+         * eintegral:3000
          * emday : 30
          */
 
         private int emid;
         private int eid;
         private String emoney;
+        private String eintegral;
         private String emday;
+
+
+        public String getEintegral() {
+            return eintegral;
+        }
+
+        public void setEintegral(String eintegral) {
+            this.eintegral = eintegral;
+        }
 
         public int getEmid() {
             return emid;

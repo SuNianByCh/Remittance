@@ -74,31 +74,32 @@
                         android:textColor="@color/main_tones"
                         android:textSize="12sp" />
                 </LinearLayout>
-<!--
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/hw_5_dp"
-                    android:orientation="horizontal">
+                <!--
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/hw_5_dp"
+                                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tv_integral_lable"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/shap_attention_true"
-                        android:padding="@dimen/hw_5_dp"
-                        android:text="收藏家"
-                        android:textColor="@color/main_tone"
-                        android:textSize="12sp" />
-                </LinearLayout>
--->
+                                    <TextView
+                                        android:id="@+id/tv_integral_lable"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/shap_attention_true"
+                                        android:padding="@dimen/hw_5_dp"
+                                        android:text="收藏家"
+                                        android:textColor="@color/main_tone"
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+                -->
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/hw_10_dp"
                 android:layout_below="@+id/civ_integral"
+                android:layout_marginTop="@dimen/hw_10_dp"
+                android:orientation="horizontal"
                 android:padding="@dimen/hw_10_dp">
 
                 <TextView
@@ -119,10 +120,17 @@
 
         </RelativeLayout>
     </LinearLayout>
-    <com.tencent.smtt.sdk.WebView
-        android:id="@+id/userintegral"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
+    <com.yaer.remittance.view.X5WebView
+        android:id="@+id/web_filechooser"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"></com.yaer.remittance.view.X5WebView>
+    <!--
+        <com.tencent.smtt.sdk.WebView
+            android:id="@+id/userintegral"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    -->
     <!-- <ScrollView
          android:layout_width="match_parent"
          android:layout_height="match_parent">

@@ -1,15 +1,16 @@
 package com.yaer.remittance.ui.adapter;
 
+
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.yaer.remittance.R;
+import com.yaer.remittance.base.BaseSimpleViewHolder;
 import com.yaer.remittance.bean.NewGoodsBean;
 
 import java.util.ArrayList;
 
-public class ShopCommodityNewProductAdapter extends BaseQuickAdapter<NewGoodsBean, BaseViewHolder> {
+public class ShopCommodityNewProductAdapter extends BaseQuickAdapter<NewGoodsBean, BaseSimpleViewHolder> {
     ArrayList<String> list;
     String Images;
 
@@ -18,7 +19,7 @@ public class ShopCommodityNewProductAdapter extends BaseQuickAdapter<NewGoodsBea
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, final NewGoodsBean item) {
+    protected void convert(BaseSimpleViewHolder helper, final NewGoodsBean item) {
         helper.setText(R.id.tv_newname, item.getGname());
         helper.setText(R.id.tv_newprice, "¥" + item.getGmoney());
         //helper.setText(R.id.tv_newgnumber, "剩" + item.getGnumber() + "件");

@@ -35,13 +35,16 @@ import com.yaer.remittance.ui.home_modular.auctionspecial.AuctionSpecialActivity
 import com.yaer.remittance.ui.home_modular.elementbeat.ElementBeatActivity;
 import com.yaer.remittance.ui.home_modular.expertssay.ExpertsSayActivity;
 import com.yaer.remittance.ui.home_modular.leakhunting.LeakHuntingActivity;
+import com.yaer.remittance.ui.login_modular.AgreementActivity;
 import com.yaer.remittance.ui.login_modular.LoginActivity;
+import com.yaer.remittance.ui.shopping_modular.shop.ShopActivity;
 import com.yaer.remittance.utils.AppUtile;
 import com.yaer.remittance.utils.GlideImageLoader;
 import com.yaer.remittance.utils.NetworkUtils;
 import com.yaer.remittance.utils.ToastUtils;
 import com.yaer.remittance.view.LoadingDialog2;
 import com.youth.banner.Banner;
+import com.youth.banner.listener.OnBannerClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -123,8 +126,7 @@ public class RecommendFragment extends BaseLazyFragment {
     @Override
     public void onResume() {
         super.onResume();
-       /* uid = AppUtile.getUid(getActivity());
-        token = AppUtile.getTicket(getActivity());*/
+        refreshLayout_recommend.autoRefresh(500);
     }
 
     @Override
@@ -133,26 +135,48 @@ public class RecommendFragment extends BaseLazyFragment {
         rv_home.setLayoutManager(new GridLayoutManager(mActivity, 2));
         homeShoppingAdapter = new HomeShoppingAdapter();
         rv_home.setAdapter(homeShoppingAdapter);
-
         /*推荐新品*/
         LinearLayoutManager ms = new LinearLayoutManager(mActivity);
         ms.setOrientation(LinearLayoutManager.HORIZONTAL);
         recycler_view.setLayoutManager(ms);
         newCommendProductAdapter = new NewCommendProductAdapter();
         recycler_view.setAdapter(newCommendProductAdapter);
-
         /*推荐商家*/
-        // rv_business.setLayoutManager(new GridLayoutManager(getActivity(), 1));
         rv_business.setLayoutManager(new LinearLayoutManager(mActivity));
         businessAdapter = new BusinessAdapter();
         rv_business.setAdapter(businessAdapter);
         final Bundle bundle = new Bundle();
+        /*推荐商家*/
+        rv_business.addOnItemTouchListener(new OnItemChildClickListener() {
+            @Override
+            public void onSimpleItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            }
+
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                int itemViewId = view.getId();
+                GetMainBean.ShopInfoModelBean shopInfoModelBean = businessAdapter.getData().get(position);
+                switch (itemViewId) {
+                    /*进入店铺首页*/
+                    case R.id.iv_business_image:
+                       if (!NetworkUtils.isNetworkConnected(mActivity)) {
+                            ToastUtils.showToast("当前无网络请链接网络");
+                        } else if (AppUtile.getTicket(mActivity).equals("")) {
+                            goToActivity(LoginActivity.class, "type", "1");
+                        } else {
+                            bundle.putString("shopinfosid", String.valueOf(shopInfoModelBean.getSid()));
+                            goToActivity(ShopActivity.class, bundle);
+                        }
+                        bundle.putString("shopinfosid", String.valueOf(shopInfoModelBean.getSid()));
+                        goToActivity(ShopActivity.class, bundle);
+                        break;
+                }
+            }
+        });
         /*为你优选*/
         rv_home.addOnItemTouchListener(new OnItemChildClickListener() {
             @Override
             public void onSimpleItemChildClick(BaseQuickAdapter adapter, View view, int position) {
             }
-
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 int itemViewId = view.getId();
                 GetMainBean.ChoicegoodsBean choicegoodsBean = homeShoppingAdapter.getData().get(position);
@@ -195,10 +219,9 @@ public class RecommendFragment extends BaseLazyFragment {
                 }
             }
         });
-
         //获取banner
         GetBanner();
-        getMainData();
+        getMainData();//首页聚合
         showtext();
         showRefresh();
     }
@@ -215,7 +238,7 @@ public class RecommendFragment extends BaseLazyFragment {
                         refreshlayout.finishRefresh();
                         refreshlayout.resetNoMoreData();//恢复上拉状态
                     }
-                }, 2000);
+                }, 500);
             }
 
             @Override
@@ -225,7 +248,7 @@ public class RecommendFragment extends BaseLazyFragment {
                     public void run() {
                         refreshlayout.finishLoadMore();
                     }
-                }, 1000);
+                }, 500);
             }
         });
     }
@@ -353,6 +376,16 @@ public class RecommendFragment extends BaseLazyFragment {
                                     .setImageLoader(new GlideImageLoader())
                                     .setDelayTime(3000)
                                     .start();
+                            recommend_banner.setOnBannerClickListener(new OnBannerClickListener() {
+                                @Override
+                                public void OnBannerClick(int position) {
+                                    //ToastUtils.showToast("点击了"+position);
+                                    /*Bundle bundle = new Bundle();
+                                    bundle.putString("agreementtitle", mBanner.get(position).getBname());
+                                    bundle.putString("agreementurl", mBanner.get(position).getBurl());
+                                    goToActivity(AgreementActivity.class, bundle);*/
+                                }
+                            });
                         } else {
                             ToastUtils.showShort(mActivity, response.body().msg);
                         }
@@ -365,25 +398,48 @@ public class RecommendFragment extends BaseLazyFragment {
 
     }
 
-
     @OnClick({R.id.ll_element, R.id.ll_experts_say, R.id.ll_auction_special, R.id.ll_leak_hunting})
     public void onClick(View v) {
         switch (v.getId()) {
             /*0元拍*/
             case R.id.ll_element:
-                goToActivity(ElementBeatActivity.class);
+                if (!NetworkUtils.isNetworkConnected(mActivity)) {
+                    ToastUtils.showToast("当前无网络请链接网络");
+                } else if (AppUtile.getTicket(mActivity).equals("")) {
+                    goToActivity(LoginActivity.class, "type", "1");
+                } else {
+                    goToActivity(ElementBeatActivity.class);
+                }
                 break;
             /*专家说*/
             case R.id.ll_experts_say:
-                goToActivity(ExpertsSayActivity.class);
+                if (!NetworkUtils.isNetworkConnected(mActivity)) {
+                    ToastUtils.showToast("当前无网络请链接网络");
+                } else if (AppUtile.getTicket(mActivity).equals("")) {
+                    goToActivity(LoginActivity.class, "type", "1");
+                } else {
+                    goToActivity(ExpertsSayActivity.class);
+                }
                 break;
             /*拍卖专场*/
             case R.id.ll_auction_special:
-                goToActivity(AuctionSpecialActivity.class);
+                if (!NetworkUtils.isNetworkConnected(mActivity)) {
+                    ToastUtils.showToast("当前无网络请链接网络");
+                } else if (AppUtile.getTicket(mActivity).equals("")) {
+                    goToActivity(LoginActivity.class, "type", "1");
+                } else {
+                    goToActivity(AuctionSpecialActivity.class);
+                }
                 break;
             /*捡漏*/
             case R.id.ll_leak_hunting:
-                goToActivity(LeakHuntingActivity.class);
+                if (!NetworkUtils.isNetworkConnected(mActivity)) {
+                    ToastUtils.showToast("当前无网络请链接网络");
+                } else if (AppUtile.getTicket(mActivity).equals("")) {
+                    goToActivity(LoginActivity.class, "type", "1");
+                } else {
+                    goToActivity(LeakHuntingActivity.class);
+                }
                 break;
         }
     }
@@ -424,10 +480,7 @@ public class RecommendFragment extends BaseLazyFragment {
                                 businessAdapter.setNewData(shopInfoModelBeans);
                                 newCommendProductAdapter.setNewData(recommendgoodsBeans);
                                 homeShoppingAdapter.setNewData(choicegoodsBeans);
-                                //  stopDialog();
                             } else {
-                                //stopDialog();
-                                // ToastUtils.showShort(getActivity(), response.body().msg);
                             }
                         }
 

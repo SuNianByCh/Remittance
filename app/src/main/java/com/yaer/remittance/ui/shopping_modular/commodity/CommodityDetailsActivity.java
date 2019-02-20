@@ -241,7 +241,6 @@ public class CommodityDetailsActivity extends BaseActivity implements GradationS
                 }
             }
         });
-
         /*图文详情*/
         nlvImgs.setLayoutManager(new LinearLayoutManager(this));
         commodityImageAdapter = new CommodityImageAdapter();
@@ -253,7 +252,6 @@ public class CommodityDetailsActivity extends BaseActivity implements GradationS
         //persons = ShopCartBeanDaoUtil.getShopCartBeanList();
         shojiaobiao();
     }
-
     private ShopCartBean shopCartBean;
     private boolean shopinfofollowstatus;//获取网络关注状态
     private boolean commodityfollowstatus;//商品收藏状态
@@ -284,6 +282,12 @@ public class CommodityDetailsActivity extends BaseActivity implements GradationS
                             gdesc = response.body().result.getGdesc();
                             gimg = response.body().result.getGimg();//商品图片
                             gpostage = response.body().result.getGpostage();//商品邮费
+                            int gissoldout = response.body().result.getGissoldout();//上架下架状态
+                            if (gissoldout == 1 || ognumber == 0) {
+                                setBuyOrginPrice(false, response.body().result.getGnumber());
+                            } else {
+                                setBuyOrginPrice(true, response.body().result.getGnumber());
+                            }
                             if (!AppUtile.isNull(gname)) {
                                 tvGoodTitle.setText(gname);
                             } else {
@@ -293,7 +297,6 @@ public class CommodityDetailsActivity extends BaseActivity implements GradationS
                             tv_commodity_details_name.setText(response.body().result.getGname().toString());
                             String money = AmountUtil.priceNum(response.body().result.getGmoney());
                             tv_commodity_details_money.setText("￥" + money);
-                            tv_commodity_details_number.setText("库存" + response.body().result.getGnumber() + "件");
                             tv_product_brief.setText(response.body().result.getGdesc());//商品简介
                             mImages.clear();
                             /*绑定图片*/
@@ -378,6 +381,31 @@ public class CommodityDetailsActivity extends BaseActivity implements GradationS
     }
 
     /**
+     * @param isCanBuy------boolean原价
+     * @param ognumber----boolen,出价
+     */
+    private void setBuyOrginPrice(boolean isCanBuy, int ognumber) {
+        if (isCanBuy) {
+            add_cart.setBackgroundResource(R.color.main_tone);
+            add_cart.setClickable(true);
+            detail_buy.setBackgroundResource(R.color.leak_red);
+            detail_buy.setClickable(true);
+            ll_good_detail_collect.setClickable(true);
+            tv_commodity_details_number.setText("库存" + ognumber + "件");
+        } else {
+            //立即购买leak_red
+            detail_buy.setBackgroundResource(R.color.text_3_color);
+            detail_buy.setClickable(false);
+            //购物车
+            add_cart.setBackgroundResource(R.color.text_3_color);
+            add_cart.setClickable(false);
+            /*收藏*/
+            ll_good_detail_collect.setClickable(false);
+            tv_commodity_details_number.setText("商品已下架");
+        }
+    }
+
+    /**
      * 为你推荐
      */
     private void GetNewGoods(final int page, int pagesize) {
@@ -419,7 +447,6 @@ public class CommodityDetailsActivity extends BaseActivity implements GradationS
                         }
                     }
                 });
-
     }
 
     @Override
@@ -484,7 +511,7 @@ public class CommodityDetailsActivity extends BaseActivity implements GradationS
                     ToastUtils.showToast("当前无网络请链接网络");
                 } else if (AppUtile.getTicket(this).equals("")) {
                     goToActivity(LoginActivity.class, "type", "5");
-                }  else if (uid.equals(sid)) {
+                } else if (uid.equals(sid)) {
                     ToastUtils.showToast("不能关注自己的商品");
                 } else {
                     if (commodityfollowstatus == false) {

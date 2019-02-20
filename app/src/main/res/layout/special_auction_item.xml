@@ -20,6 +20,7 @@
             android:id="@+id/iv_special_list"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:background="@drawable/secces_defaullt"
             android:scaleType="fitXY" />
 
         <LinearLayout
@@ -44,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:gravity="center"
-                android:text="北山堂"
+                android:text="拍品描述"
                 android:textColor="@color/text_1_color"
                 android:textSize="12sp" />
 

@@ -63,10 +63,9 @@ public class ConversationListActivity extends BaseFragmentActivity implements Cu
                 .appendQueryParameter(Conversation.ConversationType.CUSTOMER_SERVICE.getName(), "false")//客服会话列表
                 .appendQueryParameter(Conversation.ConversationType.SYSTEM.getName(), "false")*/
                 .appendQueryParameter(Conversation.ConversationType.PRIVATE.getName(), "false")
-               // .appendQueryParameter(Conversation.ConversationType.GROUP.getName(), "false")//获取群组消息false取消接受无效
+                //.appendQueryParameter(Conversation.ConversationType.GROUP.getName(), "false")//获取群组消息false取消接受无效
                 .appendQueryParameter(Conversation.ConversationType.SYSTEM.getName(), "false")
                 .appendQueryParameter(Conversation.ConversationType.CUSTOMER_SERVICE.getName(), "false")
-
                 /*.appendQueryParameter(Conversation.ConversationType.NONE.getName(), "false")
                 .appendQueryParameter(Conversation.ConversationType.DISCUSSION.getName(), "false")
                 .appendQueryParameter(Conversation.ConversationType.CHATROOM.getName(), "false")

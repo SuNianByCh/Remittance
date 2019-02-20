@@ -40,7 +40,6 @@ public class LeakHuntingPesenter {
                         return response.body().string();
                     }
 
-
                     @Override
                     public void onStart(Request<String, ? extends Request> request) {
                         super.onStart(request);

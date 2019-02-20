@@ -110,12 +110,12 @@ public class ConfirmOrderActivity extends BaseActivity implements CustomTitlebar
         if (goodsAndShopInfo != null) {
             ConfirmOrderAdapter mAdapter = new ConfirmOrderAdapter(goodsAndShopInfo.getComFirmOrderBeanList());
             recycler_confirm.setAdapter(mAdapter);
-            tv_total_confirm_price.setText(String.format(getResources().getString(R.string.rmb_X), goodsAndShopInfo.getTotalPrice()));
+            tv_total_confirm_price.setText(String.format(getResources().getString(R.string.rmb_X), goodsAndShopInfo.getTotalPriceAndPostPrice()));
             btn_go_confirm_pay.setText(String.format(getResources().getString(R.string.go_submission_order), goodsAndShopInfo.getTotalCount()));
         }
         //生成订单实体类
         ordergoodsBean = new OrdergoodsBean();
-        ototalnum = goodsAndShopInfo.getTotalPrice();
+        ototalnum = goodsAndShopInfo.getTotalPriceAndPostPrice();
         //把你的地址设置上去呗，页面上
     }
 
@@ -190,7 +190,7 @@ public class ConfirmOrderActivity extends BaseActivity implements CustomTitlebar
                     //设置用户id
                     ordergoodsBean.setUid(AppUtile.getUid(this));
                     //设置订单金额
-                    ordergoodsBean.setOtotalvalue(goodsAndShopInfo.getTotalPrice());
+                    ordergoodsBean.setOtotalvalue(goodsAndShopInfo.getTotalPriceAndPostPrice());
                     //设置地址
                     ordergoodsBean.setAid(aid);
                     //设置商品信息，信息不一样，需要自己构建
@@ -202,6 +202,8 @@ public class ConfirmOrderActivity extends BaseActivity implements CustomTitlebar
                         shoplistBean.setOsleaveword(comFirmOrderBean.getBuyerBean().getLeaving());
                         //设置店铺id,是这个吗？对
                         shoplistBean.setSid(comFirmOrderBean.getShopBean().getShop_sid());
+                        //设置邮费
+                        shoplistBean.setOpostage(String.valueOf(comFirmOrderBean.getBuyerBean().getPostage()));
                         //设置商品
                         List<OrdergoodsBean.ShoplistBean.GoodslistBean> goodslist = new ArrayList<>();
                         shoplistBean.setGoodslist(goodslist);

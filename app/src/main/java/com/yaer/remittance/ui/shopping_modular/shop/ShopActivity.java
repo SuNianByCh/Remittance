@@ -1,6 +1,5 @@
 package com.yaer.remittance.ui.shopping_modular.shop;
 
-import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -9,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -31,7 +29,6 @@ import com.yaer.remittance.callback.JsonCallback;
 import com.yaer.remittance.ui.adapter.ViewPagerAdapter;
 import com.yaer.remittance.ui.login_modular.LoginActivity;
 import com.yaer.remittance.ui.user_modular.user_buyer.adapter.CouponShopAdapter;
-import com.yaer.remittance.ui.user_modular.user_seller.shopinfo.UserShopInfoActivity;
 import com.yaer.remittance.utils.AppUtile;
 import com.yaer.remittance.utils.NetworkUtils;
 import com.yaer.remittance.utils.ToastUtils;
@@ -79,10 +76,10 @@ public class ShopActivity extends BaseActivity {
     CollapsingToolbarLayout collapsing_toolbar;
     @BindView(R.id.iv_shop_imaege)
     RoundedImageView iv_shop_imaege;
-/*
-    @BindView(R.id.ll_shop)
-    LinearLayout ll_shop;
-*/
+    /*
+        @BindView(R.id.ll_shop)
+        LinearLayout ll_shop;
+    */
     /*店铺关注状态*/
     @BindView(R.id.tv_shopinfo_followstatus)
     TextView tv_shopinfo_followstatus;
@@ -95,7 +92,7 @@ public class ShopActivity extends BaseActivity {
     RecyclerView rl_activity_shop;
     private CouponShopAdapter couponShopAdapter;
     private List<AllCouponBuyerBean> allCouponBuyerBeanArrayList = new ArrayList<>(); // 这个是右边
-
+    private String uid;
     /**
      * dialog
      */
@@ -125,6 +122,7 @@ public class ShopActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        uid = String.valueOf(AppUtile.getUid(this));
         sid = getIntent().getStringExtra("shopinfosid");//店铺id
         fragments1.add(ShopGoodsFragment.newInstance(sid));//商品
         fragments1.add(ShopPattingFragment.newInstance(sid));//拍品
@@ -281,30 +279,34 @@ public class ShopActivity extends BaseActivity {
                 if (AppUtile.isFastDoubleClick()) {
                 } else if (!NetworkUtils.isNetworkConnected(this)) {
                     ToastUtils.showToast("当前无网络请链接网络");
+                } else if (uid.equals(sid)) {
+                    ToastUtils.showToast("不能关注自己");
                 } else if (AppUtile.getTicket(this).equals("")) {
-                    goToActivity(LoginActivity.class, "type", "1");
+                    goToActivity(LoginActivity.class, "type", "");
                 } else {
-                    if (!NetworkUtils.isNetworkConnected(ShopActivity.this)) {
-                        ToastUtils.showToast("当前无网络请链接网络");
-                    } else if (AppUtile.getTicket(ShopActivity.this).equals("")) {
-                        goToActivity(LoginActivity.class, "type", "1");
-                    } else {
-                        isfollow = followstatus;
-                        UpdateShopFollow(sid);
-                    }
+                    isfollow = followstatus;
+                    UpdateShopFollow(sid);
                 }
                 break;
             case R.id.tv_privateletter:
-                /**
-                 * 这个是启动单聊界面
-                 * 启动单聊界面。
-                 *
-                 * @param context      应用上下文。
-                 * @param targetUserId 要与之聊天的用户 Id。
-                 * @param title        聊天的标题，开发者需要在聊天界面通过 intent.getData().getQueryParameter("title")
-                 *                     获取该值, 再手动设置为聊天界面的标题。
-                 */
-                RongIM.getInstance().startPrivateChat(this, sid, shopname);
+                if (!NetworkUtils.isNetworkConnected(this)) {
+                    ToastUtils.showToast("当前无网络请链接网络");
+                } else if (uid.equals(sid)) {
+                    ToastUtils.showToast("不能和自己的聊天");
+                } else if (AppUtile.getTicket(this).equals("")) {
+                    goToActivity(LoginActivity.class, "type", "");
+                } else {
+                    /**
+                     * 这个是启动单聊界面
+                     * 启动单聊界面。
+                     *
+                     * @param context      应用上下文。
+                     * @param targetUserId 要与之聊天的用户 Id。
+                     * @param title        聊天的标题，开发者需要在聊天界面通过 intent.getData().getQueryParameter("title")
+                     *                     获取该值, 再手动设置为聊天界面的标题。
+                     */
+                    RongIM.getInstance().startPrivateChat(this, sid, shopname);
+                }
                 break;
 
         }

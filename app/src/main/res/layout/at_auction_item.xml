@@ -1,5 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_search_lot_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/hw_10_dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/at_auction_icon"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/imagedetail_defaullt"
+                app:riv_corner_radius_bottom_left="@dimen/hw_5_dp"
+                app:riv_corner_radius_bottom_right="@dimen/hw_5_dp"
+                app:riv_corner_radius_top_left="@dimen/hw_5_dp"
+                app:riv_corner_radius_top_right="@dimen/hw_5_dp"
+                app:riv_mutate_background="true"
+                app:riv_oval="false" />
+
+            <TextView
+                android:layout_width="@dimen/hw_20_dp"
+                android:layout_height="@dimen/hw_30_dp"
+                android:layout_marginLeft="@dimen/hw_10_dp"
+                android:background="@drawable/shopauctiontype"
+                android:gravity="center" />
+            <!--    <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_tones"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/hw_2_dp"
+                    android:paddingLeft="@dimen/hw_5_dp"
+                    android:paddingRight="@dimen/hw_5_dp"
+                    android:paddingTop="@dimen/hw_2_dp"
+                    android:text="拍卖中"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_12" />-->
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/hw_8_dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/at_auction_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/hw_10_dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="陶瓷玉器陶瓷玉器陶瓷玉器"
+                android:textColor="#666666"
+                android:textSize="14sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_dangqianjia_search_lot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="当前价:"
+                        android:textColor="@color/main_tones"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_at_auction_money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/hw_5_dp"
+                        android:layout_toRightOf="@+id/tv_dangqianjia_search_lot"
+                        android:text="99999"
+                        android:textColor="#bda75b"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/hw_10_dp"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/iv_vitalit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/vitalityvalue" />
+
+                    <TextView
+                        android:id="@+id/tv_hot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/iv_vitalit"
+                        android:text="120"
+                        android:textColor="@color/text_2_color"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <!-- <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_alignParentRight="true"
+                     android:gravity="right"
+                     android:text="66人出价"
+                     android:textSize="@dimen/sp_12" />-->
+                <!--  <TextView
+                      android:id="@+id/tv_newgnumber"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_alignParentRight="true"
+                      android:layout_marginRight="@dimen/hw_8_dp"
+                      android:text="99999"
+                      android:textSize="12sp" />-->
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="@drawable/shape_dash"
+                    android:layerType="software"></View>
+
+                <TextView
+                    android:id="@+id/tv_at_auction_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/hw_5_dp"
+                    android:text="截拍时间：今日12点"
+                    android:textSize="@dimen/sp_12" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0.5dp"
+        android:background="@color/grey_line_bg"
+        android:layerType="software" />
+</LinearLayout>
+
+<!--
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/background_color"
@@ -36,7 +206,7 @@
                     android:layout_margin="5dp"
                     android:scaleType="fitXY" />
 
-            <!--    <TextView
+            &lt;!&ndash;    <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/hw_5_dp"
@@ -46,7 +216,7 @@
                     android:padding="@dimen/hw_2_dp"
                     android:text="您领先"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/sp_12" />-->
+                    android:textSize="@dimen/sp_12" />&ndash;&gt;
             </LinearLayout>
 
             <LinearLayout
@@ -101,7 +271,7 @@
                     android:textColor="@color/leak_red"
                     android:textSize="10sp" />
 
-              <!--  <TextView
+              &lt;!&ndash;  <TextView
                     android:id="@+id/tv_at_auction_first"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -111,7 +281,7 @@
                     android:paddingLeft="5dp"
                     android:text="领先者：翠荷塘"
                     android:textColor="@color/text_1_color"
-                    android:textSize="12sp" />-->
+                    android:textSize="12sp" />&ndash;&gt;
             </LinearLayout>
 
 
@@ -119,4 +289,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</LinearLayout>-->

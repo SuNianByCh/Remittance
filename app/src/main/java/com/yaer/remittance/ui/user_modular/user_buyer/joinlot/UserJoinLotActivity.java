@@ -24,7 +24,7 @@ public class UserJoinLotActivity extends BaseActivity implements CustomTitlebar.
     NavitationLayout nl_joinlot;
     @BindView(R.id.viewpagerelement)
     ViewPager viewPager1;
-    private String[] titles1 = new String[]{"拍卖中", "待支付","已结束"};
+    private String[] titles1 = new String[]{"拍卖中", "待支付", "已结束"};
     private ViewPagerAdapter viewPagerAdapter1;
     ArrayList<Fragment> fragmentList = new ArrayList<Fragment>();
 
@@ -38,10 +38,12 @@ public class UserJoinLotActivity extends BaseActivity implements CustomTitlebar.
     protected int setLayoutId() {
         return R.layout.activity_user_join_lot;
     }
+
     @Override
     public void initView() {
         ct_joinlot.setAction(this);
     }
+
     @Override
     protected void initImmersionBar() {
         super.initImmersionBar();

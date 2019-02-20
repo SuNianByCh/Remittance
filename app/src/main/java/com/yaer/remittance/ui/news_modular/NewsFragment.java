@@ -63,9 +63,10 @@ public class NewsFragment extends BaseFragment implements IUnReadMessageObserver
         //未读消息
         Conversation.ConversationType[] conversationTypes = {
                 Conversation.ConversationType.PRIVATE
+
         };
         //这个变量也是每次都创建，。。。,,
-        //                Conversation.ConversationType.GROUP
+        //Conversation.ConversationType.GROUP
         badge = new QBadgeView(getActivity()).bindTarget(tv_liiebiaoname);
         RongIM.getInstance().addUnReadMessageCountChangedObserver(this, conversationTypes);
     }

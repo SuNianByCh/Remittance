@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+import com.yaer.remittance.base.BaseSimpleViewHolder;
 import com.yaer.remittance.R;
 import com.yaer.remittance.bean.GetFollowGoodsBean;
 import com.yaer.remittance.ui.shopping_modular.commodity.CommodityDetailsActivity;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * 收藏
  */
 
-public class UserCollectAdapter extends BaseQuickAdapter<GetFollowGoodsBean, BaseViewHolder> {
+public class UserCollectAdapter extends BaseQuickAdapter<GetFollowGoodsBean, BaseSimpleViewHolder> {
     ArrayList<String> list;
     String Images;
 
@@ -28,7 +28,7 @@ public class UserCollectAdapter extends BaseQuickAdapter<GetFollowGoodsBean, Bas
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, final GetFollowGoodsBean item) {
+    protected void convert(BaseSimpleViewHolder helper, final GetFollowGoodsBean item) {
         helper.setText(R.id.tv_goodsname, item.getGname());
         helper.setText(R.id.tv_goods_price, "¥" + item.getGmoney());
         boolean follw = item.getFollowStatus();

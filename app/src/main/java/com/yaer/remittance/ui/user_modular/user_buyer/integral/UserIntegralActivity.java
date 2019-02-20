@@ -50,8 +50,8 @@ public class UserIntegralActivity extends BaseActivity implements CustomTitlebar
     TextView tv_integral_lable;*/
     @BindView(R.id.tv_user_uintegral)
     TextView tv_user_uintegral;
-    @BindView(R.id.userintegral)
-    WebView userintegral;
+    @BindView(R.id.web_filechooser)
+    X5WebView webView;
 
     //设置沉浸式
     @Override
@@ -79,64 +79,18 @@ public class UserIntegralActivity extends BaseActivity implements CustomTitlebar
         } else {
             Glide.with(UserIntegralActivity.this).load(shopicon).fitCenter().into(civ_integral);
         }
-        // getShopInfoBySid();
-     /*   userintegral.loadUrl("http://www.paiphui.com/turntable/turntable.html?uid=" + AppUtile.getUid(this));
-        userintegral.getX5WebViewExtension().setScrollBarFadingEnabled(false);
-        userintegral.getSettings().setDomStorageEnabled(true);
-        userintegral.setHorizontalScrollBarEnabled(false);
-        IX5WebViewExtension ix5 = userintegral.getX5WebViewExtension();
-        if (null != ix5) {
-            ix5.setScrollBarFadingEnabled(false);
-        }*/
-        getWindow().setFormat(PixelFormat.TRANSLUCENT);//（这个对宿主没什么影响，建议声明）
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        loadUrl("http://www.paiphui.com/turntable/turntable.html?uid=" + AppUtile.getUid(this));
+        webView.loadUrl("http://www.paiphui.com/turntable/turntable.html?uid=" + AppUtile.getUid(this));
     }
 
-    private void loadUrl(String url) {
-        WebSettings webSettings = userintegral.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        userintegral.loadUrl(url);
-        userintegral.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return true;
-            }
-
-            @Override
-            public void onReceivedError(WebView var1, int var2, String var3, String var4) {
-                Log.i("打印日志", "网页加载失败");
-            }
-        });
-        //进度条
-        userintegral.setWebChromeClient(new WebChromeClient() {
-            @Override
-            public void onProgressChanged(WebView view, int newProgress) {
-                if (newProgress == 100) {
-                    Log.i("打印日志", "加载完成");
-                }
-            }
-        });
-    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (userintegral != null) userintegral.destroy();
+        if (this.webView != null) {
+            webView.destroy();
+        }
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (userintegral != null && userintegral.canGoBack()) {
-                userintegral.goBack();
-                return true;
-            }
-            return super.onKeyDown(keyCode, event);
-        }
-        return super.onKeyDown(keyCode, event);
-    }
 
     @Override
     public void initData() {
@@ -154,27 +108,7 @@ public class UserIntegralActivity extends BaseActivity implements CustomTitlebar
         return R.layout.activity_user_integral;
     }
 
-    /*@Override
-    protected void onDestroy() {
-        super.onDestroy();
-        //释放资源
-        if (userintegral != null)
-            userintegral.destroy();
-    }*/
 
-    /* @Override
-     public boolean onKeyDown(int keyCode, KeyEvent event) {
-         if (keyCode == KeyEvent.KEYCODE_BACK) {
-             if (userintegral != null && userintegral.canGoBack()) {
-                 userintegral.goBack();
-                 return true;
-             } else {
-                 return super.onKeyDown(keyCode, event);
-             }
-         }
-         return super.onKeyDown(keyCode, event);
-     }
- */
     @OnClick({})
     public void onClick(View v) {
         switch (v.getId()) {

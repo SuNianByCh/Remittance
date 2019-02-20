@@ -1,11 +1,15 @@
 package com.yaer.remittance.ui.home_modular.elementbeat;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.base.Request;
@@ -17,10 +21,14 @@ import com.yaer.remittance.api.AppApi;
 import com.yaer.remittance.api.Constant;
 import com.yaer.remittance.base.BaseLazyFragment;
 import com.yaer.remittance.base.BaseMode;
+import com.yaer.remittance.bean.GetMainBean;
 import com.yaer.remittance.bean.ZeroElementbeat;
 import com.yaer.remittance.callback.JsonCallback;
 import com.yaer.remittance.ui.adapter.ElementAdapter;
+import com.yaer.remittance.ui.home_modular.auctiondetails.AuctionDetailsActivity;
+import com.yaer.remittance.ui.login_modular.LoginActivity;
 import com.yaer.remittance.ui.user_modular.user_buyer.attention.UserAttentionActivity;
+import com.yaer.remittance.utils.AppUtile;
 import com.yaer.remittance.utils.NetworkUtils;
 import com.yaer.remittance.utils.ToastUtils;
 import com.yaer.remittance.view.LoadingDialog2;
@@ -68,6 +76,31 @@ public class ElementBeatFragment extends BaseLazyFragment {
         selectGoods0Pai(page, pagesize);
         elementAdapter = new ElementAdapter();
         rv_element.setAdapter(elementAdapter);
+        final Bundle bundle = new Bundle();
+        rv_element.addOnItemTouchListener(new OnItemChildClickListener() {
+            @Override
+            public void onSimpleItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            }
+
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                int itemViewId = view.getId();
+                ZeroElementbeat zeroElementbeat = elementAdapter.getData().get(position);
+                switch (itemViewId) {
+                    /*进入拍品详情*/
+                    case R.id.ll_element_item:
+                        if (!NetworkUtils.isNetworkConnected(mActivity)) {
+                            ToastUtils.showToast("当前无网络请链接网络");
+                        } else if (AppUtile.getTicket(mActivity).equals("")) {
+                            goToActivity(LoginActivity.class, "type", "1");
+                        } else {
+                            bundle.putString("gidshopping", String.valueOf(zeroElementbeat.getGid()));
+                            goToActivity(AuctionDetailsActivity.class, bundle);
+                        }
+                        break;
+                }
+            }
+        });
+
         showtext();
     }
 
@@ -83,7 +116,7 @@ public class ElementBeatFragment extends BaseLazyFragment {
                         refreshlayout.finishRefresh();
                         refreshlayout.resetNoMoreData();//恢复上拉状态
                     }
-                }, 2000);
+                }, 500);
             }
 
             @Override
@@ -95,7 +128,7 @@ public class ElementBeatFragment extends BaseLazyFragment {
                         selectGoods0Pai(page, pagesize);
                         refreshlayout.finishLoadMore();
                     }
-                }, 1000);
+                }, 500);
             }
         });
     }
@@ -132,7 +165,6 @@ public class ElementBeatFragment extends BaseLazyFragment {
                                 } else if (page > 1 && ElementItemList != null && ElementItemList.size() > 0) {
                                     elementAdapter.addData(ElementItemList);
                                 } else {
-                                    ToastUtils.showToast("数据全部加载完毕");
                                     element_refreshLayout.finishLoadMoreWithNoMoreData();
                                 }
                             } else {

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -27,8 +28,11 @@ import com.yaer.remittance.callback.JsonCallback;
 import com.yaer.remittance.ui.adapter.ElementAdapter;
 import com.yaer.remittance.ui.adapter.HistoricalAuctionAdapter;
 import com.yaer.remittance.ui.adapter.ViewPagerAdapter;
+import com.yaer.remittance.ui.home_modular.auctiondetails.AuctionDetailsActivity;
 import com.yaer.remittance.ui.home_modular.headfragment.NewproducFragment;
 import com.yaer.remittance.ui.home_modular.headfragment.RecommendFragment;
+import com.yaer.remittance.ui.login_modular.LoginActivity;
+import com.yaer.remittance.utils.AppUtile;
 import com.yaer.remittance.utils.NetworkUtils;
 import com.yaer.remittance.utils.ToastUtils;
 import com.yaer.remittance.view.CustomTitlebar;
@@ -74,6 +78,30 @@ public class HistoricalAuctionFragment extends BaseLazyFragment {
         selectHistoryGoodsZeroPai(page, pagesize);
         historicalAuctionAdapter = new HistoricalAuctionAdapter();
         rv_historical_auction.setAdapter(historicalAuctionAdapter);
+        final Bundle bundle = new Bundle();
+        rv_historical_auction.addOnItemTouchListener(new OnItemChildClickListener() {
+            @Override
+            public void onSimpleItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            }
+
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                int itemViewId = view.getId();
+                ZeroElementbeat zeroElementbeat = historicalAuctionAdapter.getData().get(position);
+                switch (itemViewId) {
+                    /*进入拍品详情*/
+                    case R.id.ll_historical_auction:
+                        if (!NetworkUtils.isNetworkConnected(mActivity)) {
+                            ToastUtils.showToast("当前无网络请链接网络");
+                        } else if (AppUtile.getTicket(mActivity).equals("")) {
+                            goToActivity(LoginActivity.class, "type", "1");
+                        } else {
+                            bundle.putString("gidshopping", String.valueOf(zeroElementbeat.getGid()));
+                            goToActivity(AuctionDetailsActivity.class, bundle);
+                        }
+                        break;
+                }
+            }
+        });
         showtext();
     }
 
@@ -131,7 +159,6 @@ public class HistoricalAuctionFragment extends BaseLazyFragment {
                                 } else if (page > 1 && ElementItemList != null && ElementItemList.size() > 0) {
                                     historicalAuctionAdapter.addData(ElementItemList);
                                 } else {
-                                    ToastUtils.showToast("数据全部加载完毕");
                                     historical_refreshLayout.finishLoadMoreWithNoMoreData();
                                 }
                             } else {

@@ -8,7 +8,6 @@ public class AppApi {
     //*****************App 静态页主路径******************//
     //public static String BASE_URL = "http://api.paiphui.com";
     public static String BASE_URL = "http://47.95.196.248:8081";
-
     //获取验证码
     public static String GET_YANZHENGMA = "/user/sendSMS";
     //验证码是否正确
@@ -183,6 +182,8 @@ public class AppApi {
     public static String GETHELPCENTERTYPE = "/user/getHelpCenterType";
     //获取推广服务接口
     public static String GETEXTENDLIST = "/extend/getExtendList";
+    //修改推广服务
+    public static String UPDATEGOODSEXTEND = "/goods/upDateGoodsExtend";
     //获取店铺的推广服务
     public static String GETEXTENDSHOP = "/extend/getExtendShop";
     //购买服务接口

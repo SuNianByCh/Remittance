@@ -24,17 +24,8 @@ import com.alibaba.sdk.android.oss.common.auth.OSSPlainTextAKSKCredentialProvide
 import com.alibaba.sdk.android.oss.internal.OSSAsyncTask;
 import com.alibaba.sdk.android.oss.model.PutObjectRequest;
 import com.alibaba.sdk.android.oss.model.PutObjectResult;
-import com.gyf.barlibrary.ImmersionBar;
-import com.yaer.remittance.utils.AppManager;
-import com.yaer.remittance.utils.SystemUtil;
 import com.yaer.remittance.utils.ToastUtils;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.UUID;
-
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * Activity基类

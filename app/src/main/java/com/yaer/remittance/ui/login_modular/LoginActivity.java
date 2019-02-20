@@ -97,6 +97,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         ll_qq.setOnClickListener(this);
         ll_weibo.setOnClickListener(this);
         quick_login.setOnClickListener(this);
+        if(null == type){
+            type ="4";
+        }
     }
 
     @Override
@@ -333,7 +336,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         super.onStart(request);
                         LoadingDialog.showDialogForLoading(LoginActivity.this, "登录中....");
                     }
-
                     @Override
                     public void onSuccess(Response<BaseMode<ThirdPartyBean>> response) {
                         Log.e("test", "onSuccess: " + response.body().code);

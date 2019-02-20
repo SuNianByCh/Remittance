@@ -2,6 +2,8 @@ package com.yaer.remittance.utils;
 
 import android.app.Activity;
 
+import com.yaer.remittance.base.BaseActivity;
+
 import java.util.Stack;
 
 /**
@@ -64,11 +66,10 @@ public class ActivityManager {
      *
      * @return
      */
-    public Activity get() {
+    public Activity get(){
         Activity activity = activityStack().lastElement();
         return activity;
     }
-
     /**
      * 获取指定activity
      *
@@ -163,5 +164,8 @@ public class ActivityManager {
             }
             finish(activity);
         }
+    }
+    public void exit(){
+        ((BaseActivity)get()).exit();
     }
 }

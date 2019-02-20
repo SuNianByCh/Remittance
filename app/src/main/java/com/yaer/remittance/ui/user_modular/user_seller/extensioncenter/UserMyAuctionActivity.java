@@ -1,13 +1,10 @@
 package com.yaer.remittance.ui.user_modular.user_seller.extensioncenter;
 
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 import com.yaer.remittance.R;
@@ -15,14 +12,11 @@ import com.yaer.remittance.api.AppApi;
 import com.yaer.remittance.api.Constant;
 import com.yaer.remittance.base.BaseActivity;
 import com.yaer.remittance.base.BaseMode;
-import com.yaer.remittance.bean.ExtendListBean;
 import com.yaer.remittance.callback.JsonCallback;
-import com.yaer.remittance.ui.user_modular.user_seller.adapter.ExtensionAdapter;
 import com.yaer.remittance.utils.AppUtile;
 import com.yaer.remittance.utils.ToastUtils;
 import com.yaer.remittance.view.CustomTitlebar;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 

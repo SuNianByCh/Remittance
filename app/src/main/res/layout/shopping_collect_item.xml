@@ -17,7 +17,7 @@
             android:layout_height="@dimen/hw_100_dp"
             android:layout_marginLeft="@dimen/hw_5_dp"
             android:background="@drawable/secces_defaullt"
-            android:scaleType="fitXY" />
+            android:scaleType="centerCrop" />
 
         <RelativeLayout
             android:id="@+id/llGoodInfo"

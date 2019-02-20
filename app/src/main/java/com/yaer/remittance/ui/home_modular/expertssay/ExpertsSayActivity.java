@@ -36,7 +36,6 @@ import butterknife.BindView;
  * 专家说
  */
 public class ExpertsSayActivity extends BaseActivity implements CustomTitlebar.TitleBarOnClickListener {
-
     //标题栏
     @BindView(R.id.ct_experts_say)
     CustomTitlebar ct_experts_say;
@@ -99,6 +98,8 @@ public class ExpertsSayActivity extends BaseActivity implements CustomTitlebar.T
             isFirstEnter = false;
             expertsLayout.autoRefresh();
         }*/
+        //collect_refreshLayout.setEnableRefresh(false);//下拉
+        expertsLayout.setEnableLoadMore(false);//上拉
         rv_expertssay.setLayoutManager(new LinearLayoutManager(this));
         expertsSayAdapter = new ExpertsSayAdapter();
         rv_expertssay.setAdapter(expertsSayAdapter);

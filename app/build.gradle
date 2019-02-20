@@ -97,10 +97,13 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.kaopiz:kprogresshud:1.0.2'
+
     /*图片浏览器*/
     implementation 'com.ycjiang:ImagePreview:2.1.8'
+
     /*动画效果*/
     implementation 'jp.wasabeef:recyclerview-animators:2.2.3'
+
     /*角标*/
     implementation 'q.rorbin:badgeview:1.1.3'
 
@@ -117,6 +120,7 @@ dependencies {
     implementation 'com.lzy.widget:imagepicker:0.6.1'
 
     //省市级联
+
     // implementation 'com.contrarywind:Android-PickerView:3.2.5'
     implementation 'com.contrarywind:Android-PickerView:4.1.6'
 
@@ -127,8 +131,9 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.5.2'
 
     //图片加载框架
+
     /*api 'com.facebook.fresco:fresco:0.11.0'
-    implementation 'com.android.support:multidex:1.0.1'*/
+        implementation 'com.android.support:multidex:1.0.1'*/
 
     //log日志框架
     implementation 'com.orhanobut:logger:2.1.1'
@@ -138,6 +143,7 @@ dependencies {
 
     /*上拉下拉框架*/
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
+
     //  implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-18'
 
     /*GIF框架*/
@@ -189,6 +195,6 @@ dependencies {
     api project(':IMKit')
     implementation files('libs/jcore-android-1.2.6.jar')
     implementation files('libs/jpush-android-3.1.8.jar')
-    implementation files('libs/tbs_sdk_thirdapp_v3.1.0.1034_43100_sharewithdownload_obfs_20170301_182143.jar')
     implementation 'com.allenliu.versionchecklib:library:2.1.9'
+    implementation files('libs/tbs_sdk_thirdapp_v3.6.0.1310_43612_sharewithdownload_withoutGame_obfs_20180706_163319.jar')
 }

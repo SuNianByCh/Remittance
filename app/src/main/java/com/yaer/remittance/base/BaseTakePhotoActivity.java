@@ -1,17 +1,8 @@
 package com.yaer.remittance.base;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 
-import com.gyf.barlibrary.ImmersionBar;
 import com.jph.takephoto.app.TakePhoto;
 import com.jph.takephoto.app.TakePhotoImpl;
 import com.jph.takephoto.model.InvokeParam;
@@ -20,12 +11,6 @@ import com.jph.takephoto.model.TResult;
 import com.jph.takephoto.permission.InvokeListener;
 import com.jph.takephoto.permission.PermissionManager;
 import com.jph.takephoto.permission.TakePhotoInvocationHandler;
-import com.yaer.remittance.utils.AppManager;
-import com.yaer.remittance.utils.SystemUtil;
-import com.yaer.remittance.utils.ToastUtils;
-
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * Activity基类

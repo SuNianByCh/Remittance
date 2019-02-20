@@ -6,9 +6,9 @@ import android.view.View;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.yaer.remittance.R;
+import com.yaer.remittance.base.BaseSimpleViewHolder;
 import com.yaer.remittance.bean.CategoryBean;
 import com.yaer.remittance.ui.home_modular.classification.ClassificationScreeningActivity;
 
@@ -18,14 +18,14 @@ import java.util.List;
  * Created by geyifeng on 2017/6/3.
  */
 
-public class ShoppingclassAdapter extends BaseQuickAdapter<CategoryBean.ResultBean, BaseViewHolder> {
+public class ShoppingclassAdapter extends BaseQuickAdapter<CategoryBean.ResultBean, BaseSimpleViewHolder> {
 
     public ShoppingclassAdapter() {
         super(R.layout.shopping_class_item);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, final CategoryBean.ResultBean item) {
+    protected void convert(BaseSimpleViewHolder helper, final CategoryBean.ResultBean item) {
         helper.setText(R.id.tv_shopping_class_name, item.getScname());
         RoundedImageView logoview = helper.getView(R.id.civ_shopping_class_image);
         Glide.with(mContext).load(item.getScimg()).fitCenter().into(logoview);//商品图片

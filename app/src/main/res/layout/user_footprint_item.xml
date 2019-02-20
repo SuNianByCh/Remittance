@@ -2,9 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
     android:layout_marginBottom="@dimen/hw_0.5_dp"
+    android:background="@color/white"
     android:orientation="horizontal">
+
     <LinearLayout
         android:id="@+id/ll_footprint"
         android:layout_width="match_parent"
@@ -18,8 +19,8 @@
         <ImageView
             android:id="@+id/iv_userfoot_print"
             android:layout_width="100dp"
-            android:layout_height="@dimen/hw_80_dp"
-            android:scaleType="fitXY" />
+            android:layout_height="@dimen/hw_100_dp"
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,7 +32,6 @@
                 android:id="@+id/tv_user_footprint_name"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_marginTop="6dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="陶瓷玉器"
@@ -47,6 +47,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="价格:"
                     android:textColor="#666666"
                     android:textSize="12sp" />
@@ -55,22 +56,34 @@
                     android:id="@+id/tv_footprint_mony"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/hw_10_dp"
                     android:text="99999"
                     android:textColor="#bda75b"
                     android:textSize="14sp" />
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/tv_gisauction"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+
+                android:text="商品、拍品"
+                android:textColor="#666666"
+                android:textSize="12sp" />
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="@dimen/hw_10_dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="剩余数量:"
                     android:textSize="12sp" />
 
@@ -78,39 +91,16 @@
                     android:id="@+id/tv_footprint_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/hw_10_dp"
                     android:text="100件"
                     android:textColor="@color/text_2_color"
                     android:textSize="12sp" />
-
-                <!--
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginRight="@dimen/hw_10_dp"
-                                    android:gravity="center|right"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="浏览时间:"
-                                        android:textColor="#666666"
-                                        android:textSize="12sp" />
-
-                                    <TextView
-                                        android:id="@+id/tv_user_footprint_time"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="@dimen/hw_10_dp"
-                                        android:text="6次"
-                                        android:textColor="#666666"
-                                        android:textSize="12sp" />
-                                </LinearLayout>
-                -->
             </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
+
     <TextView
         android:id="@+id/tv_delete"
         android:layout_width="90dp"

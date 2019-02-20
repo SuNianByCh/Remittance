@@ -4,7 +4,7 @@ import android.widget.RatingBar;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+import com.yaer.remittance.base.BaseSimpleViewHolder;
 import com.liji.circleimageview.CircleImageView;
 import com.yaer.remittance.R;
 import com.yaer.remittance.bean.SelectGoodsInfoBean;
@@ -15,7 +15,7 @@ import com.yaer.remittance.view.StarBar;
  * Created by geyifeng on 2017/6/3.
  */
 
-public class CommodityEvaluationAdapter extends BaseQuickAdapter<SelectGoodsInfoBean.GoodsCommentinfoModelsBean, BaseViewHolder> {
+public class CommodityEvaluationAdapter extends BaseQuickAdapter<SelectGoodsInfoBean.GoodsCommentinfoModelsBean, BaseSimpleViewHolder> {
 
     private RatingBar sb_commodity_score;
     private CircleImageView iv_comment_shop_image;
@@ -27,7 +27,7 @@ public class CommodityEvaluationAdapter extends BaseQuickAdapter<SelectGoodsInfo
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, SelectGoodsInfoBean.GoodsCommentinfoModelsBean item) {
+    protected void convert(BaseSimpleViewHolder helper, SelectGoodsInfoBean.GoodsCommentinfoModelsBean item) {
         helper.setText(R.id.tv_comment_shop_describe, item.getUcdesc());//评论内容
         helper.setText(R.id.tv_comment_shop_name, item.getUname());//评论名称
         helper.setText(R.id.tv_commodity_gtime, SystemUtil.stampToDate(item.getGtime()));

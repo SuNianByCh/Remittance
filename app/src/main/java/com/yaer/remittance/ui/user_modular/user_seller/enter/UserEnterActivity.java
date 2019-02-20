@@ -70,7 +70,6 @@ import butterknife.OnClick;
  * Created by Administrator on 2018-09-11.
  * 商家入驻
  */
-
 public class UserEnterActivity extends BaseActivity implements CustomTitlebar.TitleBarOnClickListener {
     @BindView(R.id.ct_enter)
     CustomTitlebar ct_enter;
@@ -181,7 +180,7 @@ public class UserEnterActivity extends BaseActivity implements CustomTitlebar.Ti
     }
 
     private void lableshow() {
-        str.add("茶文化");
+        /*str.add("茶文化");
         str.add("天然玉石");
         str.add("家具");
         str.add("珠串雅玩");
@@ -190,7 +189,16 @@ public class UserEnterActivity extends BaseActivity implements CustomTitlebar.Ti
         str.add("时尚首饰");
         str.add("文房雅玩");
         str.add("民俗工艺");
-        str.add("生活百货");
+        str.add("生活百货");*/
+        str.add("珠串雅玩");
+        str.add("金石篆刻");
+        str.add("民俗工艺");
+        str.add("鬼斧神雕");
+        str.add("古瓷韵味");
+        str.add("当代工艺");
+        str.add("珠宝玉石");
+        str.add("陈设摆件");
+        str.add("古董珍品");
         for (int i = 0; i < str.size(); i++) {
             linkLabelBean = new LinkLabelBean();
             linkLabelBean.setStr(str.get(i));
@@ -248,7 +256,6 @@ public class UserEnterActivity extends BaseActivity implements CustomTitlebar.Ti
                     public void onClickCamera() {
                         startActForResult(1, 104);
                     }
-
                     @Override
                     public void onClickPhoto() {
                         startActForResult(2, 105);

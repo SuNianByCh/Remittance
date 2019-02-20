@@ -68,10 +68,9 @@ public class UserSignInActivity extends BaseActivity implements CustomTitlebar.T
      * 获取签到信息*
      */
     public void getsifninf() {
-        String uid = String.valueOf(AppUtile.getUid(this));
         OkGo.<BaseMode<SignInfoBean>>post(AppApi.BASE_URL + AppApi.GETSIFNINFO)
                 .tag(this)
-                .params("uid", uid)
+                .params("uid", AppUtile.getUid(this))
                 .execute(new JsonCallback<BaseMode<SignInfoBean>>(this) {
                     @Override
                     public void onSuccess(Response<BaseMode<SignInfoBean>> response) {

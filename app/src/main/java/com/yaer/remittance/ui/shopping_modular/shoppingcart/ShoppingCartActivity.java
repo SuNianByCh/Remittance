@@ -174,12 +174,8 @@ public class ShoppingCartActivity extends BaseActivity implements CustomTitlebar
      * 3.给相关的 textView 进行数据填充
      */
     private void calculate() {
-        //这样可以吗？看一下哈，这样分别存商品还有店铺可以吗？这样子应该就拿到了啊，我测试一下
-        //清空ok了卡吗，有点
-
         List<ComFirmOrderBean> comFirmOrderBeanList = new ArrayList<>();
         goodsAndShopInfo = new GoodsAndShopInfo(comFirmOrderBeanList);
-
         totalCheckedCount = 0;
         totalCount = 0;
         totalPrice = 0.00;
@@ -194,7 +190,6 @@ public class ShoppingCartActivity extends BaseActivity implements CustomTitlebar
                         totalCheckedCount++;
                         double currentPrice = ((GoodsBean) iCartItem).getGoods_price() * ((GoodsBean) iCartItem).getGoods_amount();
                         totalPrice += currentPrice;
-                        //等我想想怎么转换成我们想要的那个数据类型
                         if (comFirmOrderBeanList.isEmpty() || comFirmOrderBeanList.get(comFirmOrderBeanList.size() - 1).getShopBean() != shopBean) {
                             ComFirmOrderBean comFirmOrderBean = new ComFirmOrderBean(shopBean, buyerBean);
                             comFirmOrderBeanList.add(comFirmOrderBean);
@@ -203,6 +198,7 @@ public class ShoppingCartActivity extends BaseActivity implements CustomTitlebar
                         if (buyerBean != null) {
                             buyerBean.addInCommodityNum(1);
                             buyerBean.addInTotalMoney(currentPrice);
+                            buyerBean.setPostage(Double.parseDouble(((GoodsBean) iCartItem).getGpostage()));
                         }
                     }
                 } else {

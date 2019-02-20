@@ -40,14 +40,13 @@ public class AgreementActivity extends BaseActivity implements CustomTitlebar.Ti
     @Override
     public void initView() {
         ct_agreement.setAction(this);
-
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             url = getIntent().getStringExtra("agreementurl");
             title = getIntent().getStringExtra("agreementtitle");
         }
         ct_agreement.setTilte(title);
-        xwebview_agreement.loadUrl(url);
+        xwebview_agreement.loadUrl("https" + url);
     }
 
     /**

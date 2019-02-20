@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+import com.yaer.remittance.base.BaseSimpleViewHolder;
 import com.liji.circleimageview.CircleImageView;
 import com.yaer.remittance.R;
 import com.yaer.remittance.bean.OrderListBean;
@@ -24,7 +24,7 @@ import java.util.List;
  * Created by geyifeng on 2017/6/3.
  */
 
-public class AllSellerOrderAdapter extends BaseQuickAdapter<OrderListBean, BaseViewHolder> {
+public class AllSellerOrderAdapter extends BaseQuickAdapter<OrderListBean, BaseSimpleViewHolder> {
     ArrayList<String> list;
     String Images;
     List<OrderListBean.ShoplistBean> shoplistBeanList = new ArrayList<>();
@@ -52,7 +52,7 @@ public class AllSellerOrderAdapter extends BaseQuickAdapter<OrderListBean, BaseV
 
     /*订单状态--0(待付款)1(代发货)2(待收货)3（待评价）4已取消 5申请退款6已关闭*/
     @Override
-    protected void convert(BaseViewHolder helper, OrderListBean item) {
+    protected void convert(BaseSimpleViewHolder helper, OrderListBean item) {
         helper.setText(R.id.tv_shop_order_name, item.getOtime());
         ImageView logoview = helper.getView(R.id.iv_commodity_order_image);
         TextView order_ostatus = helper.getView(R.id.tv_all_order_ostatus);
@@ -152,9 +152,9 @@ public class AllSellerOrderAdapter extends BaseQuickAdapter<OrderListBean, BaseV
         if (item.getShoplist() != null && item.getShoplist().size() > 0)
             addGoodsItem((FlowLayout) helper.getView(R.id.fl), item.getShoplist().get(0).getGoodslist());
         if (item.getShoplist() != null && item.getShoplist().size() > 0) {//设置店铺相关的信息
-            OrderListBean.ShoplistBean shoplistBean = item.getShoplist().get(0);
-            helper.setText(R.id.tv_shop_order_name, shoplistBean.getSname());
-            Glide.with(mContext).load(shoplistBean.getSimg()).fitCenter().into((ImageView) helper.getView(R.id.civ_order_all_image));//店铺头像
+            //OrderListBean.ShoplistBean shoplistBean = item.getShoplist().get(0);
+            helper.setText(R.id.tv_shop_order_name,item.getBuyers().getUname());// shoplistBean.getSname()
+            Glide.with(mContext).load(item.getBuyers().getUicon()).fitCenter().into((ImageView) helper.getView(R.id.civ_order_all_image));//店铺头像
         }
         /*  *//*绑定订单信息*//*
         shoplistBeanList = item.getShoplist();

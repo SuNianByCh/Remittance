@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_setting_promotion_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        app:left_button_image="@drawable/return_left"
+        app:title_backgrounds="@color/main_tone"
+        app:title_text="推广"
+        app:title_textColor="@color/text_1_color"
+        app:title_textSize="18sp" />
+
+    <RelativeLayout
+        android:id="@+id/rl_shopingcount"
+        android:layout_width="match_parent"
+        android:padding="@dimen/hw_10_dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ct_setting_promotion_service">
+
+        <ImageView
+            android:id="@+id/iv_setting_service"
+            android:layout_width="@dimen/hw_100_dp"
+            android:layout_height="@dimen/hw_100_dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/secces_defaullt"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:id="@+id/llGoodInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@+id/iv_setting_service"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:visibility="visible"
+            android:weightSum="4">
+
+            <TextView
+                android:id="@+id/tv_setting_servicetv_gname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:gravity="center|left"
+                android:singleLine="true"
+                android:text="乾隆玉溪"
+                android:textColor="@color/text_1_color"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_glatestbid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:gravity="center|left"
+                android:singleLine="true"
+                android:text="拍品and商品"
+                android:textColor="@color/text_1_color"
+                android:textSize="14sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/hw_5_dp">
+
+                <TextView
+                    android:id="@+id/tv_price_tiel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="当前价格："
+                    android:textColor="@color/text_1_color"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_setting_servicetv_pricenewmayer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/tv_price_tiel"
+                    android:text="￥50000"
+                    android:textColor="@color/text_1_color"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/hw_5_dp">
+
+                <TextView
+                    android:id="@+id/tv_danwei_tiel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="剩余数量："
+                    android:textColor="@color/text_1_color"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_setting_servicetv_shop_danwei"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/tv_danwei_tiel"
+                    android:text="1件"
+                    android:textColor="@color/text_1_color"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/linen" />
+
+    <RelativeLayout
+        android:id="@+id/rl_setting_promotion_purchase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_shopingcount"
+        android:background="@drawable/selector_bottom_border"
+        android:textColorHint="@android:color/darker_gray">
+
+        <TextView
+            android:id="@+id/tv_purchase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/hw_30_dp"
+            android:hint="请选择服务"
+            android:textColor="@color/black" />
+
+        <TextView
+            style="@style/TextBottomTheme"
+            android:text="服务"
+            android:textColor="@color/my_order" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_setting_promotion_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_setting_promotion_purchase"
+        android:layout_marginLeft="@dimen/hw_10_dp"
+        android:layout_marginRight="@dimen/hw_10_dp"
+        android:layout_marginTop="@dimen/hw_10_dp"
+        android:background="@drawable/extension_angle_button"
+        android:gravity="center"
+        android:padding="@dimen/hw_10_dp"
+        android:text="确定"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+</RelativeLayout>

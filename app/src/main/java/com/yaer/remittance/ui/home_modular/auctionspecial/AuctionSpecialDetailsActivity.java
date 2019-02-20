@@ -1,5 +1,6 @@
 package com.yaer.remittance.ui.home_modular.auctionspecial;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -8,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -19,8 +22,12 @@ import com.yaer.remittance.api.Constant;
 import com.yaer.remittance.base.BaseActivity;
 import com.yaer.remittance.base.BaseMode;
 import com.yaer.remittance.bean.AuctionSpecialDetailsBean;
+import com.yaer.remittance.bean.ZeroElementbeat;
 import com.yaer.remittance.callback.JsonCallback;
 import com.yaer.remittance.ui.adapter.UserSpecialDetailsAdapter;
+import com.yaer.remittance.ui.home_modular.auctiondetails.AuctionDetailsActivity;
+import com.yaer.remittance.ui.login_modular.LoginActivity;
+import com.yaer.remittance.utils.AppUtile;
 import com.yaer.remittance.utils.NetworkUtils;
 import com.yaer.remittance.utils.ToastUtils;
 import com.yaer.remittance.view.CustomTitlebar;
@@ -84,11 +91,38 @@ public class AuctionSpecialDetailsActivity extends BaseActivity implements Custo
         notDataView = getLayoutInflater().inflate(R.layout.empty_view, (ViewGroup) rv_auction_special_list.getParent(), false);
         errorView = getLayoutInflater().inflate(R.layout.error_view, (ViewGroup) rv_auction_special_list.getParent(), false);
         rv_auction_special_list.setLayoutManager(new LinearLayoutManager(this));
+       // auction_list_refreshLayout.setEnableRefresh(false);
+        auction_list_refreshLayout.setEnableLoadMore(false);
         SelectAuctionSpecialList(page, pagesize);
         auctionSpecialListAdapter = new UserSpecialDetailsAdapter();
         rv_auction_special_list.setAdapter(auctionSpecialListAdapter);
+        final Bundle bundle = new Bundle();
+        rv_auction_special_list.addOnItemTouchListener(new OnItemChildClickListener() {
+            @Override
+            public void onSimpleItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            }
+
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                int itemViewId = view.getId();
+                AuctionSpecialDetailsBean auctionSpecialDetailsBean = auctionSpecialListAdapter.getData().get(position);
+                switch (itemViewId) {
+                    /*进入拍品详情*/
+                    case R.id.ll_special_list:
+                        if (!NetworkUtils.isNetworkConnected(AuctionSpecialDetailsActivity.this)) {
+                            ToastUtils.showToast("当前无网络请链接网络");
+                        } else if (AppUtile.getTicket(AuctionSpecialDetailsActivity.this).equals("")) {
+                            goToActivity(LoginActivity.class, "type", "1");
+                        } else {
+                            bundle.putString("gidshopping", String.valueOf(auctionSpecialDetailsBean.getGid()));
+                            goToActivity(AuctionDetailsActivity.class, bundle);
+                        }
+                        break;
+                }
+            }
+        });
         showtext();
     }
+
     @Override
     public void initData() {
     }
@@ -143,7 +177,7 @@ public class AuctionSpecialDetailsActivity extends BaseActivity implements Custo
                                 if (auctionspecialList.size() == 0) {
                                     auctionSpecialListAdapter.setEmptyView(notDataView);
                                     iv_paimai.setVisibility(View.INVISIBLE);
-                                }else{
+                                } else {
                                     iv_paimai.setVisibility(View.VISIBLE);
                                     Glide.with(AuctionSpecialDetailsActivity.this).load(seimg).fitCenter().into(iv_paimai);//商品图片
                                 }

@@ -217,7 +217,6 @@ public class AuctionGoodActivity extends BaseActivity implements ImagePickerAdap
                 if (isChecked) {
                     /*同步到拍场*/
                     isaddress = "1";
-                    // showDelDialog();
                 } else {
                     /*不同步到拍场*/
                     isaddress = "0";
@@ -491,7 +490,7 @@ public class AuctionGoodActivity extends BaseActivity implements ImagePickerAdap
                     .setContentTextSize(20)//设置滚轮文字大小
                     .setDividerColor(Color.LTGRAY)//设置分割线的颜色
                     .setTextColorOut(Color.BLACK)
-                    .setTextColorCenter(Color.BLUE)
+                    .setTextColorCenter(Color.GRAY)
                     .setSelectOptions(0)//默认选中项
                     .setBgColor(Color.WHITE)
                     .setTitleBgColor(Color.WHITE)
@@ -514,7 +513,7 @@ public class AuctionGoodActivity extends BaseActivity implements ImagePickerAdap
 
 
     private void uploadSync() {
-        selImageList = adapter.getImages();//by da ben   姑奶奶上传改的这里,你改的就是拍品的
+        selImageList = adapter.getImages();//by da ben
         if (null == selImageList || selImageList.size() == 0) {
             return;
         } // 上传文件

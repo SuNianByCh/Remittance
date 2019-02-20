@@ -229,6 +229,11 @@
             android:name=".ui.user_modular.user_seller.auctionmanagement.EditedAuctionActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
+        <!-- 设置推广服务 -->
+        <activity
+            android:name=".ui.user_modular.user_seller.auctionmanagement.SettingPromotionServiceActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
         <!-- 编辑商品 -->
         <activity
             android:name=".ui.user_modular.user_seller.auctionmanagement.EditedCommodityActivity"
@@ -577,7 +582,11 @@
             android:name=".ui.user_modular.user_buyer.coupons.CouponSellerActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-
+        <!--我的优惠券-->
+        <activity
+            android:name="com.yaer.remittance.ui.user_modular.user_buyer.coupons.MyAddcouponActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
         <!--添加优惠券-->
         <activity
             android:name=".ui.user_modular.user_buyer.coupons.AddCouponActivity"
@@ -587,6 +596,16 @@
         <!--积分-->
         <activity
             android:name=".ui.user_modular.user_buyer.integral.UserIntegralActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--卖家积分-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.integral.UserSellerIntegralActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--积分兑换推广位-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.integral.UserSellerExtensionDetailsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <!--积分规则-->
@@ -625,9 +644,14 @@
             android:name=".ui.user_modular.user_buyer.balance.BondActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-        <!--余额明细-->
+        <!--买家余额明细-->
         <activity
             android:name=".ui.user_modular.user_buyer.balance.FineBalanceActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--卖家余额明细-->
+        <activity
+            android:name=".ui.user_modular.user_buyer.balance.SellerFineBalanceActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <!--管理提现账号-->

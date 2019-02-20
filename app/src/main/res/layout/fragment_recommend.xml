@@ -38,13 +38,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:orientation="vertical">
             <!--Babnner-->
             <com.youth.banner.Banner
                 android:id="@+id/recommend_banner"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
+                android:background="@drawable/secces_defaullt"
                 app:indicator_drawable_selected="@drawable/point_focured"
                 app:indicator_drawable_unselected="@drawable/point_nomal"
                 app:indicator_height="2dp"
@@ -52,7 +52,7 @@
                 app:indicator_width="20dp" />
             <!--三块分类-->
             <!--
-                            <LinearLayout
+             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -285,10 +285,6 @@
                     android:layout_marginLeft="@dimen/hw_10_dp"
                     android:background="@drawable/title_right" />
             </LinearLayout>
-
-            <!--小姐姐，你的app用着的时候 不卡吗？？？？？？？？？？/不卡
-            你手机有点好哦？，我测试了很多款手机，软件不卡 ，我是指在界面切换的时候，也还好-->
-
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_optimization"
                 android:layout_width="match_parent"

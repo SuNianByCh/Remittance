@@ -1,11 +1,15 @@
 package com.yaer.remittance.ui.home_modular.headfragment;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -16,9 +20,12 @@ import com.yaer.remittance.api.AppApi;
 import com.yaer.remittance.api.Constant;
 import com.yaer.remittance.base.BaseLazyFragment;
 import com.yaer.remittance.base.BaseMode;
+import com.yaer.remittance.bean.GetMainBean;
 import com.yaer.remittance.bean.NewGoodsBean;
 import com.yaer.remittance.callback.JsonCallback;
 import com.yaer.remittance.ui.adapter.NewproducItemAdapter;
+import com.yaer.remittance.ui.home_modular.auctiondetails.AuctionDetailsActivity;
+import com.yaer.remittance.ui.login_modular.LoginActivity;
 import com.yaer.remittance.utils.AppUtile;
 import com.yaer.remittance.utils.NetworkUtils;
 import com.yaer.remittance.utils.ToastUtils;
@@ -55,6 +62,11 @@ public class NewproducFragment extends BaseLazyFragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        refreshLayout.autoRefresh();
+    }
+    @Override
     protected void initView() {
         notDataView = getLayoutInflater().inflate(R.layout.empty_view, (ViewGroup) rv_new_produc.getParent(), false);
         errorView = getLayoutInflater().inflate(R.layout.error_view, (ViewGroup) rv_new_produc.getParent(), false);
@@ -62,6 +74,31 @@ public class NewproducFragment extends BaseLazyFragment {
         newproducItemAdapter = new NewproducItemAdapter();
         rv_new_produc.setAdapter(newproducItemAdapter);
         GetNewGoods(page, pagesize);
+        final Bundle bundle = new Bundle();
+        /*为你优选*/
+        rv_new_produc.addOnItemTouchListener(new OnItemChildClickListener() {
+            @Override
+            public void onSimpleItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            }
+
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                int itemViewId = view.getId();
+                NewGoodsBean newGoodsBean = newproducItemAdapter.getData().get(position);
+                switch (itemViewId) {
+                    /*进入拍品详情*/
+                    case R.id.ll_search_lot_product:
+                        if (!NetworkUtils.isNetworkConnected(mActivity)) {
+                            ToastUtils.showToast("当前无网络请链接网络");
+                        } else if (AppUtile.getTicket(mActivity).equals("")) {
+                            goToActivity(LoginActivity.class, "type", "1");
+                        } else {
+                            bundle.putString("gidshopping", String.valueOf(newGoodsBean.getGid()));
+                            goToActivity(AuctionDetailsActivity.class, bundle);
+                        }
+                        break;
+                }
+            }
+        });
         showtext();
     }
 
@@ -77,7 +114,7 @@ public class NewproducFragment extends BaseLazyFragment {
                         refreshlayout.finishRefresh();
                         refreshlayout.resetNoMoreData();//恢复上拉状态
                     }
-                }, 2000);
+                }, 500);
             }
 
             @Override
@@ -89,7 +126,7 @@ public class NewproducFragment extends BaseLazyFragment {
                         GetNewGoods(page, pagesize);
                         refreshlayout.finishLoadMore();
                     }
-                }, 1000);
+                }, 500);
             }
         });
     }
@@ -122,7 +159,6 @@ public class NewproducFragment extends BaseLazyFragment {
                                 } else if (page > 1 && Quserylist != null && Quserylist.size() > 0) {
                                     newproducItemAdapter.addData(Quserylist);
                                 } else {
-                                    ToastUtils.showToast("数据全部加载完毕");
                                     refreshLayout.finishLoadMoreWithNoMoreData();
                                 }
                             } else {

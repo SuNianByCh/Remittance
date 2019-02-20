@@ -9,16 +9,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-        <!-- <com.yaer.remittance.view.CustomTitlebar
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:background="@color/main_tone"
-             android:id="@+id/ct_leak_hunting"
-             app:left_button_image="@drawable/return_left"
-             app:title_backgrounds="@color/main_tone"
-             app:title_text="捡漏"
-             app:title_textColor="@color/text_1_color"
-             app:title_textSize="18sp" />-->
+
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
@@ -30,33 +21,17 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:titleEnabled="false">
 
-          <!--  <ImageView
-                android:src="@drawable/yczb"
-                android:id="@+id/logo"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="?android:actionBarSize"
-                android:contentDescription="@null"
-                android:fitsSystemWindows="true"
-                android:scaleType="fitXY"
-                app:layout_collapseMode="parallax"
-                app:layout_collapseParallaxMultiplier="0.6" />-->
-
             <com.youth.banner.Banner
                 android:id="@+id/banner_leak"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="180dp"
                 android:layout_marginTop="?android:actionBarSize"
+                android:background="@drawable/secces_defaullt"
                 android:contentDescription="@null"
                 android:fitsSystemWindows="true"
-                app:layout_collapseMode="parallax"
-                app:layout_collapseParallaxMultiplier="0.6"
-                android:background="@drawable/secces_defaullt"
                 app:indicator_drawable_selected="@drawable/point_focured"
                 app:indicator_drawable_unselected="@drawable/point_nomal"
-                app:indicator_height="2dp"
-                app:indicator_margin="5dp"
-                app:indicator_width="20dp" />
+                app:layout_collapseMode="parallax" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -85,10 +60,10 @@
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            app:tabIndicatorFullWidth="true"
             android:layout_gravity="center"
             app:tabBackground="@drawable/tab_background"
             app:tabGravity="center"
+            app:tabIndicatorFullWidth="true"
             app:tabIndicatorHeight="0dp"
             app:tabMinWidth="80dp"
             app:tabMode="scrollable"

@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+import com.yaer.remittance.base.BaseSimpleViewHolder;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
@@ -26,7 +26,9 @@ import com.yaer.remittance.base.BaseMode;
 import com.yaer.remittance.bean.SelectOrderInfoBean;
 import com.yaer.remittance.callback.JsonCallback;
 import com.yaer.remittance.payment.PayDialogFragment;
+import com.yaer.remittance.ui.home_modular.auctiondetails.AuctionDetailsActivity;
 import com.yaer.remittance.ui.login_modular.LoginActivity;
+import com.yaer.remittance.ui.shopping_modular.commodity.CommodityDetailsActivity;
 import com.yaer.remittance.ui.shopping_modular.commodity.ConfirmationOrderActivity;
 import com.yaer.remittance.ui.shopping_modular.shoppingcart.ConfirmOrderActivity;
 import com.yaer.remittance.ui.user_modular.user_buyer.logistics.LogisticsActivity;
@@ -81,8 +83,8 @@ public class OrderDetailsActivity extends BaseActivity implements CustomTitlebar
   /*  @BindView(R.id.tv_detils_NumS)
     TextView tv_detils_NumS;*/
     /*订单商品价格*/
-    @BindView(R.id.tv_shop_detils_price)
-    TextView tv_shop_detils_price;
+    /*@BindView(R.id.tv_shop_detils_price)
+    TextView tv_shop_detils_price;*/
     /*订单商品运费*/
     @BindView(R.id.tv_server_detils_price)
     TextView tv_server_detils_price;
@@ -200,7 +202,7 @@ public class OrderDetailsActivity extends BaseActivity implements CustomTitlebar
                         break;
                     /*审核中*/
                     case R.id.tv_refund_auditing:
-                       Intent intent = new Intent(OrderDetailsActivity.this, RefundReturnDetailsActivity.class);
+                        Intent intent = new Intent(OrderDetailsActivity.this, RefundReturnDetailsActivity.class);
                         intent.putExtra("rid", goodslistBeanlist.getRid());
                         startActivity(intent);
                         break;
@@ -215,6 +217,19 @@ public class OrderDetailsActivity extends BaseActivity implements CustomTitlebar
                         Intent intent2 = new Intent(OrderDetailsActivity.this, RefundReturnDetailsActivity.class);
                         intent2.putExtra("rid", goodslistBeanlist.getRid());
                         startActivity(intent2);
+                        break;
+                    /*订单根据id进入商品、拍品详情*/
+                    case R.id.iv_commodity_order_image:
+                        if (goodslistBeanlist.getIsauction() == 0) {
+                            Intent intent4 = new Intent(OrderDetailsActivity.this, CommodityDetailsActivity.class);
+                            intent4.putExtra("gidshopping", String.valueOf(goodslistBeanlist.getGid()));
+                            startActivity(intent4);
+                        } else {
+                            Intent intent3 = new Intent(OrderDetailsActivity.this, AuctionDetailsActivity.class);
+                            intent3.putExtra("gidshopping", String.valueOf(goodslistBeanlist.getGid()));
+                            startActivity(intent3);
+                        }
+
                         break;
                 }
             }
@@ -237,6 +252,7 @@ public class OrderDetailsActivity extends BaseActivity implements CustomTitlebar
     private String otrackingname;
     private String otrackingnumber;
     private int gid;//商品id
+    private String opostage;//邮费
 
     public void Selectorderinfo(String ordernumber) {
         OkGo.<BaseMode<SelectOrderInfoBean>>post(AppApi.BASE_URL + AppApi.SELECTORDERINFO)
@@ -248,9 +264,9 @@ public class OrderDetailsActivity extends BaseActivity implements CustomTitlebar
                         Log.e("text", "获取店铺信息: " + response.body().code);
                         if (response.body().code.equals(Constant.SUEECECODE)) {
                             /*订单收货地址*/
-                            tv_order_details_name.setText(response.body().result.getAddressInfoModel().getAname().toString());
-                            tv_order_details_phone.setText(response.body().result.getAddressInfoModel().getAphone().toString());
-                            tv_order_details_address.setText(response.body().result.getAddressInfoModel().getAcity().toString() + response.body().result.getAddressInfoModel().getAdesc().toString());
+                            tv_order_details_name.setText(""+response.body().result.getAddressInfoModel().getAname());
+                            tv_order_details_phone.setText(""+response.body().result.getAddressInfoModel().getAphone());
+                            tv_order_details_address.setText(""+response.body().result.getAddressInfoModel().getAcity().toString() + response.body().result.getAddressInfoModel().getAdesc().toString());
                             /*订单信息*/
                             dd_detiles_order_hao.setText(response.body().result.getOnumber().toString());//订单编号
                             tv_order_time.setText(SystemUtil.stampToDate(response.body().result.getOtime().toString()));//下单时间
@@ -264,16 +280,18 @@ public class OrderDetailsActivity extends BaseActivity implements CustomTitlebar
                                 sname = response.body().result.getShoplist().get(i).getSname().toString();//店铺名称
                                 shopid = response.body().result.getShoplist().get(i).getSid();//店铺id
                                 simg = response.body().result.getShoplist().get(i).getSimg();//店铺图片
-
                                 oid = response.body().result.getShoplist().get(i).getOid();//订单id
                                 sid = response.body().result.getShoplist().get(i).getSid();//店铺id
                               /*  gname = response.body().result.getShoplist().get(i).getGoodslist().get(i).getGname().toString();//商品名称
                                 gmoney = response.body().result.getShoplist().get(i).getGoodslist().get(i).getGmoney();//商品金额
                                 ognumber = response.body().result.getShoplist().get(i).getGoodslist().get(i).getOgnumber();//商品购买数量
                                 gimg = response.body().result.getShoplist().get(i).getGoodslist().get(i).getGimg();//商品图片*/
+                                gmoney = response.body().result.getShoplist().get(i).getGoodslist().get(i).getGmoney();//商品金额
                                 goodslistBeanList = response.body().result.getShoplist().get(i).getGoodslist();
                                 gid = goodslistBeanList.get(i).getGid();
+                                opostage = response.body().result.getShoplist().get(i).getOpostage();//邮费
                             }
+                            tv_server_detils_price.setText("￥" + opostage);
                             orderDetailsAdapter.setNewData(goodslistBeanList);
 
                             //用逗号将字符串分开，得到字符串数组
@@ -282,7 +300,7 @@ public class OrderDetailsActivity extends BaseActivity implements CustomTitlebar
                            /* tv_detils_ItemChild.setText(gname);
                             tv_detils_PriceNew.setText("￥" + Ototalvalue);*/
                             // tv_detils_NumS.setText("x" + ognumber);
-                            tv_shop_detils_price.setText("￥" + AmountUtil.priceNum(gmoney));
+                            //tv_shop_detils_price.setText("￥" + AmountUtil.priceNum(gmoney));
                             tv_detils_total_money.setText("￥" + Ototalvalue);
                             oststuus = response.body().result.getOstatus();
                             if (oststuus == 0) {
@@ -580,6 +598,7 @@ public class OrderDetailsActivity extends BaseActivity implements CustomTitlebar
                         super.onError(response);
                         ToastUtils.showShort(OrderDetailsActivity.this, response.body().msg);
                     }
+
                     @Override
                     public void onFinish() {
                         super.onFinish();
@@ -635,14 +654,14 @@ public class OrderDetailsActivity extends BaseActivity implements CustomTitlebar
         return super.onKeyDown(keyCode, event);
     }
 
-    class OrderDetailsAdapter extends BaseQuickAdapter<SelectOrderInfoBean.ShoplistBean.GoodslistBean, BaseViewHolder> {
+    class OrderDetailsAdapter extends BaseQuickAdapter<SelectOrderInfoBean.ShoplistBean.GoodslistBean, BaseSimpleViewHolder> {
         public OrderDetailsAdapter() {
             super(R.layout.item_order_details);
         }
 
         /*订单状态--0(待付款)1(代发货)2(待收货)3（待评价）4已取消 5申请退款6已关闭*/
         @Override
-        protected void convert(BaseViewHolder helper, SelectOrderInfoBean.ShoplistBean.GoodslistBean item) {
+        protected void convert(BaseSimpleViewHolder helper, SelectOrderInfoBean.ShoplistBean.GoodslistBean item) {
             SelectOrderInfoBean selectOrderInfoBean = new SelectOrderInfoBean();
             helper.setText(R.id.tv_allorder_gname, item.getGname());
             helper.setText(R.id.tvPriceNewmayer, "￥" + AmountUtil.priceNum(item.getGmoney()));
@@ -735,6 +754,7 @@ public class OrderDetailsActivity extends BaseActivity implements CustomTitlebar
             helper.addOnClickListener(R.id.tv_refund_auditing);//审核中。。
             helper.addOnClickListener(R.id.tv_refund_return_adopt);//通过
             helper.addOnClickListener(R.id.tv_refund_return_refuse);// 拒绝
+            helper.addOnClickListener(R.id.iv_commodity_order_image);//商品详情
         }
     }
 }

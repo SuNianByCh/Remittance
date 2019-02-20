@@ -220,8 +220,6 @@
                         android:text="保证金"
                         android:textColor="@color/my_order" />
                 </LinearLayout>
-
-
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

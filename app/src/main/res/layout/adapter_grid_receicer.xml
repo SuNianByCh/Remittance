@@ -31,8 +31,6 @@
                     android:layout_height="163dp"
                     android:scaleType="centerCrop"
                     android:src="@mipmap/imagedetail_defaullt"
-                    app:riv_corner_radius_bottom_left="@dimen/dp_10"
-                    app:riv_corner_radius_bottom_right="@dimen/dp_10"
                     app:riv_corner_radius_top_left="@dimen/dp_10"
                     app:riv_corner_radius_top_right="@dimen/dp_10"
                     app:riv_mutate_background="true"

@@ -122,13 +122,13 @@ public class GuideActivity extends BaseActivity implements ViewPager.OnPageChang
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            exit();
+            exits();
             return true;
         }
         return super.onKeyDown(keyCode, event);
     }
 
-    private void exit() {
+    private void exits() {
         if ((System.currentTimeMillis() - mExitTime) > 2000) {
             Toast.makeText(getApplicationContext(), "再次点击退出", Toast.LENGTH_SHORT).show();
             mExitTime = System.currentTimeMillis();

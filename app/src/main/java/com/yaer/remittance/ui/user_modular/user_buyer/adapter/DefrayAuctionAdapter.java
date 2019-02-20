@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+import com.yaer.remittance.base.BaseSimpleViewHolder;
 import com.yaer.remittance.R;
 import com.yaer.remittance.bean.AtAuctionBean;
 import com.yaer.remittance.utils.SystemUtil;
@@ -17,7 +17,7 @@ import java.util.List;
  * 待支付
  */
 
-public class DefrayAuctionAdapter extends BaseQuickAdapter<AtAuctionBean, BaseViewHolder> {
+public class DefrayAuctionAdapter extends BaseQuickAdapter<AtAuctionBean, BaseSimpleViewHolder> {
     ArrayList<String> list;
     String Images;
     List<AtAuctionBean.GoodsInfoModelBean> goodsInfoModelBeanList;
@@ -26,7 +26,7 @@ public class DefrayAuctionAdapter extends BaseQuickAdapter<AtAuctionBean, BaseVi
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, AtAuctionBean item) {
+    protected void convert(BaseSimpleViewHolder helper, AtAuctionBean item) {
        /* goodsInfoModelBeanList.add(item.getGoodsInfoModel());
             if (goodsInfoModelBeanList.size()==0){
                 return;

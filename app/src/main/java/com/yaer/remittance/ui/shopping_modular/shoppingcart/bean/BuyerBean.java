@@ -2,14 +2,15 @@ package com.yaer.remittance.ui.shopping_modular.shoppingcart.bean;
 
 import java.io.Serializable;
 
-public class BuyerBean implements Serializable{
+public class BuyerBean implements Serializable {
     //留言
     private String leaving;
     //商品数量
     private int commodityNum = 0;
     //总计金额
     private double totalMoney = 0d;
-    private double postage=0d;
+    //邮费
+    private double postage;
 
     public double getPostage() {
         return postage;

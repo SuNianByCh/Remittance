@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.liji.circleimageview.CircleImageView;
 import com.yaer.remittance.BaseApplication;
 import com.yaer.remittance.R;
 import com.yaer.remittance.ui.shopping_modular.shoppingcart.bean.BuyerBean;
@@ -22,7 +23,7 @@ import com.yaer.remittance.view.MyEditText;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConfirmOrderAdapter extends RecyclerView.Adapter{
+public class ConfirmOrderAdapter extends RecyclerView.Adapter {
     private static final int TYPE_SHOP_HEAD = 1;
     private static final int TYPE_SHOP_GOODS = 2;
     private static final int TYPE_SHOP_FOOT = 3;
@@ -72,7 +73,7 @@ public class ConfirmOrderAdapter extends RecyclerView.Adapter{
             //店铺信息
             HeadViewHolder headViewHolder = (HeadViewHolder) viewHolder;
             ShopBean shopBean = (ShopBean) data.get(position);
-            //图片你是怎么显示的呢？glide???,这个就是ok?
+            //图片你是怎么显示的呢？
             Glide.with(BaseApplication.getInstance()).load(shopBean.getShop_simg()).fitCenter().into(headViewHolder.shopImage);//店铺头像
             headViewHolder.shopName.setText(shopBean.getShop_name());
 
@@ -81,35 +82,36 @@ public class ConfirmOrderAdapter extends RecyclerView.Adapter{
             GoodsBean goodsBean = (GoodsBean) data.get(position);
             goodsViewHolder.goodsName.setText(goodsBean.getGoods_name());
             goodsViewHolder.goodsPrice.setText(String.valueOf(goodsBean.getGoods_price()));
-            goodsViewHolder.goodsNum.setText("x"+String.valueOf(goodsBean.getGoods_amount()));
+            goodsViewHolder.goodsNum.setText("x" + String.valueOf(goodsBean.getGoods_amount()));
             list = new ArrayList<>();
             list.add(goodsBean.getGimg());
             for (int i = 0; i < list.size(); i++) {
                 Images = list.get(i);
             }
-            String[] arrayStr = new String[]{};// 字符数组
+            String[] arrayStr = null;// 字符数组
             arrayStr = Images.split(",");// 字符串转字符数组
             Glide.with(BaseApplication.getInstance()).load(arrayStr[0]).fitCenter().into(goodsViewHolder.goodsImage);//商品图片
         } else {
             //这里是后面的尾巴，暂时不管
-            final BuyerBean buyerBean = (BuyerBean)data.get(position);
-            FootViewHolder footViewHolder = (FootViewHolder)viewHolder;
+            final BuyerBean buyerBean = (BuyerBean) data.get(position);
+            FootViewHolder footViewHolder = (FootViewHolder) viewHolder;
             footViewHolder.leaving.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
                 }
+
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-
                 }
+
                 @Override
                 public void afterTextChanged(Editable s) {
                     buyerBean.setLeaving(s.toString());
                 }
             });
             footViewHolder.totalNum.setText(String.format("共%d件商品", buyerBean.getCommodityNum()));
-            footViewHolder.totalPrice.setText(String.format(footViewHolder.itemView.getContext().getResources().getString(R.string.rmb_X),buyerBean.getTotalMoney()));
+            footViewHolder.totalPrice.setText(String.format(footViewHolder.itemView.getContext().getResources().getString(R.string.rmb_X), (buyerBean.getTotalMoney() + buyerBean.getPostage())));
+            footViewHolder.totaPostage.setText("" + (int) buyerBean.getPostage());
         }
     }
 
@@ -128,7 +130,7 @@ public class ConfirmOrderAdapter extends RecyclerView.Adapter{
     @Override
     public int getItemViewType(int position) {
         int temp = 0;
-        for (ComFirmOrderBean comFirmOrderBean : comFirmOrderBeanList ) {
+        for (ComFirmOrderBean comFirmOrderBean : comFirmOrderBeanList) {
             temp += 1;//这是头
             if (temp > position) {
                 return TYPE_SHOP_HEAD;
@@ -147,11 +149,10 @@ public class ConfirmOrderAdapter extends RecyclerView.Adapter{
     }
 
     //怎么判断是什么类型的呢什么类型，这里面index是0到size-1，没有理解。等我想想，你看到代码就知道了恩
-    private
-
-    class HeadViewHolder extends RecyclerView.ViewHolder {
-        private ImageView shopImage;
+    private class HeadViewHolder extends RecyclerView.ViewHolder {
+        private CircleImageView shopImage;
         private TextView shopName;
+
         //定义控件变量
         HeadViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -165,6 +166,7 @@ public class ConfirmOrderAdapter extends RecyclerView.Adapter{
         private TextView goodsName;
         private TextView goodsPrice;
         private TextView goodsNum;
+
         //定义控件变量
         GoodsViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -180,11 +182,14 @@ public class ConfirmOrderAdapter extends RecyclerView.Adapter{
         private MyEditText leaving;
         private TextView totalNum;
         private TextView totalPrice;
-        FootViewHolder(@NonNull View itemView) {
+        private TextView totaPostage;
+
+        private FootViewHolder(@NonNull View itemView) {
             super(itemView);
             leaving = itemView.findViewById(R.id.ev_confirm_item_foot_leaving);
             totalNum = itemView.findViewById(R.id.tv_confirm_item_foot_total_num);
             totalPrice = itemView.findViewById(R.id.tv_confirm_item_foot_total_price);
+            totaPostage = itemView.findViewById(R.id.tv_confirm_item_postage);
         }
     }
 }

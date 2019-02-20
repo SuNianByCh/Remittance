@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+import com.yaer.remittance.base.BaseSimpleViewHolder;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
@@ -589,14 +589,14 @@ public class OrderSellerDetailsActivity extends BaseActivity implements CustomTi
         return super.onKeyDown(keyCode, event);
     }
 
-    class OrderDetailsAdapter extends BaseQuickAdapter<SelectOrderInfoBean.ShoplistBean.GoodslistBean, BaseViewHolder> {
+    class OrderDetailsAdapter extends BaseQuickAdapter<SelectOrderInfoBean.ShoplistBean.GoodslistBean, BaseSimpleViewHolder> {
         public OrderDetailsAdapter() {
             super(R.layout.item_order_details);
         }
 
         /*订单状态--0(待付款)1(代发货)2(待收货)3（待评价）4已取消 5申请退款6已关闭*/
         @Override
-        protected void convert(BaseViewHolder helper, SelectOrderInfoBean.ShoplistBean.GoodslistBean item) {
+        protected void convert(BaseSimpleViewHolder helper, SelectOrderInfoBean.ShoplistBean.GoodslistBean item) {
             SelectOrderInfoBean selectOrderInfoBean = new SelectOrderInfoBean();
             helper.setText(R.id.tv_allorder_gname, item.getGname());
             helper.setText(R.id.tvPriceNewmayer, "￥" + AmountUtil.priceNum(item.getGmoney()));

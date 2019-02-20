@@ -1,5 +1,7 @@
 package com.yaer.remittance.ui.home_modular.auctiondetails;
 
+import com.yaer.remittance.utils.StringUtils;
+
 import java.util.List;
 
 public class selectGoodsInfoAutionBean {
@@ -68,6 +70,15 @@ public class selectGoodsInfoAutionBean {
     private int gstate;
     private int biddingnumber;
     private List<?> goodsCommentinfoModels;
+    private String autobidding;
+
+    public String getAutobidding() {
+        return autobidding;
+    }
+
+    public void setAutobidding(String autobidding) {
+        this.autobidding = autobidding;
+    }
 
     public int getIsautobidding() {
         return isautobidding;
@@ -109,7 +120,24 @@ public class selectGoodsInfoAutionBean {
         this.gisauction = gisauction;
     }
 
+    /**
+     * 是否可以原价购买
+     *
+     * @return
+     */
+    public boolean isBuyOrginPrice() {
+        try {
+            return Double.parseDouble(glatestbid) <= Double.parseDouble(gmoney);
+        } catch (Throwable e) {
+            return false;
+        }
+    }
+
     public String getGmoney() {
+        if (StringUtils.isEmpty(gmoney) || "".equals(gmoney.trim()) || "null".equals(gmoney.trim())) {
+            gmoney = "0";
+        }
+        gmoney = gmoney.trim();
         return gmoney;
     }
 
@@ -176,12 +204,13 @@ public class selectGoodsInfoAutionBean {
     public String getGstoptime() {
         return gstoptime;
     }
-    public long getGstoptimeLong(){
+
+    public long getGstoptimeLong() {
         try {
 
             return Long.parseLong(gstoptime);
-        }catch (Throwable e){
-            return  0;
+        } catch (Throwable e) {
+            return 0;
         }
     }
 
@@ -216,10 +245,11 @@ public class selectGoodsInfoAutionBean {
     public String getGauctiontime() {
         return gauctiontime;
     }
-    public  long getGauctiontimeLong(){
+
+    public long getGauctiontimeLong() {
         try {
-           return Long.parseLong(gauctiontime);
-        }catch (Throwable e){
+            return Long.parseLong(gauctiontime);
+        } catch (Throwable e) {
 
             return 0;
         }

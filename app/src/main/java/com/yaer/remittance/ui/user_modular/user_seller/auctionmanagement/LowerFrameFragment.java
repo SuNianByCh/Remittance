@@ -1,6 +1,7 @@
 package com.yaer.remittance.ui.user_modular.user_seller.auctionmanagement;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
+import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.base.Request;
@@ -60,11 +62,6 @@ public class LowerFrameFragment extends BaseLazyFragment {
     @Override
     public void onResume() {
         super.onResume();
-        //第一次进入演示刷新
-       /* if (isFirstEnter) {
-            isFirstEnter = false;
-            onsale_refreshLayout.autoRefresh();
-        }*/
         lower_refreshLayout.autoRefresh();
     }
 
@@ -97,14 +94,54 @@ public class LowerFrameFragment extends BaseLazyFragment {
                 getMyAuctionBean myAuctionBean = lowerFrameAdapter.getData().get(position);
                 gid = myAuctionBean.getGid();
                 gisauction = myAuctionBean.getGisauction();
+                Bundle bundle = new Bundle();
                 switch (itemViewId) {
+                    case R.id.tv_sale_edit:
+                        if (gisauction == 0) {
+                            bundle.putString("gid", String.valueOf(myAuctionBean.getGid()));//商品id
+                            bundle.putString("gpostage", myAuctionBean.getGpostage());//快递费
+                            bundle.putInt("gissoldout", myAuctionBean.getGissoldout());//是否上架下架
+                            bundle.putString("gauctiontime", myAuctionBean.getGauctiontime());//拍卖时间
+                            bundle.putString("gstoptime", myAuctionBean.getGstoptime());//结束拍卖时间
+                            bundle.putString("gaddprice", myAuctionBean.getGaddprice());//加价幅度
+                            bundle.putString("gstartingprice", myAuctionBean.getGstartingprice());//起拍价格
+                            bundle.putString("gvideo", myAuctionBean.getGvideo());//视频
+                            ArrayList<ImageItem> list = myAuctionBean.getImageItemList();
+                            bundle.putParcelableArrayList("imageitem", list);//图片
+                            bundle.putInt("gcid", myAuctionBean.getGcid());//
+                            bundle.putString("gdesc", myAuctionBean.getGdesc());//拍品解决
+                            bundle.putInt("gnumber", myAuctionBean.getGnumber());//库存
+                            bundle.putString("gmoney", myAuctionBean.getGmoney());//金额
+                            bundle.putInt("gisauction", myAuctionBean.getGisauction());//是否是商品还是拍品
+                            bundle.putString("gname", myAuctionBean.getGname());//商品名称
+                            goToActivity(EditedCommodityActivity.class, bundle);
+                        } else {
+                            bundle.putString("gid", String.valueOf(myAuctionBean.getGid()));//商品id
+                            bundle.putString("gpostage", myAuctionBean.getGpostage());//快递费
+                            bundle.putInt("gissoldout", myAuctionBean.getGissoldout());//是否上架下架
+                            bundle.putString("gauctiontime", myAuctionBean.getGauctiontime());//拍卖时间
+                            bundle.putString("gstoptime", myAuctionBean.getGstoptime());//结束拍卖时间
+                            bundle.putString("gaddprice", myAuctionBean.getGaddprice());//加价幅度
+                            bundle.putString("gstartingprice", myAuctionBean.getGstartingprice());//起拍价格
+                            bundle.putString("gvideo", myAuctionBean.getGvideo());//视频
+                            ArrayList<ImageItem> list = myAuctionBean.getImageItemList();
+                            bundle.putParcelableArrayList("imageitem", list);//图片
+                            bundle.putInt("gcid", myAuctionBean.getGcid());//
+                            bundle.putString("gdesc", myAuctionBean.getGdesc());//拍品解决
+                            bundle.putInt("gnumber", myAuctionBean.getGnumber());//库存
+                            bundle.putString("gmoney", myAuctionBean.getGmoney());//金额
+                            bundle.putInt("gisauction", myAuctionBean.getGisauction());//是否是商品还是拍品
+                            bundle.putString("gname", myAuctionBean.getGname());//商品名称
+                            goToActivity(EditedAuctionActivity.class, bundle);
+                        }
+                        break;
                     /*上架*/
                     case R.id.tv_sale_lower_frame:
                         showDelDialog(gid, position);
                         break;
                     /*查看商品详情*/
                     case R.id.ll_lower_frame:
-                        if (gisauction == 0) {
+                       /* if (gisauction == 0) {
                             Intent intent = new Intent(mActivity, CommodityDetailsActivity.class);
                             intent.putExtra("gidshopping", String.valueOf(gid));
                             mActivity.startActivity(intent);
@@ -112,7 +149,7 @@ public class LowerFrameFragment extends BaseLazyFragment {
                             Intent intent = new Intent(mActivity, AuctionDetailsActivity.class);
                             intent.putExtra("gidshopping", String.valueOf(gid));
                             mActivity.startActivity(intent);
-                        }
+                        }*/
                         break;
                 }
             }

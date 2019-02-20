@@ -4,6 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <com.yaer.remittance.view.CustomTitlebar
+        android:id="@+id/ct_coupon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_tone"
+        app:left_button_image="@drawable/return_left"
+        app:right_button_textColor="@color/text_1_color"
+        app:right_button_textSize="14sp"
+        app:title_backgrounds="@color/main_tone"
+        app:title_text="优惠券"
+        app:title_textColor="@color/text_1_color"
+        app:title_textSize="18sp" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_coupon"
         android:layout_width="match_parent"

@@ -124,7 +124,6 @@ public class PayDialogFragment extends DialogFragment implements PwdEditText.OnT
                                            delDialog.dismiss();
                                            if (payftype.equals("1")) {
                                                PayDialogFragment.this.dismiss();
-                                               PayDialogFragment.this.dismiss();
                                                Intent intent = new Intent(getActivity(), AllOrderActivity.class);
                                                intent.putExtra("type", "0");//去全部订单界面
                                                getActivity().startActivity(intent);

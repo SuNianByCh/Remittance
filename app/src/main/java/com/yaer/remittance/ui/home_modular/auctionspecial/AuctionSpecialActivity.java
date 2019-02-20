@@ -120,8 +120,8 @@ public class AuctionSpecialActivity extends BaseActivity implements CustomTitleb
                     .execute(new JsonCallback<BaseMode<List<SpecialEventBean>>>(this) {
                         @Override
                         public void onSuccess(Response<BaseMode<List<SpecialEventBean>>> response) {
-                            Log.e("text", "专家列表: " + response.body().code);
-                            Log.e("text", "专家列表: " + response.body().result);
+                            Log.e("text", "拍卖专场: " + response.body().code);
+                            Log.e("text", "拍卖专场: " + response.body().result);
                             if (response.body().code.equals(Constant.SUEECECODE)) {
                                 auctionItemList = response.body().result;
                                 if (auctionItemList.size() == 0) {
@@ -132,7 +132,6 @@ public class AuctionSpecialActivity extends BaseActivity implements CustomTitleb
                                 } else if (page > 1 && auctionItemList != null && auctionItemList.size() > 0) {
                                     auctionSpecialAdapter.addData(auctionItemList);
                                 } else {
-                                    ToastUtils.showToast("数据全部加载完毕");
                                     auction_special_refreshLayout.finishLoadMoreWithNoMoreData();
                                 }
                             } else {

@@ -57,7 +57,7 @@ public class AppPickerView {
                 .setDividerColor(0xFF24AD9D)
                 .setDate(selectedDate)// 如果不设置的话，默认是系统时间*/
                 .setRangDate(startDate, endDate)//起始终止年月日设定
-                .isCyclic(true)
+                .isCyclic(false)
                 .build();
         pvTime.show();
     }
@@ -106,7 +106,7 @@ public class AppPickerView {
                 .setDividerColor(0xFF24AD9D)
                 .setDate(selectedDate)// 如果不设置的话，默认是系统时间*/
                 .setRangDate(startDate, endDate)//起始终止年月日设定
-                .isCyclic(true)
+                .isCyclic(false)
                 .build();
         pvTime.show();
     }

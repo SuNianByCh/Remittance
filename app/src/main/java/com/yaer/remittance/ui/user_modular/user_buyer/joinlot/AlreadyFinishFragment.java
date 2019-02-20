@@ -63,10 +63,12 @@ public class AlreadyFinishFragment extends BaseLazyFragment {
         notDataView = getLayoutInflater().inflate(R.layout.empty_view, (ViewGroup) rv_at_auction.getParent(), false);
         errorView = getLayoutInflater().inflate(R.layout.error_view, (ViewGroup) rv_at_auction.getParent(), false);
         rv_at_auction.setLayoutManager(new GridLayoutManager(getActivity(), 1));
+        at_auction_refreshLayout.setEnableRefresh(false);
+        at_auction_refreshLayout.setEnableLoadMore(false);
         finishAuctionAdapter = new AlreadyFinishAdapter();
         rv_at_auction.setAdapter(finishAuctionAdapter);
         GetAtAuctionGoods(page, pagesize);
-        showtext();
+       // showtext();
     }
 
     private void showtext() {
@@ -104,8 +106,6 @@ public class AlreadyFinishFragment extends BaseLazyFragment {
         } else {
             OkGo.<BaseMode<List<AtAuctionBean>>>post(AppApi.BASE_URL + AppApi.GETPARYAKEAUCTION)
                     .tag(this)
-                    .params("page", page)
-                    .params("pagesize", pagesize)
                     .params("uid", uid)
                     .params("state", 3)
                     .execute(new JsonCallback<BaseMode<List<AtAuctionBean>>>(getActivity()) {
@@ -119,14 +119,14 @@ public class AlreadyFinishFragment extends BaseLazyFragment {
                                 if (at_auctionlist.size() == 0) {
                                     finishAuctionAdapter.setEmptyView(notDataView);
                                 }
-                                if (page == 1) {
+                                finishAuctionAdapter.setNewData(at_auctionlist);
+                               /* if (page == 1) {
                                     finishAuctionAdapter.setNewData(at_auctionlist);
                                 } else if (page > 1 && at_auctionlist != null && at_auctionlist.size() > 0) {
                                     finishAuctionAdapter.addData(at_auctionlist);
                                 } else {
-                                    ToastUtils.showToast("数据全部加载完毕");
                                     at_auction_refreshLayout.finishLoadMoreWithNoMoreData();
-                                }
+                                }*/
                             } else {
                                 ToastUtils.showShort(getActivity(), response.body().msg);
                             }

@@ -1,14 +1,9 @@
 package com.yaer.remittance.utils;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.icu.text.NumberFormat;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.widget.Toast;
 
 import java.math.BigDecimal;
-import java.util.Locale;
 
 /**
  * 金额工具类

@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+import com.yaer.remittance.base.BaseSimpleViewHolder;
 import com.liji.circleimageview.CircleImageView;
 import com.yaer.remittance.R;
 import com.yaer.remittance.bean.GetBiddinListBean;
@@ -20,7 +20,7 @@ import java.util.List;
  * Created by geyifeng on 2017/6/3.
  */
 
-public class OfferRecordAdapter extends BaseQuickAdapter<GetBiddinListBean, BaseViewHolder> {
+public class OfferRecordAdapter extends BaseQuickAdapter<GetBiddinListBean, BaseSimpleViewHolder> {
     String money = null;
     private String uicon;
     TextView tv_offer_type;
@@ -30,7 +30,7 @@ public class OfferRecordAdapter extends BaseQuickAdapter<GetBiddinListBean, Base
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, GetBiddinListBean item) {
+    protected void convert(BaseSimpleViewHolder helper, GetBiddinListBean item) {
         money = item.getBmoney();
         uicon = item.getUicon();
         tv_offer_type = helper.getView(R.id.tv_offer_type);

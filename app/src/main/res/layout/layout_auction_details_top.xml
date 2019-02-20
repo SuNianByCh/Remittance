@@ -55,6 +55,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_auction_details_time_tip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|right"
@@ -391,7 +392,6 @@
                         android:id="@+id/tv_auction_slabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/edge_setting"
                         android:paddingBottom="2dp"
                         android:paddingLeft="@dimen/hw_5_dp"
                         android:paddingRight="@dimen/hw_5_dp"
@@ -400,6 +400,7 @@
                         android:textColor="@color/main_tone"
                         android:textSize="10sp" />
                 </LinearLayout>
+               <!-- android:background="@drawable/edge_setting"-->
             </LinearLayout>
 
          <!--   <TextView

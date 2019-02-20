@@ -131,9 +131,9 @@ public class ConfirmationOrderActivity extends BaseActivity implements CustomTit
     @BindView(R.id.tv_commodity_order_ognumber)
     TextView tv_commodity_order_ognumber;
     /*邮费*/
-    @BindView(R.id.tv_gpostage)
+   /* @BindView(R.id.tv_gpostage)
     TextView tv_gpostage;
-    /*选择优惠券*/
+    选择优惠券*/
   /*  @BindView(R.id.tv_choice_coupon)
     TextView tv_choice_coupon;*/
     //商品价格
@@ -189,7 +189,7 @@ public class ConfirmationOrderActivity extends BaseActivity implements CustomTit
             }
         }
         ototalnum = ototalvalue;
-        tv_gpostage.setText("" + gpostage);//邮费
+        // tv_gpostage.setText("邮费 " + gpostage);//邮费
         tv_price.setText("￥" + ototalnum);//商品价格
         tv_total_confirm_price.setText("￥" + AmountUtil.priceNum(ototalnum += gpostage));//商品价格加邮费
         tv_commodity_order_name.setText(gname);//商品名称
@@ -307,12 +307,12 @@ public class ConfirmationOrderActivity extends BaseActivity implements CustomTit
                 ordergoods = gson.toJson(ordergoodsBean);
                 if (aid.equals("")) {
                     ToastUtils.showToast("请设置收货地址");
+                } else if (upaypws.equals("0")) {
+                    showDelDialog1();
                 } else if (Amountmoney == 0) {
                     showDelDialog2();
                 } else if (Amountmoney <= ototalnum) {
                     showDelDialog2();
-                } else if (upaypws.equals("0")) {
-                    showDelDialog1();
                 } else {
                     Addorder(ordergoods);
                 }
@@ -327,12 +327,12 @@ public class ConfirmationOrderActivity extends BaseActivity implements CustomTit
             int num = Integer.parseInt(s.toString());
             if (num == 0) {
                 mCurretPostMoney = mOrginPostMoney;
-                tv_gpostage.setText("0");
+                //tv_gpostage.setText("0");
             } else {
                 /*这个地方是描述怎么的*/
-            //    mCurretPostMoney = num >= 2 ? mOrginPostMoney *  : mOrginPostMoney;
+                //    mCurretPostMoney = num >= 2 ? mOrginPostMoney *  : mOrginPostMoney;
                 mCurretPostMoney = mOrginPostMoney;
-                tv_gpostage.setText(("" + mCurretPostMoney));
+                //tv_gpostage.setText(("" + mCurretPostMoney));
             }
         } catch (Throwable throwable) {
         }

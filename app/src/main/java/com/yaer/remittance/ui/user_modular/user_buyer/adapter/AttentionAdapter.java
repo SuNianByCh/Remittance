@@ -4,7 +4,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+import com.yaer.remittance.base.BaseSimpleViewHolder;
 import com.yaer.remittance.R;
 import com.yaer.remittance.bean.GetFollowShopBean;
 
@@ -12,13 +12,13 @@ import com.yaer.remittance.bean.GetFollowShopBean;
  * Created by geyifeng on 2017/6/3.
  */
 
-public class AttentionAdapter extends BaseQuickAdapter<GetFollowShopBean, BaseViewHolder> {
+public class AttentionAdapter extends BaseQuickAdapter<GetFollowShopBean, BaseSimpleViewHolder> {
     public AttentionAdapter() {
         super(R.layout.item_attention);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, GetFollowShopBean item) {
+    protected void convert(BaseSimpleViewHolder helper, GetFollowShopBean item) {
         helper.setText(R.id.tv_shop_nickname, item.getSname());
         helper.setText(R.id.tv_shop_label, item.getSlabel());
         Boolean attention = item.getFollowStatus();

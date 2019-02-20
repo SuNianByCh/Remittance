@@ -13,6 +13,8 @@
         android:background="@color/main_tone"
         app:left_button_image="@drawable/return_left"
         app:right_button_text="购买"
+        app:right_button_textColor="@color/text_1_color"
+        app:right_button_textSize="16sp"
         app:title_backgrounds="@color/main_tone"
         app:title_text="我的服务"
         app:title_textColor="@color/text_1_color"

@@ -69,7 +69,7 @@ public class LogisticsActivity extends BaseActivity implements CustomTitlebar.Ti
             MessContent messContent = new Gson().fromJson(val, MessContent.class);
             List<MessContent.TracesBean> list = messContent.getTraces();
             if (list.size() == 0) {
-                tv_reason.setText(messContent.getReason());
+               // tv_reason.setText(messContent.getReason());
                 rl_no_time_express.setVisibility(View.VISIBLE);
                 listView.setVisibility(View.GONE);
             } else {

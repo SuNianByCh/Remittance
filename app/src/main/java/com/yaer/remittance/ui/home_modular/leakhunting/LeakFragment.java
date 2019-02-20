@@ -1,6 +1,7 @@
 package com.yaer.remittance.ui.home_modular.leakhunting;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,10 +14,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+import com.yaer.remittance.base.BaseSimpleViewHolder;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.yaer.remittance.R;
 import com.yaer.remittance.base.BaseLazyFragment;
+import com.yaer.remittance.bean.ZeroElementbeat;
 import com.yaer.remittance.ui.adapter.GoodshopAdapter;
+import com.yaer.remittance.ui.home_modular.auctiondetails.AuctionDetailsActivity;
+import com.yaer.remittance.ui.login_modular.LoginActivity;
+import com.yaer.remittance.utils.AppUtile;
+import com.yaer.remittance.utils.NetworkUtils;
+import com.yaer.remittance.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +57,7 @@ public class LeakFragment extends BaseLazyFragment {
     List<String> mEvaluationData4;
 
 
-     public static LeakFragment newInstance(String time){
+    public static LeakFragment newInstance(String time) {
         Bundle args = new Bundle();
         args.putSerializable("time", time);
         LeakFragment tripFragment = new LeakFragment();
@@ -70,7 +78,7 @@ public class LeakFragment extends BaseLazyFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments()!=null) {
+        if (getArguments() != null) {
             data = (ArrayList<String>) getArguments().getSerializable(MERCHANT_DETAILS_PAGE);
         }
         context = getActivity().getApplicationContext();
@@ -154,13 +162,13 @@ public class LeakFragment extends BaseLazyFragment {
 
         String time = getArguments().getString("time");
         FragmentActivity activity = getActivity();
-        if(time ==null || activity  == null || !( activity instanceof LeakHuntingActivity)){
+        if (time == null || activity == null || !(activity instanceof LeakHuntingActivity)) {
             //TODO show emptyView;
             return;
         }
 
         List<LeakHuntingBean> leakHuntingBeans = ((LeakHuntingActivity) activity).getString(time);
-        if(leakHuntingBeans == null || leakHuntingBeans.isEmpty()){
+        if (leakHuntingBeans == null || leakHuntingBeans.isEmpty()) {
             //TODO show emptyView;
             return;
 
@@ -173,7 +181,7 @@ public class LeakFragment extends BaseLazyFragment {
     /**
      * 设置RecyclerView属性
      */
-    private void initAdapter( List<LeakHuntingBean> leakHuntingBeans) {
+    private void initAdapter(List<LeakHuntingBean> leakHuntingBeans) {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),
                 LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(linearLayoutManager);
@@ -182,5 +190,29 @@ public class LeakFragment extends BaseLazyFragment {
         mAdapter.openLoadAnimation();
         mRecyclerView.setAdapter(mAdapter);//设置adapter
 
+        final Bundle bundle = new Bundle();
+        mRecyclerView.addOnItemTouchListener(new OnItemChildClickListener() {
+            @Override
+            public void onSimpleItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            }
+
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                int itemViewId = view.getId();
+                LeakHuntingBean leakHuntingBean = mAdapter.getData().get(position);
+                switch (itemViewId) {
+                    /*进入拍品详情*/
+                    case R.id.ll_leak_list:
+                        if (!NetworkUtils.isNetworkConnected(mActivity)) {
+                            ToastUtils.showToast("当前无网络请链接网络");
+                        } else if (AppUtile.getTicket(mActivity).equals("")) {
+                            goToActivity(LoginActivity.class, "type", "1");
+                        } else {
+                            bundle.putString("gidshopping", String.valueOf(leakHuntingBean.getGoodsInfoModels().getGid()));
+                            goToActivity(AuctionDetailsActivity.class, bundle);
+                        }
+                        break;
+                }
+            }
+        });
     }
 }

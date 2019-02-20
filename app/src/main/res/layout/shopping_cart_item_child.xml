@@ -29,7 +29,7 @@
         <ImageView
             android:id="@+id/draw_goods"
             android:layout_width="60dp"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             android:layout_height="60dp"
             android:layout_marginLeft="5dp" />
 

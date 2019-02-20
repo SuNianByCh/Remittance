@@ -267,6 +267,17 @@ public class AppUtile {
     }
 
     /**
+     * 获取店铺id
+     *
+     * @param context
+     * @return
+     */
+    public static String getScid(Context context) {
+        return (String) SharedPreferencesUtils.getData(context, "Scid", "");
+    }
+
+
+    /**
      * 获取用户手机号
      *
      * @param context
@@ -456,7 +467,6 @@ public class AppUtile {
     public static boolean isNull(CharSequence string) {
         return null == string || "".equals(string.toString().trim()) || "null".equals(string.toString().trim());
     }
-
     /**
      * 把文版信息复制到系统剪贴板
      *

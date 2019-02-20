@@ -255,7 +255,6 @@ public class GoodshopFragment extends BaseLazyFragment {
                                 } else if (page > 1 && GoodshopItemList != null && GoodshopItemList.size() > 0) {
                                     goodshopAdapter.addData(GoodshopItemList);
                                 } else {
-                                    ToastUtils.showToast("数据全部加载完毕");
                                     good_shop_refreshLayout.finishLoadMoreWithNoMoreData();
                                 }
                             } else {

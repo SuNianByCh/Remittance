@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+import com.yaer.remittance.base.BaseSimpleViewHolder;
 import com.yaer.remittance.R;
 import com.yaer.remittance.bean.RefundInfoListBean;
 
@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * Created by geyifeng on 2017/6/3.
  */
 
-public class RefundInfoListAdapter extends BaseQuickAdapter<RefundInfoListBean, BaseViewHolder> {
+public class RefundInfoListAdapter extends BaseQuickAdapter<RefundInfoListBean, BaseSimpleViewHolder> {
     ArrayList<String> list;
     String Images;
 
@@ -24,7 +24,7 @@ public class RefundInfoListAdapter extends BaseQuickAdapter<RefundInfoListBean, 
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, RefundInfoListBean item) {
+    protected void convert(BaseSimpleViewHolder helper, RefundInfoListBean item) {
         helper.setText(R.id.tv_allorder_gname, item.getGname());
         helper.setText(R.id.shop_danwei, "数量：" + item.getGnumber());
         TextView tv_refundinfo_type = helper.getView(R.id.tv_refundinfo_type);

@@ -4,9 +4,12 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
+import com.lzy.okgo.request.base.Request;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.OnRefreshLoadmoreListener;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -18,7 +21,10 @@ import com.yaer.remittance.base.BaseMode;
 import com.yaer.remittance.bean.selectGoodsByNameBean;
 import com.yaer.remittance.callback.JsonCallback;
 import com.yaer.remittance.ui.home_modular.search.SearchCommodityAdapter;
+import com.yaer.remittance.ui.user_modular.user_buyer.order.AllOrderActivity;
+import com.yaer.remittance.utils.NetworkUtils;
 import com.yaer.remittance.utils.ToastUtils;
+import com.yaer.remittance.view.LoadingDialog2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +46,9 @@ public class ShopGoodsFragment extends BaseLazyFragment {
     private List<selectGoodsByNameBean> Quserylist = new ArrayList<>();
     private int page = 1;
     private int pagesize = 10;
+    private View notDataView;
+    private View errorView;
+
 
     public static ShopGoodsFragment newInstance(String page) {
         Bundle args = new Bundle();
@@ -57,10 +66,12 @@ public class ShopGoodsFragment extends BaseLazyFragment {
     @Override
     protected void initView() {
         /*为你优选*/
+        notDataView = getLayoutInflater().inflate(R.layout.empty_order_view, (ViewGroup) rv_search_commodity_produc.getParent(), false);
+        errorView = getLayoutInflater().inflate(R.layout.error_view, (ViewGroup) rv_search_commodity_produc.getParent(), false);
         rv_search_commodity_produc.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        Getshopinfolistbukey(page, pagesize);
         searchCommodityAdapter = new SearchCommodityAdapter();
         rv_search_commodity_produc.setAdapter(searchCommodityAdapter);
+        Getshopinfolistbukey(page, pagesize);
         showtext();
     }
 
@@ -100,37 +111,75 @@ public class ShopGoodsFragment extends BaseLazyFragment {
     protected void initData() {
     }
 
+    private LoadingDialog2 photoDiloag;
+
     /**
      * 获取搜索商品信息
      */
     private void Getshopinfolistbukey(final int page, int pagesize) {
-        mPage = getArguments().getString(ARGS_PAGE);
-        OkGo.<BaseMode<List<selectGoodsByNameBean>>>post(AppApi.BASE_URL + AppApi.SELECTGOODSBYSID)
-                .tag(this)
-                .params("sid", mPage)
-                .params("gisauction", "0")
-                .params("gissoldout","0")
-                .params("page", page)
-                .params("pagesize", pagesize)
-                .execute(new JsonCallback<BaseMode<List<selectGoodsByNameBean>>>(getActivity()) {
-                    @Override
-                    public void onSuccess(Response<BaseMode<List<selectGoodsByNameBean>>> response) {
-                        Log.e("text", "店铺商品信息: " + response.body().code);
-                        Log.e("text", "店铺商品信息: " + response.body().result);
-                        if (response.body().code.equals(Constant.SUEECECODE)) {
-                            Quserylist = response.body().result;
-                            if (page == 1) {
-                                searchCommodityAdapter.setNewData(Quserylist);
-                            } else if (page > 1 && Quserylist != null && Quserylist.size() > 0) {
-                                searchCommodityAdapter.addData(Quserylist);
-                            } else {
-                                ToastUtils.showToast("数据全部加载完毕");
-                                search_commodity_refreshLayout.finishLoadMoreWithNoMoreData();
-                            }
-                        } else {
-                            ToastUtils.showShort(getActivity(), response.body().msg);
+        if (!NetworkUtils.isNetworkConnected(getActivity())) {
+            searchCommodityAdapter.setEmptyView(errorView);
+        } else {
+            mPage = getArguments().getString(ARGS_PAGE);
+            OkGo.<BaseMode<List<selectGoodsByNameBean>>>post(AppApi.BASE_URL + AppApi.SELECTGOODSBYSID)
+                    .tag(this)
+                    .params("sid", mPage)
+                    .params("gisauction", "0")
+                    .params("gissoldout", "0")
+                    .params("page", page)
+                    .params("pagesize", pagesize)
+                    .execute(new JsonCallback<BaseMode<List<selectGoodsByNameBean>>>(getActivity()) {
+                        @Override
+                        public void onStart(Request<BaseMode<List<selectGoodsByNameBean>>, ? extends Request> request) {
+                            super.onStart(request);
+                            photoDiloag = new LoadingDialog2(getActivity(), "加载中...");
+                            photoDiloag.show();
                         }
-                    }
-                });
+
+                        @Override
+                        public void onSuccess(Response<BaseMode<List<selectGoodsByNameBean>>> response) {
+                            Log.e("text", "店铺商品信息: " + response.body().code);
+                            Log.e("text", "店铺商品信息: " + response.body().result);
+                            if (response.body().code.equals(Constant.SUEECECODE)) {
+                                Quserylist = response.body().result;
+                                if (Quserylist.size() == 0) {
+                                    searchCommodityAdapter.setEmptyView(notDataView);
+                                }
+                                if (page == 1) {
+                                    searchCommodityAdapter.setNewData(Quserylist);
+                                } else if (page > 1 && Quserylist != null && Quserylist.size() > 0) {
+                                    searchCommodityAdapter.addData(Quserylist);
+                                } else {
+                                    search_commodity_refreshLayout.finishLoadMoreWithNoMoreData();
+                                }
+                                stopDialog();
+                            } else {
+                                ToastUtils.showShort(getActivity(), response.body().msg);
+                                stopDialog();
+                            }
+                        }
+
+                        @Override
+                        public void onError(Response<BaseMode<List<selectGoodsByNameBean>>> response) {
+                            super.onError(response);
+                            stopDialog();
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            super.onFinish();
+                            stopDialog();
+                        }
+                    });
+        }
+    }
+
+    /**
+     * dialog 隐藏
+     */
+    private void stopDialog() {
+        if (photoDiloag != null && photoDiloag.isShowing()) {
+            photoDiloag.dismiss();
+        }
     }
 }

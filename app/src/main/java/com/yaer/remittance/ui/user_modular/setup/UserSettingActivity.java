@@ -11,7 +11,6 @@ import com.yaer.remittance.R;
 import com.yaer.remittance.base.BaseActivity;
 import com.yaer.remittance.base.MainActivity;
 import com.yaer.remittance.ui.user_modular.user_buyer.feedback.UserFeedBackActivity;
-import com.yaer.remittance.utils.AppManager;
 import com.yaer.remittance.utils.GlideCacheUtile;
 import com.yaer.remittance.utils.SharedPreferencesUtils;
 import com.yaer.remittance.utils.SystemUtil;
@@ -155,6 +154,9 @@ public class UserSettingActivity extends BaseActivity implements CustomTitlebar.
                 SharedPreferencesUtils.saveData(context, "ShopInfoid", "");//店铺id标识
                 RongIM.getInstance().disconnect();
                 BaseApplication.getInstance().cancleTagAndAlias();
+                JPushInterface.setAlias(context, 0, "");
+                //删除别名
+                JPushInterface.deleteAlias(context, 0);
                 //极光推送解除绑定别名
               /*  JPushInterface.stopPush(this);//停止推送
                 JPushInterface.setAliasAndTags(this, "", tags, mAliasCallback);
@@ -169,8 +171,8 @@ public class UserSettingActivity extends BaseActivity implements CustomTitlebar.
         }
     }
 
-    private void exit() {
-        AppManager.getAppManager().AppExit(this);
+    private void exits() {
+       // AppManager.getAppManager().AppExit(this);
     }
 
     Handler m = new Handler() {

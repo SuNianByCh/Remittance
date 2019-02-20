@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+import com.yaer.remittance.base.BaseSimpleViewHolder;
 import com.yaer.remittance.R;
 import com.yaer.remittance.bean.AddCollectionBean;
 
@@ -18,13 +18,13 @@ import butterknife.BindView;
  * Created by geyifeng on 2017/6/3.
  */
 
-public class DraftsAdapter extends BaseQuickAdapter<AddCollectionBean, BaseViewHolder> {
+public class DraftsAdapter extends BaseQuickAdapter<AddCollectionBean, BaseSimpleViewHolder> {
     public DraftsAdapter() {
         super(R.layout.item_drafts);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, AddCollectionBean addCollectionBean) {
+    protected void convert(BaseSimpleViewHolder helper, AddCollectionBean addCollectionBean) {
         if (addCollectionBean.getSourceType() == AddCollectionBean.TYPE_PAI_PING) {
             paiPin(helper, addCollectionBean);
         } else {
@@ -45,7 +45,7 @@ public class DraftsAdapter extends BaseQuickAdapter<AddCollectionBean, BaseViewH
     @BindView(R.id.tv_auction_commodity_type)
     TextView tv_auction_commodity_type;//商品拍品状态
 
-    private void paiPin(BaseViewHolder helper, AddCollectionBean addCollectionBean) {
+    private void paiPin(BaseSimpleViewHolder helper, AddCollectionBean addCollectionBean) {
         helper.setText(R.id.name, addCollectionBean.getGoodsName());//商品名称
         helper.setText(R.id.tv_drafts_money, addCollectionBean.getGoodsPrice());//商品价格
         helper.setText(R.id.tv_auction_commodity_number, "库存 x" + addCollectionBean.getGoodsNumber());//商品库存
@@ -61,7 +61,7 @@ public class DraftsAdapter extends BaseQuickAdapter<AddCollectionBean, BaseViewH
         }
     }
 
-    private void shangpin(BaseViewHolder helper, AddCollectionBean addCollectionBean) {
+    private void shangpin(BaseSimpleViewHolder helper, AddCollectionBean addCollectionBean) {
         helper.setText(R.id.name, addCollectionBean.getGoodsName());
         helper.setText(R.id.tv_drafts_money, addCollectionBean.getGoodsPrice());//拍品起拍价格
         helper.setText(R.id.tv_auction_commodity_number, "库存 x" + addCollectionBean.getGoodsNumber());//商品库存

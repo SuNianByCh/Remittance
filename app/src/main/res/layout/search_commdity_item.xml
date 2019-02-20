@@ -3,39 +3,94 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/hw_5_dp"
-    android:layout_marginLeft="@dimen/hw_10_dp"
-    android:layout_marginRight="@dimen/hw_10_dp"
-    android:layout_marginTop="@dimen/hw_5_dp"
     android:background="@color/white"
-    android:orientation="vertical">
+    android:orientation="vertical">>
 
+    <!--
+        <LinearLayout
+            android:id="@+id/ll_search_commdity_item"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/list_fillet"
+            android:orientation="vertical">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/iv_search_commdityimg"
+                android:layout_width="163dp"
+                android:layout_height="163dp"
+                android:padding="@dimen/hw_1_dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/imagedetail_defaullt"
+                app:riv_corner_radius_top_left="10dp"
+                app:riv_corner_radius_top_right="10dp"
+                app:riv_mutate_background="true"
+                app:riv_oval="false" />
+
+            <TextView
+                android:id="@+id/tv_search_commdity_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/hw_10_dp"
+                android:layout_marginRight="@dimen/hw_10_dp"
+                android:layout_marginTop="6dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="陶瓷玉器"
+                android:textColor="#666666"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/hw_10_dp"
+                android:layout_marginLeft="@dimen/hw_10_dp"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_search_commdity_gmoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="99999"
+                    android:textColor="@color/main_tone"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+    -->
     <LinearLayout
         android:id="@+id/ll_search_commdity_item"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:background="@drawable/list_fillet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/hw_5_dp"
+        android:layout_marginRight="@dimen/hw_5_dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/back_layerlist"
         android:orientation="vertical">
 
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/iv_search_commdityimg"
-            android:layout_width="163dp"
-            android:layout_height="163dp"
-            android:padding="@dimen/hw_1_dp"
-            android:scaleType="fitXY"
-            android:src="@mipmap/imagedetail_defaullt"
-            app:riv_corner_radius_top_left="10dp"
-            app:riv_corner_radius_top_right="10dp"
-            app:riv_mutate_background="true"
-            app:riv_oval="false" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/iv_search_commdityimg"
+                android:layout_width="match_parent"
+                android:layout_height="183dp"
+                android:scaleType="centerCrop"
+                app:riv_corner_radius_top_left="@dimen/hw_5_dp"
+                app:riv_corner_radius_top_right="@dimen/hw_5_dp"
+                app:riv_mutate_background="true"
+                app:riv_oval="false" />
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/tv_search_commdity_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/hw_10_dp"
-            android:layout_marginRight="@dimen/hw_10_dp"
-            android:layout_marginTop="6dp"
+            android:layout_marginLeft="@dimen/dp_4"
+            android:layout_marginRight="@dimen/dp_4"
+            android:layout_marginTop="@dimen/dp_4"
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"
@@ -43,22 +98,47 @@
             android:textColor="#666666"
             android:textSize="12sp" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/hw_10_dp"
-            android:layout_marginLeft="@dimen/hw_10_dp"
-            android:layout_marginTop="2dp"
+            android:layout_gravity="center"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_search_commdity_gmoney"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="99999"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="@dimen/dp_4"
+                android:layout_marginTop="2dp"
+                android:text="¥ 99999"
                 android:textColor="@color/main_tone"
                 android:textSize="12sp" />
-        </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/hw_10_dp">
+
+                <ImageView
+                    android:id="@+id/iv_vitalit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/vitalityvalue" />
+
+                <TextView
+                    android:id="@+id/tv_shopping_vitalityvalue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/iv_vitalit"
+                    android:text="120"
+                    android:textColor="@color/text_2_color"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+        </RelativeLayout>
     </LinearLayout>
+
 </LinearLayout>
 

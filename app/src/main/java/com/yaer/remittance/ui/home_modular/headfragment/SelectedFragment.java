@@ -1,11 +1,14 @@
 package com.yaer.remittance.ui.home_modular.headfragment;
 
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -16,10 +19,14 @@ import com.yaer.remittance.api.AppApi;
 import com.yaer.remittance.api.Constant;
 import com.yaer.remittance.base.BaseLazyFragment;
 import com.yaer.remittance.base.BaseMode;
+import com.yaer.remittance.bean.GetMainBean;
 import com.yaer.remittance.bean.SelectGoodsBean;
 import com.yaer.remittance.bean.selectBannerBean;
 import com.yaer.remittance.callback.JsonCallback;
 import com.yaer.remittance.ui.adapter.SelectedAdapter;
+import com.yaer.remittance.ui.home_modular.auctiondetails.AuctionDetailsActivity;
+import com.yaer.remittance.ui.login_modular.LoginActivity;
+import com.yaer.remittance.utils.AppUtile;
 import com.yaer.remittance.utils.GlideImageLoader;
 import com.yaer.remittance.utils.NetworkUtils;
 import com.yaer.remittance.utils.ToastUtils;
@@ -55,6 +62,12 @@ public class SelectedFragment extends BaseLazyFragment {
     private View errorView;
 
     @Override
+    public void onResume() {
+        super.onResume();
+        select_refreshLayout.autoRefresh();
+    }
+
+    @Override
     protected int setLayoutId() {
         return R.layout.fragment_selected;
     }
@@ -67,8 +80,32 @@ public class SelectedFragment extends BaseLazyFragment {
         selectedAdapter = new SelectedAdapter();
         rv_selected.setAdapter(selectedAdapter);
         GetSelectGoods(page, pagesize);
-        showtext();
         GetBanner();
+        final Bundle bundle = new Bundle();
+        rv_selected.addOnItemTouchListener(new OnItemChildClickListener() {
+            @Override
+            public void onSimpleItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            }
+
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                int itemViewId = view.getId();
+                SelectGoodsBean selectGoodsBean = selectedAdapter.getData().get(position);
+                switch (itemViewId) {
+                    /*进入拍品详情*/
+                    case R.id.ll_select_product:
+                        if (!NetworkUtils.isNetworkConnected(mActivity)) {
+                            ToastUtils.showToast("当前无网络请链接网络");
+                        } else if (AppUtile.getTicket(mActivity).equals("")) {
+                            goToActivity(LoginActivity.class, "type", "1");
+                        } else {
+                            bundle.putString("gidshopping", String.valueOf(selectGoodsBean.getGid()));
+                            goToActivity(AuctionDetailsActivity.class, bundle);
+                        }
+                        break;
+                }
+            }
+        });
+        showtext();
     }
 
     private void showtext() {
@@ -84,7 +121,7 @@ public class SelectedFragment extends BaseLazyFragment {
                         refreshlayout.finishRefresh();
                         refreshlayout.resetNoMoreData();//恢复上拉状态
                     }
-                }, 2000);
+                }, 500);
             }
 
             @Override
@@ -96,7 +133,7 @@ public class SelectedFragment extends BaseLazyFragment {
                         GetSelectGoods(page, pagesize);
                         refreshlayout.finishLoadMore();
                     }
-                }, 1000);
+                }, 500);
             }
         });
     }
@@ -107,6 +144,7 @@ public class SelectedFragment extends BaseLazyFragment {
     private void GetSelectGoods(final int page, int pagesize) {
         if (!NetworkUtils.isNetworkConnected(getActivity())) {
             selectedAdapter.setEmptyView(errorView);
+            selected_banner.setVisibility(View.INVISIBLE);
         } else {
             OkGo.<BaseMode<List<SelectGoodsBean>>>post(AppApi.BASE_URL + AppApi.SELECTGOODSCHOICE)
                     .tag(this)
@@ -122,13 +160,13 @@ public class SelectedFragment extends BaseLazyFragment {
                                 SelectedItemList = response.body().result;
                                 if (SelectedItemList.size() == 0) {
                                     selectedAdapter.setEmptyView(notDataView);
+                                    selected_banner.setVisibility(View.INVISIBLE);
                                 }
                                 if (page == 1) {
                                     selectedAdapter.setNewData(SelectedItemList);
                                 } else if (page > 1 && SelectedItemList != null && SelectedItemList.size() > 0) {
                                     selectedAdapter.addData(SelectedItemList);
                                 } else {
-                                    ToastUtils.showToast("数据全部加载完毕");
                                     select_refreshLayout.finishLoadMoreWithNoMoreData();
                                 }
                             } else {
@@ -164,15 +202,21 @@ public class SelectedFragment extends BaseLazyFragment {
                             if (response.body().code.equals(Constant.SUEECECODE)) {
                                 mBanner = response.body().result;
                                 mImages.clear();
-                                for (int i = 0; i < mBanner.size(); i++) {
-                                    String image = mBanner.get(i).getBimg();
-                                    mImages.add(image);
+                                if (mBanner != null) {
+                                    for (int i = 0; i < mBanner.size(); i++) {
+                                        String image = mBanner.get(i).getBimg();
+                                        mImages.add(image);
+                                    }
                                 }
-                                selected_banner.setImages(mImages)
-                                        .setImageLoader(new GlideImageLoader())
-                                        .setDelayTime(3000)
-                                        .start();
-                            } else {
+                                selected_banner.stopAutoPlay();
+                                if (mImages != null&&mImages.size()>0)
+                                    selected_banner.setImages(mImages)
+                                            .setImageLoader(new GlideImageLoader())
+                                            .setDelayTime(3000)
+                                            .start();
+                            } else
+
+                            {
                                 ToastUtils.showShort(getActivity(), response.body().msg);
                             }
                         }

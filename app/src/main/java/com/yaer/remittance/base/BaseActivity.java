@@ -1,7 +1,9 @@
 package com.yaer.remittance.base;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +21,7 @@ import com.yaer.remittance.api.AppApi;
 import com.yaer.remittance.api.Constant;
 import com.yaer.remittance.bean.AppMode;
 import com.yaer.remittance.callback.JsonCallback;
+import com.yaer.remittance.ui.login_modular.LoginActivity;
 import com.yaer.remittance.update.UpdateManager;
 import com.yaer.remittance.utils.ActivityManager;
 import com.yaer.remittance.utils.AppManager;
@@ -31,6 +34,7 @@ import java.text.ParseException;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.rong.imkit.RongIM;
 
 /**
  * Activity基类
@@ -126,7 +130,29 @@ public abstract class BaseActivity extends AppCompatActivity {
         mImmersionBar = ImmersionBar.with(this);
         mImmersionBar.init();
     }
-
+    public void exit() {
+        if (RongIM.getInstance() != null) {
+            RongIM.getInstance().disconnect();
+        }
+        AlertDialog dialog1 = new AlertDialog.Builder(this)
+                .setTitle("账号退出")
+                .setMessage("账号在别处登录")
+                .setCancelable(false)
+                .setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                startActivity(new Intent(BaseActivity.this,MainActivity.class));
+                            }
+                        }
+                )
+                .setPositiveButton("重新登录", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(new Intent(BaseActivity.this,LoginActivity.class));
+                    }
+                }).create();
+        dialog1.show();
+    }
     /**
      * 组件初始化
      */

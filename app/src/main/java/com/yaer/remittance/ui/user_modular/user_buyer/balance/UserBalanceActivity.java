@@ -1,5 +1,6 @@
 package com.yaer.remittance.ui.user_modular.user_buyer.balance;
 
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -63,7 +64,7 @@ public class UserBalanceActivity extends BaseActivity implements CustomTitlebar.
     TextView tv_balance_amountmoney;
     private String Amountmoney;
     private List<BankCardInfoBean> ManageForwardItemList = new ArrayList<>();
-
+    private String buyerbalance;
     //设置沉浸式
     @Override
     protected boolean isImmersionBarEnabled() {
@@ -84,6 +85,10 @@ public class UserBalanceActivity extends BaseActivity implements CustomTitlebar.
         String ulevel = (String) SharedPreferencesUtils.getData(this, "ulevel", "");
         String uicon = (String) SharedPreferencesUtils.getData(this, "uicon", "");
         String uphone = (String) SharedPreferencesUtils.getData(this, "uphone", "");
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            buyerbalance = getIntent().getStringExtra("buyerbalance");
+        }
         if (name.equals("")) {
             tv_balance_nickname.setText(AppUtile.hideCardNo(uphone));
         } else {
@@ -154,7 +159,7 @@ public class UserBalanceActivity extends BaseActivity implements CustomTitlebar.
         OkGo.<BaseMode<List<BankCardInfoBean>>>post(AppApi.BASE_URL + AppApi.SELECTBANKCRDINFOLIST)
                 .tag(this)
                 .params("uid", AppUtile.getUid(this))
-                .execute(new JsonCallback<BaseMode<List<BankCardInfoBean>>>( this) {
+                .execute(new JsonCallback<BaseMode<List<BankCardInfoBean>>>(this) {
                     @Override
                     public void onSuccess(final Response<BaseMode<List<BankCardInfoBean>>> response) {
                         Log.e("text", "获取提现账号: " + response.body().code);
@@ -201,7 +206,11 @@ public class UserBalanceActivity extends BaseActivity implements CustomTitlebar.
                 break;
             /*获取余额明细*/
             case R.id.tv_right:
-                goToActivity(FineBalanceActivity.class);
+                if (buyerbalance.equals("1")){
+                    goToActivity(FineBalanceActivity.class);
+                }else{
+                    goToActivity(SellerFineBalanceActivity.class);
+                }
                 break;
         }
     }

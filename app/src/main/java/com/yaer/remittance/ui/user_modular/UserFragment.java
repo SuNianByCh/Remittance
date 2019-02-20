@@ -20,6 +20,7 @@ import com.lzy.okgo.request.base.Request;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.yaer.remittance.BaseApplication;
 import com.yaer.remittance.R;
 import com.yaer.remittance.api.AppApi;
 import com.yaer.remittance.api.Constant;
@@ -38,8 +39,10 @@ import com.yaer.remittance.ui.user_modular.user_buyer.attention.UserAttentionAct
 import com.yaer.remittance.ui.user_modular.user_buyer.balance.UserBalanceActivity;
 import com.yaer.remittance.ui.user_modular.user_buyer.collect.UserCollectActivity;
 import com.yaer.remittance.ui.user_modular.user_buyer.coupons.CouponSellerActivity;
+import com.yaer.remittance.ui.user_modular.user_buyer.coupons.MyAddcouponActivity;
 import com.yaer.remittance.ui.user_modular.user_buyer.footprint.UserFootPrintActivity;
 import com.yaer.remittance.ui.user_modular.user_buyer.integral.UserIntegralActivity;
+import com.yaer.remittance.ui.user_modular.user_buyer.integral.UserSellerIntegralActivity;
 import com.yaer.remittance.ui.user_modular.user_buyer.joinlot.UserJoinLotActivity;
 import com.yaer.remittance.ui.user_modular.user_buyer.order.AllOrderActivity;
 import com.yaer.remittance.ui.user_modular.user_buyer.order.RefundInfoListActivity;
@@ -63,6 +66,7 @@ import java.lang.ref.WeakReference;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.jpush.android.api.JPushInterface;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.model.CSCustomServiceInfo;
 
@@ -123,8 +127,8 @@ public class UserFragment extends BaseFragment {
     @BindView(R.id.ll_buyer_setting)
     LinearLayout ll_buyer_setting;
     //卖家设置
-    /*@BindView(R.id.ll_seller_setting)
-    LinearLayout ll_seller_setting;*/
+    @BindView(R.id.ll_seller_setting)
+    LinearLayout ll_seller_setting;
     //推广中心
     @BindView(R.id.ll_extension_center)
     LinearLayout ll_extension_center;
@@ -338,6 +342,7 @@ public class UserFragment extends BaseFragment {
                     public void onStart(Request<BaseMode<UserBean>, ? extends Request> request) {
                         super.onStart(request);
                     }
+
                     @Override
                     public void onSuccess(Response<BaseMode<UserBean>> response) {
                         if (response.body().code.equals(Constant.SUEECECODE)) {
@@ -377,8 +382,6 @@ public class UserFragment extends BaseFragment {
                                 SharedPreferencesUtils.saveData(getActivity(), "personalauthentication", response.body().result.getPersonalauthentication());//个人认证
                                 SharedPreferencesUtils.saveData(getActivity(), "ishaveLoginpassword", response.body().result.getIshaveLoginpassword());//登录密码
                                 SharedPreferencesUtils.saveData(getActivity(), "ishaveUpaypassword", response.body().result.getIshaveUpaypassword());//支付密码
-
-
                                 getShopInfoBySid();
                             }
                         }/* else if (response.body().code.equals(Constant.YZM_INVALID)) {
@@ -396,6 +399,15 @@ public class UserFragment extends BaseFragment {
                             SharedPreferencesUtils.saveData(getActivity(), "ishaveUpaypassword", "");//支付密码
                             SharedPreferencesUtils.saveData(getActivity(), "enterprisecertification", 0);//个人认证
                             SharedPreferencesUtils.saveData(getActivity(), "ShopInfoid", "");//店铺id标识
+                            //showgoods();
+                            tv_buyer_leven.setText("Lv0");//等级
+                            buyer_name.setText("拍品汇");//买家名称
+                            tv_buyer_desc.setText("暂无数据！");
+                            Glide.with(mActivity).load(R.drawable.user_settings).fitCenter().into(buyer_mCircleImageView);//商品图片
+                            RongIM.getInstance().disconnect();
+                            JPushInterface.setAlias(mActivity, 0, "");
+                            //删除别名
+                            JPushInterface.deleteAlias(mActivity, 0);
                         }
                     }
 
@@ -454,9 +466,9 @@ public class UserFragment extends BaseFragment {
      * 全部点击事件
      */
     @OnClick({R.id.wait_pay, R.id.seller_title_balance, R.id.seller_signin, R.id.seller_integral, R.id.ll_seller_store_report, R.id.ll_seller_share, R.id.wait_delivery, R.id.wait_received, R.id.evaluate, R.id.refund_after_sale, R.id.seller_all, R.id.tv_buyer, R.id.ll_drafts, R.id.ll_share, R.id.ll_auctionmanagement, R.id.tv_joinlot, R.id.tv_my_attention, R.id.tv_seller, R.id.ll_seller_help, R.id.ll_buyer_help,
-            R.id.buyer_mCircleImageView, R.id.seller_mCircleImageView, R.id.ll_buyer_setting,
+            R.id.buyer_mCircleImageView, R.id.seller_mCircleImageView, R.id.ll_buyer_setting, R.id.ll_seller_setting,
             R.id.ll_extension_center, R.id.ll_balance, R.id.ll_collect, R.id.ll_my_tracks,
-            R.id.ll_pending_payment, R.id.ll_customer_service,R.id.ll_customer_service_seller, R.id.ll_pending_delivery, R.id.ll_goods_received, R.id.ll_to_evaluated, R.id.ll_refund_after_sale,
+            R.id.ll_pending_payment, R.id.ll_customer_service, R.id.ll_customer_service_seller, R.id.ll_pending_delivery, R.id.ll_goods_received, R.id.ll_to_evaluated, R.id.ll_refund_after_sale,
             R.id.full_order, R.id.ll_sign_in, R.id.ll_integral, R.id.tv_seller_coupon})
     //R.id.tv_authentication_center
     public void onClick(View v) {
@@ -464,7 +476,8 @@ public class UserFragment extends BaseFragment {
         switch (v.getId()) {
             /*卖家优惠券*/
             case R.id.tv_seller_coupon:
-                goToActivity(CouponSellerActivity.class);
+                //goToActivity(CouponSellerActivity.class);
+                goToActivity(MyAddcouponActivity.class);
                 break;
         /*    case R.id.ll_issue_coupons:
                 goToActivity(AddCouponActivity.class);
@@ -532,9 +545,9 @@ public class UserFragment extends BaseFragment {
             /**
              * 卖家设置
              * */
-            /*case R.id.ll_seller_setting:
+            case R.id.ll_seller_setting:
                 goToActivity(UserSettingActivity.class);
-                break;*/
+                break;
             /**
              * 推广中心
              * */
@@ -553,7 +566,6 @@ public class UserFragment extends BaseFragment {
              * */
             case R.id.ll_share:
                 goToActivity(ShareAppActivity.class);
-                /**/
                 break;
             /**
              * 买家参加拍品
@@ -671,7 +683,8 @@ public class UserFragment extends BaseFragment {
              * 买家余额
              * */
             case R.id.ll_balance:
-                goToActivity(UserBalanceActivity.class);
+                bundle.putString("buyerbalance", "1");
+                goToActivity(UserBalanceActivity.class,bundle);
                 break;
             /**
              * 买家签到
@@ -754,7 +767,8 @@ public class UserFragment extends BaseFragment {
              * 卖家余额
              * */
             case R.id.seller_title_balance:
-                goToActivity(UserBalanceActivity.class);
+                bundle.putString("buyerbalance", "2");
+                goToActivity(UserBalanceActivity.class,bundle);
                 break;
             /**
              * 卖家签到
@@ -766,7 +780,7 @@ public class UserFragment extends BaseFragment {
              * 卖家积分
              * */
             case R.id.seller_integral:
-                goToActivity(UserIntegralActivity.class);
+                goToActivity(UserSellerIntegralActivity.class);
                 break;
             /**
              * 卖家店铺报表
@@ -845,8 +859,8 @@ public class UserFragment extends BaseFragment {
     }
 
     private void showgoods() {
-        mFlCardFront.setVisibility(View.GONE);
-        mFlCardBack.setVisibility(View.VISIBLE);
+        mFlCardFront.setVisibility(View.GONE);//买家
+        mFlCardBack.setVisibility(View.VISIBLE);//卖家
         // 向右边移出
         mFlCardBack.setAnimation(AnimationUtils.makeOutAnimation(getActivity(), true));
         // 向右边移入

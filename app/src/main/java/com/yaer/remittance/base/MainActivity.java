@@ -145,6 +145,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 }
             }
         }
+        rbHome.setChecked(true);
+        user_tv.setChecked(true);
         message_tv.setChecked(false);
         switch (index) {
             case 0:
@@ -173,6 +175,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 goUser = 2;
                 break;
             case 2:
+                rbHome.setChecked(false);
+                user_tv.setChecked(false);
                 message_tv.setChecked(true);
                 if (goUser == 3) {
                     if (nf != null) {
@@ -263,19 +267,23 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         }
     }
 
+    private boolean registerReceiver = false;
     //初始化网络监听广播
     private void initReceive() {
-        mNetReceiver = new NetReceiver();
-        IntentFilter mFilter = new IntentFilter();
-        mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
-        registerReceiver(mNetReceiver, mFilter);
+        if(!registerReceiver){
+            mNetReceiver = new NetReceiver();
+            IntentFilter mFilter = new IntentFilter();
+            mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+            registerReceiver(mNetReceiver, mFilter);
+        }
+       registerReceiver = true;
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         //防止内存泄漏
-        if (mNetReceiver != null) {
+        if (mNetReceiver != null&&registerReceiver) {
             unregisterReceiver(mNetReceiver);
         }
     }
@@ -312,13 +320,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            exit();
+            exits();
             return true;
         }
         return super.onKeyDown(keyCode, event);
     }
 
-    private void exit() {
+    private void exits() {
         if ((System.currentTimeMillis() - mExitTime) > 2000) {
             Toast.makeText(getApplicationContext(), "再次点击退出", Toast.LENGTH_SHORT).show();
             mExitTime = System.currentTimeMillis();

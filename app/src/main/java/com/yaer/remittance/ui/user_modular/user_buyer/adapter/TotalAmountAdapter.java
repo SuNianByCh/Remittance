@@ -1,7 +1,7 @@
 package com.yaer.remittance.ui.user_modular.user_buyer.adapter;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+import com.yaer.remittance.base.BaseSimpleViewHolder;
 import com.yaer.remittance.R;
 import com.yaer.remittance.bean.WalletListBean;
 import com.yaer.remittance.utils.SystemUtil;
@@ -10,13 +10,13 @@ import com.yaer.remittance.utils.SystemUtil;
  * Created by geyifeng on 2017/6/3.
  */
 
-public class TotalAmountAdapter extends BaseQuickAdapter<WalletListBean, BaseViewHolder> {
+public class TotalAmountAdapter extends BaseQuickAdapter<WalletListBean, BaseSimpleViewHolder> {
     public TotalAmountAdapter() {
         super(R.layout.total_amount_item);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, WalletListBean item) {
+    protected void convert(BaseSimpleViewHolder helper, WalletListBean item) {
         String wtype = item.getWtype();
         if (wtype.equals("1")) {
             helper.setText(R.id.tv_detailed_recharge_type, "充值");
@@ -30,6 +30,10 @@ public class TotalAmountAdapter extends BaseQuickAdapter<WalletListBean, BaseVie
             helper.setText(R.id.tv_detailed_recharge_type, "冻结");
         } else if (wtype.equals("6")) {
             helper.setText(R.id.tv_detailed_recharge_type, "退款");
+        }else if (wtype.equals("7")) {
+            helper.setText(R.id.tv_detailed_recharge_type, "手续费");
+        }else if (wtype.equals("8")) {
+            helper.setText(R.id.tv_detailed_recharge_type, "保证金");
         }
 
         helper.setText(R.id.tv_detailed_recharge_time, SystemUtil.stampToDatemm(item.getWtime()));

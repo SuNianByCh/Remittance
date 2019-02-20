@@ -12,6 +12,7 @@ import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.lzy.okgo.OkGo;
@@ -38,6 +39,7 @@ import com.yaer.remittance.utils.LoadingDialog;
 import com.yaer.remittance.utils.NetworkUtils;
 import com.yaer.remittance.utils.SharedPreferencesUtils;
 import com.yaer.remittance.utils.ToastUtils;
+import com.yaer.remittance.view.LoadingDialog2;
 import com.yaer.remittance.view.UIAlertView;
 
 import java.util.ArrayList;
@@ -95,7 +97,10 @@ public class SellerAllOrderActivity extends BaseActivity {
     private View errorView;
     List<OrderListBean.ShoplistBean> shoplistBeanList = new ArrayList<>();
     List<OrderListBean.ShoplistBean.GoodslistBean> goodslistBeans = new ArrayList<>();
-    private String Scid;
+    /**
+     * dialog
+     */
+    private LoadingDialog2 photoDiloag;
 
     //设置沉浸式
     @Override
@@ -108,7 +113,6 @@ public class SellerAllOrderActivity extends BaseActivity {
         super.initImmersionBar();
         mImmersionBar.titleBar(R.id.rl_allorder_title).init();
     }
-
     @Override
     protected int setLayoutId() {
         return R.layout.all_seller_order_layout;
@@ -117,8 +121,37 @@ public class SellerAllOrderActivity extends BaseActivity {
     @Override
     public void initView() {
         uid = AppUtile.getUid(this);
-        Scid = (String) SharedPreferencesUtils.getData(this, "Scid", "");
         initAdapter();
+        et_go.setText("全部订单");
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            type = getIntent().getStringExtra("type");
+        } else {
+            type = "0";
+        }
+        if (type.equals("0")) {
+            //全部
+            rb_all.setChecked(true);
+            ostatus = "";
+        } else if (type.equals("1")) {
+            //待付款
+            rb_daifukuan.setChecked(true);
+            //getorderList("0");
+            ostatus = "0";
+        } else if (type.equals("2")) {
+            //代发货
+            rb_daifahuo.setChecked(true);
+            ostatus = "1";
+        } else if (type.equals("3")) {
+            //待收货
+            rb_daishouhuo.setChecked(true);
+            ostatus = "2";
+        } else if (type.equals("4")) {
+            //待评价
+            rb_yishouhuo.setChecked(true);
+            ostatus = "3";
+        }
+       /* initAdapter();
         et_go.setText("全部订单");
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -146,12 +179,7 @@ public class SellerAllOrderActivity extends BaseActivity {
             //待评价
             rb_yishouhuo.setChecked(true);
             ostatus = "3";
-        } else {
-            //退款售后
-           /* rb_refund_after_sale.setChecked(true);
-            ostatus = "5";*/
-        }
-        getorderList(ostatus);
+        } */
     }
 
     /**
@@ -181,10 +209,10 @@ public class SellerAllOrderActivity extends BaseActivity {
                         intent.putExtra("ordertype", "0");//订单编号
                         startActivity(intent);
                         break;
-                        /*查看物流*/
+                    /*查看物流*/
                     case R.id.ll_order_view_logistics:
                         String Otrackingname = iCartItem.getOtrackingname();//mFoodData.get(position).getOtrackingname();//快递名称
-                        String Otrackingnumber =iCartItem.getOtrackingnumber();// mFoodData.get(position).getOtrackingnumber();//快递单号
+                        String Otrackingnumber = iCartItem.getOtrackingnumber();// mFoodData.get(position).getOtrackingnumber();//快递单号
                         bundle.putString("Otrackingname", Otrackingname);
                         bundle.putString("Otrackingnumber", Otrackingnumber);
                         goToActivity(LogisticsActivity.class, bundle);
@@ -246,8 +274,8 @@ public class SellerAllOrderActivity extends BaseActivity {
                              */
                            /* int sid = mFoodData.get(position).getShoplist().get(position).getSid();
                             String sname = mFoodData.get(position).getShoplist().get(position).getSname();*/
-                            int sid = mFoodData.get(position).getShoplist().get(0).getSid();
-                            String name = mFoodData.get(position).getShoplist().get(0).getSuname();
+                            int sid = mFoodData.get(position).getBuyers().getUid();
+                            String name = mFoodData.get(position).getBuyers().getUname();
                             RongIM.getInstance().startPrivateChat(SellerAllOrderActivity.this, String.valueOf(sid), name);
                         }
                         break;
@@ -410,7 +438,15 @@ public class SellerAllOrderActivity extends BaseActivity {
                     }
                 });
     }
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (ostatus != null && !"".equalsIgnoreCase(ostatus.trim())) {
+            getorderList(ostatus);
+        } else if (mAdapter != null) {
+            mAdapter.setEmptyView(notDataView);
+        }
+    }
     @Override
     public void initData() {
 
@@ -425,40 +461,40 @@ public class SellerAllOrderActivity extends BaseActivity {
             //订单全部
             case R.id.rb_all:
                 ostatus = "";
-                getorderList(ostatus);
+                // getorderList(ostatus);
                 break;
             //订单dai付款
             case R.id.rb_daifukuan:
                 ostatus = "0";
-                getorderList(ostatus);
+                // getorderList(ostatus);
                 break;
             //订单dai发货
             case R.id.rb_daifahuo:
                 ostatus = "1";
-                getorderList(ostatus);
+                //  getorderList(ostatus);
                 break;
             //订单dai收货
             case R.id.rb_daishouhuo:
                 ostatus = "2";
-                getorderList(ostatus);
+                // getorderList(ostatus);
                 break;
             //订单已收货
             case R.id.rb_yishouhuo:
                 ostatus = "3";
-                getorderList(ostatus);
+                //  getorderList(ostatus);
                 break;
            /* case R.id.rb_refund_after_sale:
                 ostatus = "5";
                 getorderList(ostatus);
                 break;*/
         }
+        getorderList(ostatus);
     }
 
     /**
      * 根据用户id获取订单列表*
      */
     public void getorderList(String ostatus) {
-        mAdapter.setEmptyView(LoadingView);
         if (!NetworkUtils.isNetworkConnected(this)) {
             mAdapter.setEmptyView(errorView);
         } else {
@@ -468,18 +504,71 @@ public class SellerAllOrderActivity extends BaseActivity {
                     .params("sid", uid)
                     .execute(new JsonCallback<BaseMode<List<OrderListBean>>>(this) {
                         @Override
+                        public void onStart(Request<BaseMode<List<OrderListBean>>, ? extends Request> request) {
+                            super.onStart(request);
+                            photoDiloag = new LoadingDialog2(SellerAllOrderActivity.this, "加载中...");
+                            photoDiloag.show();
+                        }
+
+                        @Override
                         public void onSuccess(Response<BaseMode<List<OrderListBean>>> response) {
-                            mFoodData = response.body().result;
-                            if (mFoodData.size() == 0) {
-                                mAdapter.setEmptyView(notDataView);
-                            }
-                            if (response.body().code.equals(Constant.SUEECECODE)) {
-                                mAdapter.setNewData(mFoodData);
+                         /*   stopDialog();
+                            if (mFoodData != null) mFoodData.clear();//这里清空掉了
+                            mFoodData = response.body().result;//返回的集合数据
+                            if (response.body().code.equals(Constant.SUEECECODE)) {//这个地方是返回的code判断
+                                Log.e("text", "mFoodDatamFoodData====: " + mFoodData);
+                                Log.e("text", "mFoodDatamFoodData====: " + JSON.toJSONString(mFoodData));
+                                if (mFoodData.size() == 0) {//JSON.toJSONString(mFoodData).equals("[]")
+                                    Log.e("text", "mFoodDatamFoodData111====: ");
+                                    mAdapter.notifyDataSetChanged();
+                                    mAdapter.isUseEmpty(true);
+                                    mAdapter.setEmptyView(notDataView);//没起作用？第一次生效了
+                                } else {
+                                    if (mFoodData != null && mFoodData.size() > 0) {//这下
+                                        mAdapter.setNewData(mFoodData);
+                                    } else {
+                                        mAdapter.setEmptyView(notDataView);
+                                    }
+                                }
+                                stopDialog();
                             } else {
+                                ToastUtils.showShort(SellerAllOrderActivity.this, response.body().msg);
+                            }*/
+                            mFoodData = response.body().result;//返回的集合数据
+                            if (response.body().code.equals(Constant.SUEECECODE)) {
+                                if (mFoodData.size() == 0) {
+                                    mAdapter.setEmptyView(notDataView);
+                                }else{
+                                    mAdapter.setNewData(mFoodData);
+                                }
+                                stopDialog();
+                            } else {
+                                stopDialog();
                                 ToastUtils.showShort(SellerAllOrderActivity.this, response.body().msg);
                             }
                         }
+
+                        @Override
+                        public void onError(Response<BaseMode<List<OrderListBean>>> response) {
+                            super.onError(response);
+                            stopDialog();
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            super.onFinish();
+                            stopDialog();
+                        }
                     });
+        }
+    }
+
+    /**
+     * dialog 隐藏
+     */
+    private void stopDialog() {
+        if (photoDiloag != null && photoDiloag.isShowing()) {
+            photoDiloag.dismiss();
         }
     }
 }

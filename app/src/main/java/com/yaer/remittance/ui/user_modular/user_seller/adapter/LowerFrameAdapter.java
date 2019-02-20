@@ -4,8 +4,9 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+
 import com.yaer.remittance.R;
+import com.yaer.remittance.base.BaseSimpleViewHolder;
 import com.yaer.remittance.bean.getMyAuctionBean;
 import com.yaer.remittance.utils.SystemUtil;
 
@@ -15,7 +16,7 @@ import java.util.ArrayList;
  * 下架
  */
 
-public class LowerFrameAdapter extends BaseQuickAdapter<getMyAuctionBean, BaseViewHolder> {
+public class LowerFrameAdapter extends BaseQuickAdapter<getMyAuctionBean, BaseSimpleViewHolder> {
     private String money;
     private int gisauction;
     ArrayList<String> list;
@@ -26,7 +27,7 @@ public class LowerFrameAdapter extends BaseQuickAdapter<getMyAuctionBean, BaseVi
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, getMyAuctionBean item) {
+    protected void convert(BaseSimpleViewHolder helper, getMyAuctionBean item) {
         helper.setText(R.id.on_sale_name, item.getGname());
         helper.setText(R.id.tv_one_sale_gnumber, "库存：" + item.getGnumber());
         helper.setText(R.id.tv_one_sale_gtime, SystemUtil.stampToDate1(Long.parseLong(item.getGtime())));
@@ -51,6 +52,7 @@ public class LowerFrameAdapter extends BaseQuickAdapter<getMyAuctionBean, BaseVi
         String[] arrayStr = new String[]{};// 字符数组
         arrayStr = Images.split(",");// 字符串转字符数组
         Glide.with(mContext).load(arrayStr[0]).fitCenter().into(icon);//商品或拍品图片
+        helper.addOnClickListener(R.id.tv_sale_edit);//编辑
         helper.addOnClickListener(R.id.tv_sale_lower_frame);//上架
         helper.addOnClickListener(R.id.ll_lower_frame);//查看详情
     }

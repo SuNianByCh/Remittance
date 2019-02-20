@@ -61,7 +61,7 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="-15dp"
                         android:background="@drawable/corner_view"
-                        android:text="LV3"
+                        android:text="LV0"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
@@ -112,19 +112,19 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/hw_3_dp"
-                            android:text="1071  粉丝"
+                            android:text="0 粉丝"
                             android:textColor="@color/text_2_color"
                             android:textSize="12sp" />
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/hw_40_dp"
                             android:padding="@dimen/hw_3_dp"
-                            android:text="评分：4.9"
+                            android:text="评分 0"
                             android:textColor="@color/text_2_color"
                             android:textSize="12sp" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -162,6 +162,7 @@
                             android:textColor="@color/main_tones" />
                     </LinearLayout>
                 </LinearLayout>
+
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rl_activity_shop"
                     android:layout_width="match_parent"
@@ -193,22 +194,22 @@
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
 
-<!--        <android.support.design.widget.TabLayout
-            android:id="@+id/tabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            app:tabBackground="@drawable/tab_background"
-            app:tabGravity="center"
-            app:tabIndicatorHeight="0dp"
-            app:tabMinWidth="80dp"
-            app:tabMode="scrollable"
-            app:tabPaddingBottom="5dp" />
+        <!--        <android.support.design.widget.TabLayout
+                    android:id="@+id/tabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    app:tabBackground="@drawable/tab_background"
+                    app:tabGravity="center"
+                    app:tabIndicatorHeight="0dp"
+                    app:tabMinWidth="80dp"
+                    app:tabMode="scrollable"
+                    app:tabPaddingBottom="5dp" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/linen" />-->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/linen" />-->
 
         <com.yaer.remittance.view.bar.NavitationLayout
             android:id="@+id/nal_bar1"

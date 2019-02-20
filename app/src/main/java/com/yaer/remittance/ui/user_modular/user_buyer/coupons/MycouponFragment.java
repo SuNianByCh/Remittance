@@ -27,9 +27,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-
 /**
- * 我的优惠券
+ * 我发布的优惠券
  */
 public class MycouponFragment extends BaseFragment {
     @BindView(R.id.rv_coupon)

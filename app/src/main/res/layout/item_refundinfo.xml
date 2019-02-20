@@ -20,7 +20,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="10dp"
             android:background="@drawable/secces_defaullt"
-            android:scaleType="fitXY" />
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:id="@+id/llGoodInfo"

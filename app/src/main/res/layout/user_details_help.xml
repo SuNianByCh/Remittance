@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_background"
+    android:background="@color/white"
     android:orientation="vertical">
     <!-- <com.yaer.auction.view.X5WebView
          android:id="@+id/x5_webview"
          android:layout_width="match_parent"
          android:layout_height="match_parent"/>-->
+<!--
     <com.yaer.remittance.view.CustomTitlebar
         android:id="@+id/ct_help_details"
         android:layout_width="match_parent"
@@ -20,10 +21,41 @@
         app:title_text="帮助中心详情"
         app:title_textColor="@color/text_1_color"
         app:title_textSize="18sp" />
+-->
+
+    <RelativeLayout
+        android:id="@+id/ll_help_detai"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/main_tone">
+
+        <ImageView
+            android:id="@+id/iv_help_detai_back"
+            android:layout_width="wrap_content"
+            android:padding="@dimen/hw_10_dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/return_left" />
+
+        <TextView
+            android:id="@+id/tv_userdetails_help"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:maxEms="8"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="商品详情"
+            android:padding="@dimen/hw_10_dp"
+            android:textColor="@color/text_1_color"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
 
     <TextView
         android:id="@+id/tv_help_details"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:padding="@dimen/sp_20"

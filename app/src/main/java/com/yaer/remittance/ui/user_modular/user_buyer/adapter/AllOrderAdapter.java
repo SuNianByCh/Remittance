@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+import com.yaer.remittance.base.BaseSimpleViewHolder;
 import com.liji.circleimageview.CircleImageView;
 import com.yaer.remittance.R;
 import com.yaer.remittance.bean.OrderListBean;
@@ -27,7 +27,7 @@ import java.util.List;
  * Created by geyifeng on 2017/6/3.
  */
 
-public class AllOrderAdapter extends BaseQuickAdapter<OrderListBean, BaseViewHolder> {
+public class AllOrderAdapter extends BaseQuickAdapter<OrderListBean, BaseSimpleViewHolder> {
     ArrayList<String> list;
     String Images;
     List<OrderListBean.ShoplistBean> shoplistBeanList = new ArrayList<>();
@@ -54,7 +54,7 @@ public class AllOrderAdapter extends BaseQuickAdapter<OrderListBean, BaseViewHol
 
     /*订单状态--0(待付款)1(代发货)2(待收货)3（待评价）4已取消 5申请退款6已关闭*/
     @Override
-    protected void convert(BaseViewHolder helper, OrderListBean item) {
+    protected void convert(BaseSimpleViewHolder helper, OrderListBean item) {
         helper.setText(R.id.tv_shop_order_name, item.getOtime());
         ImageView logoview = helper.getView(R.id.iv_commodity_order_image);
         TextView order_ostatus = helper.getView(R.id.tv_all_order_ostatus);
@@ -139,8 +139,13 @@ public class AllOrderAdapter extends BaseQuickAdapter<OrderListBean, BaseViewHol
             ll_order_evaluate.setVisibility(View.GONE);//评价
             ll_order_delete.setVisibility(View.VISIBLE);//删除订单
         }
+        List<OrderListBean.ShoplistBean> shoplist=item.getShoplist();
+        for (int i = 0; i < shoplist.size(); i++) {
+          goodslistBeans=shoplist.get(i).getGoodslist();
+        }
         if (item!=null){
             helper.setText(R.id.heji_gmoney,"￥" + AmountUtil.priceNum(item.getOtotalvalue()));//商品合计金额
+            helper.setText(R.id.tv_total_number,"共"+goodslistBeans.size()+"件");
         }
         if (item.getShoplist() != null && item.getShoplist().size() > 0)
             addGoodsItem((FlowLayout) helper.getView(R.id.fl), item.getShoplist().get(0).getGoodslist());
@@ -157,7 +162,6 @@ public class AllOrderAdapter extends BaseQuickAdapter<OrderListBean, BaseViewHol
         helper.addOnClickListener(R.id.ll_order_evaluate);//去评论
         helper.addOnClickListener(R.id.ll_order_view_logistics);//查看物流
         helper.addOnClickListener(R.id.ll_order_contact_merchant);//联系商家
-
     }
 
     /**

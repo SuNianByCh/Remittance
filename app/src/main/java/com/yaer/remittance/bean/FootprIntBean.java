@@ -22,8 +22,17 @@ public class FootprIntBean {
     private String gname;
     private String gmoney;
     private int gnumber;
+    private int gisauction;
     private String gtime;
     private String bhtime;
+
+    public int getGisauction() {
+        return gisauction;
+    }
+
+    public void setGisauction(int gisauction) {
+        this.gisauction = gisauction;
+    }
 
     public int getBhid() {
         return bhid;

@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.alipay.sdk.app.PayTask;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
+import com.lzy.okgo.request.base.Request;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.yaer.remittance.R;
 import com.yaer.remittance.api.AppApi;
@@ -84,6 +85,7 @@ public class RechargeActivity extends BaseActivity implements CustomTitlebar.Tit
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
                         Toast.makeText(RechargeActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                        finish();
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                         Toast.makeText(RechargeActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
@@ -226,6 +228,11 @@ public class RechargeActivity extends BaseActivity implements CustomTitlebar.Tit
                 .params("type", "APP")
                 .params("total_fee", prices)
                 .execute(new JsonCallback<PayWXBean>(this) {
+                    @Override
+                    public void onStart(Request<PayWXBean, ? extends Request> request) {
+                        super.onStart(request);
+                    }
+
                     @Override
                     public void onSuccess(Response<PayWXBean> response) {
                         final String appid = response.body().getAppid();//应用ID

@@ -262,6 +262,7 @@
                             android:textColor="@color/text_2_color"
                             android:textSize="12sp" />
                     </RelativeLayout>
+<!--
                     <TextView
                         android:id="@+id/tv_gpostage"
                         android:layout_width="wrap_content"
@@ -271,6 +272,7 @@
                         android:text="邮费：30"
                         android:textColor="@color/text_2_color"
                         android:textSize="12sp" />
+-->
 
                 </RelativeLayout>
             </LinearLayout>

@@ -11,14 +11,15 @@
         android:layout_height="wrap_content"
         android:background="@color/main_tone"
         app:left_button_image="@drawable/return_left"
-        app:right_button_text="发布优惠券"
+
         app:right_button_textColor="@color/text_1_color"
         app:right_button_textSize="14sp"
         app:title_backgrounds="@color/main_tone"
         app:title_text="优惠券"
         app:title_textColor="@color/text_1_color"
         app:title_textSize="18sp" />
-
+   <!-- app:right_button_text="发布优惠券"
+-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

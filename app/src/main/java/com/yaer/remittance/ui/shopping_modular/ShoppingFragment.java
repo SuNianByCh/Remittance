@@ -73,9 +73,9 @@ public class ShoppingFragment extends BaseFragment {
     private int page = 1;
     private int pagesize = 10;
     private RecyclerView rvclass;
-    private RecyclerView rl_sjopping_commodity;
+    //private RecyclerView rl_sjopping_commodity;
     private List<NewGoodsBean> CommodityNewProduclist = new ArrayList<>();
-    private ShopCommodityNewProductAdapter shopCommodityNewProductAdapter;
+    // private ShopCommodityNewProductAdapter shopCommodityNewProductAdapter;
     List<selectBannerBean> mBanner = new ArrayList<>();
 
     /***
@@ -88,6 +88,7 @@ public class ShoppingFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         ImmersionBar.setTitleBar(getActivity(), mToolbar);
     }
+
     /***
      * 设置沉浸式标题
      */
@@ -200,7 +201,7 @@ public class ShoppingFragment extends BaseFragment {
         headView = LayoutInflater.from(mActivity).inflate(R.layout.item_banner, (ViewGroup) mRv.getParent(), false);
         banner = (Banner) headView.findViewById(R.id.shopping_banner);
         rvclass = headView.findViewById(R.id.rv_banner_classification);
-        rl_sjopping_commodity = headView.findViewById(R.id.rl_sjopping_commodity);
+        // rl_sjopping_commodity = headView.findViewById(R.id.rl_sjopping_commodity);
         rvclass.setLayoutManager(new GridLayoutManager(getActivity(), 4));
         rvclass.addItemDecoration(new SpacesItemDecoration(8));
         shoppingclassAdapter = new ShoppingclassAdapter();
@@ -208,11 +209,12 @@ public class ShoppingFragment extends BaseFragment {
         /*为你推荐*/
         LinearLayoutManager ms = new LinearLayoutManager(getActivity());
         ms.setOrientation(LinearLayoutManager.HORIZONTAL);
-        rl_sjopping_commodity.setLayoutManager(ms);
+       /* rl_sjopping_commodity.setLayoutManager(ms);
         shopCommodityNewProductAdapter = new ShopCommodityNewProductAdapter();
-        rl_sjopping_commodity.setAdapter(shopCommodityNewProductAdapter);
+        rl_sjopping_commodity.setAdapter(shopCommodityNewProductAdapter);*/
         Fetshopclassinfcaiioninfomodels();//获取商品一级分类
-        GetNewGoods(page, pagesize);//为你推荐
+        //GetNewGoods(page, pagesize);//为你推荐
+/*
         rl_sjopping_commodity.addOnItemTouchListener(new OnItemChildClickListener() {
             @Override
             public void onSimpleItemChildClick(BaseQuickAdapter adapter, View view, int position) {
@@ -230,6 +232,7 @@ public class ShoppingFragment extends BaseFragment {
                 }
             }
         });
+*/
 
         shoppingAdapter.addHeaderView(headView);
        /* ViewGroup.LayoutParams bannerParams = banner.getLayoutParams();
@@ -253,7 +256,7 @@ public class ShoppingFragment extends BaseFragment {
                         Log.e("text", "为你推荐: " + response.body().result);
                         if (response.body().code.equals(Constant.SUEECECODE)) {
                             CommodityNewProduclist = response.body().result;
-                            shopCommodityNewProductAdapter.setNewData(CommodityNewProduclist);
+                            // shopCommodityNewProductAdapter.setNewData(CommodityNewProduclist);
                         } else {
                             ToastUtils.showShort(getActivity(), response.body().msg);
                         }

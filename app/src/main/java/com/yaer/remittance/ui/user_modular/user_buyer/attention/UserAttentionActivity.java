@@ -88,6 +88,7 @@ public class UserAttentionActivity extends BaseActivity implements CustomTitleba
         notDataView = getLayoutInflater().inflate(R.layout.empty_view, (ViewGroup) rv_attention.getParent(), false);
         errorView = getLayoutInflater().inflate(R.layout.error_view, (ViewGroup) rv_attention.getParent(), false);
         rv_attention.setLayoutManager(new GridLayoutManager(this, 1));
+        attention_refreshLayout.setEnableLoadMore(false);//上拉
         GetFollowshop(page, pagesize);
         attentionAdapter = new AttentionAdapter();
         rv_attention.setAdapter(attentionAdapter);

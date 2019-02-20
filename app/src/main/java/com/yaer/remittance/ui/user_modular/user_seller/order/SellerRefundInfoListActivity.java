@@ -118,7 +118,7 @@ public class SellerRefundInfoListActivity extends BaseActivity {
         } else {
             OkGo.<BaseMode<List<RefundInfoListBean>>>post(AppApi.BASE_URL + AppApi.GETREFUNDINFOLIST)
                     .tag(this)
-                    .params("uid", AppUtile.getUid(this))
+                   // .params("uid", AppUtile.getUid(this))
                     .params("sid",sid)
                     .execute(new JsonCallback<BaseMode<List<RefundInfoListBean>>>(this) {
                         @Override

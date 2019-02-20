@@ -8,10 +8,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+
 import com.liji.circleimageview.CircleImageView;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.yaer.remittance.R;
+import com.yaer.remittance.base.BaseSimpleViewHolder;
 import com.yaer.remittance.bean.GoodshopBean;
 import com.yaer.remittance.ui.home_modular.auctiondetails.AuctionDetailsActivity;
 import com.yaer.remittance.ui.shopping_modular.commodity.CommodityDetailsActivity;
@@ -23,7 +24,7 @@ import java.util.List;
  * Created by geyifeng on 2017/6/3.
  */
 
-public class GoodshopAdapter extends BaseQuickAdapter<GoodshopBean, BaseViewHolder> {
+public class GoodshopAdapter extends BaseQuickAdapter<GoodshopBean, BaseSimpleViewHolder> {
     List<GoodshopBean.GoodsListModelsBean> goodslist = new ArrayList<>();
     ArrayList<String> list;
     CircleImageView goodshopimage;
@@ -35,7 +36,7 @@ public class GoodshopAdapter extends BaseQuickAdapter<GoodshopBean, BaseViewHold
     }
 
     @Override
-    public void onBindViewHolder(BaseViewHolder holder, int position) {
+    public void onBindViewHolder(BaseSimpleViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
         if (mGridRecyclerView == null) {
             return;
@@ -51,7 +52,7 @@ public class GoodshopAdapter extends BaseQuickAdapter<GoodshopBean, BaseViewHold
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, final GoodshopBean item) {
+    protected void convert(BaseSimpleViewHolder helper, final GoodshopBean item) {
         helper.setText(R.id.tv_shangpinname, item.getSname());
         helper.setText(R.id.tv_goodshop_slabel, item.getSlabel());
 
@@ -71,17 +72,17 @@ public class GoodshopAdapter extends BaseQuickAdapter<GoodshopBean, BaseViewHold
     }
 }
 
-class MyGridAdapter extends BaseQuickAdapter {
+class MyGridAdapter extends BaseQuickAdapter<Object,BaseSimpleViewHolder> {
     private RoundedImageView image;
     ArrayList<String> list;
     String Images;
 
-    public MyGridAdapter(int layoutResId, List<GoodshopBean.GoodsListModelsBean> data) {
+    public MyGridAdapter(int layoutResId, List data) {
         super(layoutResId, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, final Object item) {
+    protected void convert(BaseSimpleViewHolder helper, final Object item) {
         final GoodshopBean.GoodsListModelsBean bean = (GoodshopBean.GoodsListModelsBean) item;
         helper.setText(R.id.tv_grid_name, bean.getGname());
         TextView auction_identification = helper.getView(R.id.tv_auction_identification);
@@ -125,7 +126,9 @@ class MyGridAdapter extends BaseQuickAdapter {
     }
 
     @Override
-    public void onBindViewHolder(BaseViewHolder holder, int position) {
+    public void onBindViewHolder(BaseSimpleViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
     }
+
+
 }

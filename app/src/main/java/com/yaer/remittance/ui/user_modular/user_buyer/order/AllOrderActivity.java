@@ -1,6 +1,7 @@
 package com.yaer.remittance.ui.user_modular.user_buyer.order;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +14,10 @@ import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.lzy.okgo.OkGo;
@@ -32,12 +37,14 @@ import com.yaer.remittance.payment.PayDialogFragment;
 import com.yaer.remittance.ui.login_modular.LoginActivity;
 import com.yaer.remittance.ui.user_modular.user_buyer.adapter.AllOrderAdapter;
 import com.yaer.remittance.ui.user_modular.user_buyer.adapter.RefundInfoListAdapter;
+import com.yaer.remittance.ui.user_modular.user_buyer.footprint.UserFootPrintActivity;
 import com.yaer.remittance.ui.user_modular.user_buyer.logistics.LogisticsActivity;
 import com.yaer.remittance.utils.AppUtile;
 import com.yaer.remittance.utils.LoadingDialog;
 import com.yaer.remittance.utils.NetworkUtils;
 import com.yaer.remittance.utils.StringUtils;
 import com.yaer.remittance.utils.ToastUtils;
+import com.yaer.remittance.view.LoadingDialog2;
 import com.yaer.remittance.view.UIAlertView;
 
 import java.util.ArrayList;
@@ -84,13 +91,20 @@ public class AllOrderActivity extends BaseActivity {
     RelativeLayout rl_allorder_title;
     private AllOrderAdapter mAdapter;
     private String type = "0";
-    List<OrderListBean> mFoodData;
+    List<OrderListBean> mFoodData;//这儿定义
     private int uid;
     private String ostatus = null;//订单状态，不传是全部
     private View notDataView;
     private View errorView;
     List<OrderListBean.ShoplistBean> shoplistBeanList = new ArrayList<>();
     List<OrderListBean.ShoplistBean.GoodslistBean> goodslistBeans = new ArrayList<>();
+    List<String> listname = new ArrayList<>();
+    /*分类选择标签*/
+    private OptionsPickerView pvOptions;
+    /**
+     * dialog
+     */
+    private LoadingDialog2 photoDiloag;
 
     //设置沉浸式
     @Override
@@ -127,6 +141,7 @@ public class AllOrderActivity extends BaseActivity {
         } else if (type.equals("1")) {
             //待付款
             rb_daifukuan.setChecked(true);
+            //getorderList("0");
             ostatus = "0";
         } else if (type.equals("2")) {
             //代发货
@@ -141,6 +156,15 @@ public class AllOrderActivity extends BaseActivity {
             rb_yishouhuo.setChecked(true);
             ostatus = "3";
         }
+        showresaon();
+    }
+
+    private void showresaon() {
+        listname.add("我不想买了");
+        listname.add("信息填写错误");
+        listname.add("付款遇到问题");
+        listname.add("卖家缺货");
+        listname.add("其他原因");
     }
 
     /**
@@ -193,7 +217,8 @@ public class AllOrderActivity extends BaseActivity {
                         break;
                     /*取消订单*/
                     case R.id.ll_cancel_order:
-                        cancelDelDialog(iCartItem.getOid(), position);
+                        showPickerView(view, listname, iCartItem.getOid(), position);
+                        // cancelDelDialog(iCartItem.getOid(), position);
                         break;
                     /*删除订单*/
                     case R.id.ll_order_delete:
@@ -238,6 +263,42 @@ public class AllOrderActivity extends BaseActivity {
         });
     }
 
+    /**
+     * 展示选择器
+     * 核心代码
+     */
+    private void showPickerView(View view, final List<String> listname, final int oid, final int position) {
+        if (pvOptions == null) {
+            pvOptions = new OptionsPickerBuilder(context, new OnOptionsSelectListener() {
+                @Override
+                public void onOptionsSelect(int options1, int options2, int options3, View v) {
+                    //返回的分别是三个级别的选中位置
+                    //展示选中数据
+                   // ToastUtils.showToast(listname.get(options1));
+                    //tv_refund_usignature.setText(listname.get(options1));
+                    cancelDelDialog(oid, position,listname.get(options1));
+                }
+            })
+                    .setTitleText("退款原因")
+                    .setContentTextSize(20)//设置滚轮文字大小
+                    .setDividerColor(Color.LTGRAY)//设置分割线的颜色
+                    .setTextColorOut(Color.BLACK)
+                    .setTextColorCenter(Color.BLUE)
+                    .setSelectOptions(0)//默认选中项
+                    .setBgColor(Color.WHITE)
+                    .setTitleBgColor(Color.WHITE)
+                    .setTitleColor(Color.LTGRAY)
+                    .isRestoreItem(true)//切换时是否还原，设置默认选中第一项。
+                    .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
+                    .setBackgroundId(0x00000000) //设置外部遮罩颜色
+                    .build();
+            pvOptions.setPicker(listname);//一级选择器
+            pvOptions.show();
+        } else {
+            pvOptions.show(view);
+        }
+    }
+
     private String gname;
     private String gimg;
     private int gid;
@@ -252,7 +313,7 @@ public class AllOrderActivity extends BaseActivity {
         payDialogFragment.show(getSupportFragmentManager(), "payFragment");
     }
 
-    private void cancelDelDialog(final int oid, final int postion) {
+    private void cancelDelDialog(final int oid, final int postion, final String oreason) {
         final UIAlertView delDialog = new UIAlertView(AllOrderActivity.this, "温馨提示", "确定要取消订单吗",
                 "取消", "确认");
         delDialog.show();
@@ -265,7 +326,7 @@ public class AllOrderActivity extends BaseActivity {
                                        @Override
                                        public void doRight() {
                                            delDialog.dismiss();
-                                           Cancelorder(oid, postion);
+                                           Cancelorder(oid, postion,oreason);
                                        }
                                    }
         );
@@ -377,11 +438,12 @@ public class AllOrderActivity extends BaseActivity {
     /**
      * 取消订单*
      */
-    public void Cancelorder(int oid, final int position) {
+    public void Cancelorder(int oid, final int position,String oreason) {
         OkGo.<BaseMode>post(AppApi.BASE_URL + AppApi.CANCELORDER)
                 .tag(this)
                 .params("oid", oid)
                 .params("uid", uid)
+                .params("oreason",oreason)
                 .execute(new JsonCallback<BaseMode>(this) {
                     @Override
                     public void onStart(Request<BaseMode, ? extends Request> request) {
@@ -431,11 +493,10 @@ public class AllOrderActivity extends BaseActivity {
         super.onResume();
         if (ostatus != null) {
             getorderList(ostatus);
-        } else if (mAdapter == null) {
+        } else if (mAdapter != null) {
             mAdapter.setEmptyView(notDataView);
         }
     }
-
 
     @OnClick({R.id.back, R.id.rb_all, R.id.rb_daifukuan, R.id.rb_daifahuo, R.id.rb_daishouhuo, R.id.rb_yishouhuo})
     public void onClick(View v) {
@@ -476,11 +537,10 @@ public class AllOrderActivity extends BaseActivity {
         getorderList(ostatus);
     }
 
-    /*
-     *
+    /**
      * 根据用户id获取订单列表*
      */
-    public void getorderList(String ostatus) {
+    public void getorderList(final String ostatus) {
         if (!NetworkUtils.isNetworkConnected(this)) {
             mAdapter.setEmptyView(errorView);
         } else {
@@ -492,33 +552,58 @@ public class AllOrderActivity extends BaseActivity {
                         @Override
                         public void onStart(Request<BaseMode<List<OrderListBean>>, ? extends Request> request) {
                             super.onStart(request);
-                            LoadingDialog.showDialogForLoading(AllOrderActivity.this, null);
+                            photoDiloag = new LoadingDialog2(AllOrderActivity.this, "加载中...");
+                            photoDiloag.show();
                         }
+
                         @Override
                         public void onSuccess(Response<BaseMode<List<OrderListBean>>> response) {
-                            mFoodData = response.body().result;
-                            if (mFoodData.size() == 0) {
-                                mAdapter.setEmptyView(notDataView);
-                            }
-                            if (response.body().code.equals(Constant.SUEECECODE)) {
-                                mAdapter.setNewData(mFoodData);
+                            stopDialog();
+                            if (mFoodData != null) mFoodData.clear();//这里清空掉了
+                            mFoodData = response.body().result;//返回的集合数据
+                            if (response.body().code.equals(Constant.SUEECECODE)) {//这个地方是返回的code判断
+                                Log.e("text", "mFoodDatamFoodData====: " + mFoodData);
+                                Log.e("text", "mFoodDatamFoodData====: " + JSON.toJSONString(mFoodData));
+                                if (mFoodData.size() == 0) {//JSON.toJSONString(mFoodData).equals("[]")
+                                    Log.e("text", "mFoodDatamFoodData111====: ");
+                                    mAdapter.notifyDataSetChanged();
+                                    mAdapter.isUseEmpty(true);
+                                    mAdapter.setEmptyView(notDataView);//没起作用？第一次生效了
+                                } else {
+                                    if (mFoodData != null && mFoodData.size() > 0) {//这下
+                                        mAdapter.setNewData(mFoodData);
+                                    } else {
+                                        mAdapter.setEmptyView(notDataView);
+                                    }
+                                }
+                                stopDialog();
                             } else {
                                 ToastUtils.showShort(AllOrderActivity.this, response.body().msg);
                             }
+
                         }
 
                         @Override
                         public void onError(Response<BaseMode<List<OrderListBean>>> response) {
                             super.onError(response);
-                            //ToastUtils.showShort(AllOrderActivity.this, response.body().msg);
+                            stopDialog();
                         }
 
                         @Override
                         public void onFinish() {
                             super.onFinish();
-                            LoadingDialog.hide();
+                            stopDialog();
                         }
                     });
+        }
+    }
+
+    /**
+     * dialog 隐藏
+     */
+    private void stopDialog() {
+        if (photoDiloag != null && photoDiloag.isShowing()) {
+            photoDiloag.dismiss();
         }
     }
 }

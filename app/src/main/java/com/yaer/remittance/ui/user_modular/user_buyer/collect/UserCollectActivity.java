@@ -75,6 +75,8 @@ public class UserCollectActivity extends BaseActivity implements CustomTitlebar.
         uid = AppUtile.getUid(this);
         notDataView = getLayoutInflater().inflate(R.layout.empty_view, (ViewGroup) rv_collect.getParent(), false);
         errorView = getLayoutInflater().inflate(R.layout.error_view, (ViewGroup) rv_collect.getParent(), false);
+        //collect_refreshLayout.setEnableRefresh(false);//下拉
+        collect_refreshLayout.setEnableLoadMore(false);//上拉
         rv_collect.setLayoutManager(new GridLayoutManager(this, 1));
         GetFollowGoods(page, pagesize);
         collectAdapter = new UserCollectAdapter();

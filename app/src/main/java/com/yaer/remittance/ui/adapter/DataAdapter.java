@@ -5,9 +5,10 @@ import android.util.Log;
 import android.view.View;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.yaer.remittance.R;
+import com.yaer.remittance.base.BaseSimpleViewHolder;
 import com.yaer.remittance.bean.SelectGoodsListBean;
 import com.yaer.remittance.ui.shopping_modular.commodity.CommodityDetailsActivity;
 
@@ -17,7 +18,7 @@ import java.util.ArrayList;
  * Created by geyifeng on 2017/6/3.
  */
 
-public class DataAdapter extends BaseQuickAdapter<SelectGoodsListBean, BaseViewHolder> {
+public class DataAdapter extends BaseQuickAdapter<SelectGoodsListBean, BaseSimpleViewHolder> {
     ArrayList<String> list;
     String Images;
 
@@ -26,7 +27,7 @@ public class DataAdapter extends BaseQuickAdapter<SelectGoodsListBean, BaseViewH
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, final SelectGoodsListBean item) {
+    protected void convert(BaseSimpleViewHolder helper, final SelectGoodsListBean item) {
         helper.setText(R.id.tv_data_name, item.getGname());
         helper.setText(R.id.tv_data_gmoney, "¥ " + item.getGmoney());
         RoundedImageView logoview = helper.getView(R.id.riv_data_image);

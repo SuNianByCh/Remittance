@@ -38,18 +38,34 @@
                 android:layout_toRightOf="@+id/icon"
                 android:orientation="vertical">
 
+                <!--
+                                <TextView
+                                    android:id="@+id/on_sale_name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_toRightOf="@+id/icon"
+                                    android:paddingLeft="5dp"
+                                    android:lines="1"
+                                    android:textIsSelectable="true"
+                                    android:maxEms="12"
+                                    android:ellipsize="end"
+                                    android:text="战国狩猎图玉鼎"
+                                    android:textColor="@color/text_2_color"
+                                    android:textSize="14sp" />
+                -->
                 <TextView
                     android:id="@+id/on_sale_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_4"
+                    android:layout_marginRight="@dimen/dp_4"
+                    android:layout_marginTop="@dimen/dp_4"
                     android:layout_toRightOf="@+id/icon"
-                    android:paddingLeft="5dp"
-                    android:lines="1"
-                    android:textIsSelectable="true"
-                    android:maxEms="12"
                     android:ellipsize="end"
+                    android:gravity="center"
+                    android:singleLine="true"
                     android:text="战国狩猎图玉鼎"
-                    android:textColor="@color/text_2_color"
+                    android:textColor="#666666"
                     android:textSize="14sp" />
 
                 <TextView
@@ -69,38 +85,33 @@
                     android:id="@+id/tv_one_sale_gisauction"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/hw_10_dp"
+                    android:layout_marginTop="@dimen/hw_5_dp"
                     android:paddingLeft="5dp"
                     android:text="商品还是拍品"
                     android:textColor="@color/text_2_color"
                     android:textSize="12sp" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tv_one_sale_gnumber"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/hw_10_dp"
-                    android:orientation="horizontal">
+                    android:paddingLeft="5dp"
+                    android:text="库存：100"
+                    android:layout_marginTop="@dimen/hw_5_dp"
+                    android:textColor="@color/text_2_color"
+                    android:textSize="12sp" />
 
-                    <TextView
-                        android:id="@+id/tv_one_sale_gnumber"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="5dp"
-                        android:text="库存：100"
-                        android:textColor="@color/text_2_color"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:id="@+id/tv_one_sale_gtime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/hw_10_dp"
-                        android:paddingLeft="5dp"
-                        android:text="2018-05-19"
-                        android:textColor="@color/text_2_color"
-                        android:textSize="12sp" />
-                </RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_one_sale_gtime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/hw_5_dp"
+                    android:layout_marginRight="@dimen/hw_10_dp"
+                    android:paddingLeft="5dp"
+                    android:text="2018-05-19"
+                    android:textColor="@color/text_2_color"
+                    android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -120,7 +131,6 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/hw_5_dp"
                 android:paddingLeft="@dimen/dp_10"
-                android:visibility="gone"
                 android:paddingRight="@dimen/dp_10"
                 android:paddingTop="@dimen/hw_5_dp"
                 android:text="编辑"
@@ -141,21 +151,21 @@
                 android:text="上架"
                 android:textColor="@color/main_tone"
                 android:textSize="12sp" />
-          <!--  <TextView
-                android:id="@+id/tv_sale_detele"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/hw_10_dp"
-                android:layout_weight="1"
-                android:background="@drawable/shap_attention_true"
-                android:gravity="center"
-                android:paddingBottom="@dimen/hw_5_dp"
-                android:paddingLeft="@dimen/dp_10"
-                android:paddingRight="@dimen/dp_10"
-                android:paddingTop="@dimen/hw_5_dp"
-                android:text="删除"
-                android:textColor="@color/main_tone"
-                android:textSize="12sp" />-->
+            <!--  <TextView
+                  android:id="@+id/tv_sale_detele"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="@dimen/hw_10_dp"
+                  android:layout_weight="1"
+                  android:background="@drawable/shap_attention_true"
+                  android:gravity="center"
+                  android:paddingBottom="@dimen/hw_5_dp"
+                  android:paddingLeft="@dimen/dp_10"
+                  android:paddingRight="@dimen/dp_10"
+                  android:paddingTop="@dimen/hw_5_dp"
+                  android:text="删除"
+                  android:textColor="@color/main_tone"
+                  android:textSize="12sp" />-->
         </LinearLayout>
     </LinearLayout>
 

@@ -6,8 +6,9 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+
 import com.yaer.remittance.R;
+import com.yaer.remittance.base.BaseSimpleViewHolder;
 import com.yaer.remittance.bean.SpecialEventBean;
 import com.yaer.remittance.ui.home_modular.auctionspecial.AuctionSpecialDetailsActivity;
 import com.yaer.remittance.utils.SystemUtil;
@@ -18,7 +19,7 @@ import java.text.ParseException;
  * Created by geyifeng on 2017/6/3.
  */
 
-public class AuctionSpecialAdapter extends BaseQuickAdapter<SpecialEventBean, BaseViewHolder> {
+public class AuctionSpecialAdapter extends BaseQuickAdapter<SpecialEventBean, BaseSimpleViewHolder> {
     private ImageView iv_paimai;
 
     public AuctionSpecialAdapter() {
@@ -26,7 +27,7 @@ public class AuctionSpecialAdapter extends BaseQuickAdapter<SpecialEventBean, Ba
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, final SpecialEventBean item) {
+    protected void convert(BaseSimpleViewHolder helper, final SpecialEventBean item) {
         helper.setText(R.id.special_name, item.getSename());//专场拍品名称
         helper.setText(R.id.special_auction_description, item.getSedesc());//专场拍品简介
         iv_paimai = helper.getView(R.id.iv_paimai);

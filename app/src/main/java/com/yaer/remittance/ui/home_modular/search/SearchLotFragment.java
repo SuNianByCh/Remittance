@@ -1,7 +1,6 @@
 package com.yaer.remittance.ui.home_modular.search;
 
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -19,14 +19,14 @@ import com.yaer.remittance.api.AppApi;
 import com.yaer.remittance.api.Constant;
 import com.yaer.remittance.base.BaseLazyFragment;
 import com.yaer.remittance.base.BaseMode;
-import com.yaer.remittance.bean.ShopInfoListByKeyBean;
+import com.yaer.remittance.bean.NewGoodsBean;
 import com.yaer.remittance.bean.selectGoodsByNameBean;
 import com.yaer.remittance.callback.JsonCallback;
-import com.yaer.remittance.ui.adapter.SelectedAdapter;
+import com.yaer.remittance.ui.home_modular.auctiondetails.AuctionDetailsActivity;
+import com.yaer.remittance.ui.login_modular.LoginActivity;
 import com.yaer.remittance.utils.AppUtile;
 import com.yaer.remittance.utils.NetworkUtils;
 import com.yaer.remittance.utils.ToastUtils;
-import com.youth.banner.Banner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +74,31 @@ public class SearchLotFragment extends BaseLazyFragment {
         rv_search_lot_produc.setLayoutManager(new LinearLayoutManager(getActivity()));
         Getshopinfolistbukey(page, pagesize);
         searchLotAdapter = new SearchLotAdapter();
+        final Bundle bundle = new Bundle();
+        /*为你优选*/
+        rv_search_lot_produc.addOnItemTouchListener(new OnItemChildClickListener() {
+            @Override
+            public void onSimpleItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            }
+
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                int itemViewId = view.getId();
+                selectGoodsByNameBean selectGoodsByNameBean = searchLotAdapter.getData().get(position);
+                switch (itemViewId) {
+                    /*进入拍品详情*/
+                    case R.id.ll_search_lot_product:
+                        if (!NetworkUtils.isNetworkConnected(mActivity)) {
+                            ToastUtils.showToast("当前无网络请链接网络");
+                        } else if (AppUtile.getTicket(mActivity).equals("")) {
+                            goToActivity(LoginActivity.class, "type", "1");
+                        } else {
+                            bundle.putString("gidshopping", String.valueOf(selectGoodsByNameBean.getGid()));
+                            goToActivity(AuctionDetailsActivity.class, bundle);
+                        }
+                        break;
+                }
+            }
+        });
         rv_search_lot_produc.setAdapter(searchLotAdapter);
         showtext();
     }

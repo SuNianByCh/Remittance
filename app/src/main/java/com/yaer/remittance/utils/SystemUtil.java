@@ -1,5 +1,6 @@
 package com.yaer.remittance.utils;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
@@ -64,6 +65,7 @@ public class SystemUtil {
      * @param context
      * @return
      */
+    @SuppressLint("MissingPermission")
     public static String getDeviceId(Context context) {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return tm.getDeviceId();
@@ -253,6 +255,7 @@ public class SystemUtil {
         Date date = new Date(timeMillis);
         return simpleDateFormat.format(date);
     }
+
     /*
      * 将时间戳转换为时间
      */
@@ -261,6 +264,7 @@ public class SystemUtil {
         Date date = new Date(timeMillis);
         return simpleDateFormat.format(date);
     }
+
     /*
      * 将时间戳转换为时间
      */
@@ -343,6 +347,30 @@ public class SystemUtil {
             return "";
         }
     }
+
+    public static final String STR_FORMAT_YYYY_MM_DD_HH_MM = "yyyy-MM-dd HH:mm";
+
+    public static String timeLongToString(String time, String format) {
+
+        try {
+            return timeLongToString(Long.parseLong(time), format);
+        } catch (Throwable e) {
+            return "";
+        }
+    }
+
+    public static String timeLongToString(long time, String format) {
+        if (StringUtils.isEmpty(format)) {
+            return "";
+        }
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+            return simpleDateFormat.format(new Date(time));
+        } catch (Throwable throwable) {
+            return "";
+        }
+    }
+
 
     public static int getAppSatus(Context context, String pageName) {
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);

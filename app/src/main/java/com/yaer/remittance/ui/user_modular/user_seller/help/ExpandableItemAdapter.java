@@ -4,13 +4,13 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+import com.yaer.remittance.base.BaseSimpleViewHolder;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.yaer.remittance.R;
 
 import java.util.List;
 
-public class ExpandableItemAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder> {
+public class ExpandableItemAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity, BaseSimpleViewHolder> {
     /**
      * Same as QuickAdapter#QuickAdapter(Context,int) but with
      * some initialization data.
@@ -24,7 +24,7 @@ public class ExpandableItemAdapter extends BaseMultiItemQuickAdapter<MultiItemEn
     }
 
     @Override
-    protected void convert(final BaseViewHolder helper, final MultiItemEntity item) {
+    protected void convert(final BaseSimpleViewHolder helper, final MultiItemEntity item) {
         switch (helper.getItemViewType()) {
             case R.layout.item_help_parent:
              final    ParentEntity parentEntity = (ParentEntity) item;

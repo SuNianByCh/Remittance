@@ -95,7 +95,6 @@ public class UserFootPrintActivity extends BaseActivity implements CustomTitleba
                 showDelDialog(footprIntBeanlist.getBhid(), position);
             }
         });
-
         showtext();
     }
 
@@ -124,7 +123,7 @@ public class UserFootPrintActivity extends BaseActivity implements CustomTitleba
                         refreshlayout.finishRefresh();
                         refreshlayout.resetNoMoreData();//恢复上拉状态
                     }
-                }, 2000);
+                }, 500);
             }
 
             @Override
@@ -136,7 +135,7 @@ public class UserFootPrintActivity extends BaseActivity implements CustomTitleba
                         GetBrowsingHistory(page, pagesize);
                         refreshlayout.finishLoadMore();
                     }
-                }, 1000);
+                }, 500);
             }
         });
     }
@@ -175,7 +174,6 @@ public class UserFootPrintActivity extends BaseActivity implements CustomTitleba
                                 } else if (page > 1 && FootPrintItemList != null && FootPrintItemList.size() > 0) {
                                     userFootPrintAdapter.addData(FootPrintItemList);
                                 } else {
-                                    ToastUtils.showToast("数据全部加载完毕");
                                     historyLayout.finishLoadMoreWithNoMoreData();
                                 }
                             } else {
